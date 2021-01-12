@@ -1,0 +1,76 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+005     main.i
+006     main.j
+007     main.k
+008-00D main.j0
+00E-013 main.display
+014-01D main.dato
+01E     main.p
+01F     main.salida
+020     main.cont
+021.0   main.shot1
+021.1   main.shot2
+022     @delay_ms1.P1
+022     main.@SCRATCH1
+023     main.@SCRATCH2
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0004  @delay_ms1
+002C  main
+0236  @goto10057
+002C  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    E:\SD\UTA\PICC\QL200\Ejemplo\09 Display seg_6\
+
+Project Files:
+    09 Display seg_6b.c
+    C:\Program Files (x86)\PICC\devices\18F4550.h
+
+Units:
+    E:\SD\UTA\PICC\QL200\Ejemplo\09 Display seg_6\09 Display seg_6b (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      09 Display seg_6b.err
+    Ext Symbols: 09 Display seg_6b.esym
+    INHX32:      09 Display seg_6b.hex
+    Symbols:     09 Display seg_6b.sym
+    List:        09 Display seg_6b.lst
+    Debug/COFF:  09 Display seg_6b.cof
+    Project:     09 Display seg_6b.PJT
+    Call Tree:   09 Display seg_6b.tre
+    Statistics:  09 Display seg_6b.sta

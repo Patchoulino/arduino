@@ -1,0 +1,31 @@
+[PROJECT]
+Target=E:\SD\UTA\PICC\QL200\Ejemplo\13 PWM\01 PWM soft.hex
+Development_Mode=
+Processor_Text=PIC18F4550
+ToolSuite=CCS
+Processor=0x4550
+[E:\SD\UTA\PICC\QL200\Ejemplo\01 PWM soft]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[mru-list]
+1=E:\SD\UTA\PICC\QL200\Ejemplo\13 PWM\01 PWM soft.c
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[Units]
+Link=0
+Count=1
+1=E:\SD\UTA\PICC\QL200\Ejemplo\13 PWM\01 PWM soft
+[Opened Files]
+1=..\13 PWM\01 PWM soft.c
+2=
+[E:\SD\UTA\PICC\QL200\Ejemplo\13 PWM\01 PWM soft]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=

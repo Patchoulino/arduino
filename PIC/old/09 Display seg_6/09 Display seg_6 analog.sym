@@ -1,0 +1,73 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+005     main.i
+006     main.j
+007-00C main.display
+00D-016 main.dato
+017     main.salida
+018-019 main.tiempo
+01A     main.ti
+01B     main.@SCRATCH1
+01C     @delay_ms1.P1
+200     segment
+200.0   PC
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0004  @delay_ms1
+002C  main
+0198  @goto10055
+002C  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    E:\SD\UTA\PICC\QL200\Ejemplo\09 Display seg_6\
+
+Project Files:
+    09 Display seg_6 analog.c
+    C:\Program Files (x86)\PICC\devices\18F4550.h
+
+Units:
+    E:\SD\UTA\PICC\QL200\Ejemplo\09 Display seg_6\09 Display seg_6 analog (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      09 Display seg_6 analog.err
+    Ext Symbols: 09 Display seg_6 analog.esym
+    INHX32:      09 Display seg_6 analog.hex
+    Symbols:     09 Display seg_6 analog.sym
+    List:        09 Display seg_6 analog.lst
+    Debug/COFF:  09 Display seg_6 analog.cof
+    Project:     09 Display seg_6 analog.PJT
+    Call Tree:   09 Display seg_6 analog.tre
+    Statistics:  09 Display seg_6 analog.sta

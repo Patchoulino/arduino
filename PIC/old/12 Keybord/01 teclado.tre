@@ -1,0 +1,5 @@
+ÀÄ01 teclado
+   ÀÄmain  0/160  Ram=1
+      ÃÄ??0??
+      ÃÄ@delay_ms1  0/40  Ram=1
+      ÀÄ@delay_ms1  0/40  Ram=1

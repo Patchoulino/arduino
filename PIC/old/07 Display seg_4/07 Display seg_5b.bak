@@ -1,0 +1,74 @@
+#include <18F4550.h>
+#device adc=8
+#include <18Fconfig1.h>
+
+
+
+    #use delay(clock=48000000)//Frecuencia de reloj
+
+
+void main()
+{
+
+   setup_adc_ports(NO_ANALOGS|VSS_VDD);
+   setup_adc(ADC_CLOCK_DIV_2);
+   setup_psp(PSP_DISABLED);
+   setup_spi(SPI_SS_DISABLED);
+   setup_wdt(WDT_OFF);
+   setup_timer_0(RTCC_INTERNAL);
+   setup_timer_1(T1_DISABLED);
+   setup_timer_2(T2_DISABLED,0,1);
+   setup_comparator(NC_NC_NC_NC);
+   setup_vref(FALSE);
+//Setup_Oscillator parameter not selected from Intr Oscillator Config tab
+
+
+   set_tris_a(0x0);                   //configura la puerto a como salidas
+   set_tris_c(0x0);                   //configura la puerto c como salidas
+   set_tris_d(0x0);                   //configura la puerto d como salidas
+
+   // TODO: USER CODE!!
+   int i;
+   const int tiempo = 30;
+   
+   
+   for (i=1;i<3;i++)
+   {
+      output_c(0);
+      delay_ms(500);
+      output_c(255);
+      delay_ms(500);
+   }   
+
+   output_c(0); 
+
+   while(true)
+   {
+         output_d(0xA4); // display 2 
+         output_a(0b11111110); // seleccion del numero de display con logica negativa
+         delay_ms(tiempo);
+
+         output_d(0x90); // display 9 
+         output_a(0b11111101); // seleccion del numero de display con logica negativa
+         delay_ms(tiempo);
+
+         output_d(0xB0); // display 3 
+         output_a(0b11111011); // seleccion del numero de display con logica negativa
+         delay_ms(tiempo);
+
+         output_d(0x86); // display E 
+         output_a(0b11110111); // seleccion del numero de display con logica negativa
+         delay_ms(tiempo);
+   
+         output_d(0xc0); // display 0 
+         output_a(0b11101111); // seleccion del numero de display con logica negativa
+         delay_ms(tiempo);
+         
+         output_d(0xF9); // display 1 
+         output_a(0b11011111); // seleccion del numero de display con logica negativa
+         delay_ms(tiempo);
+   }
+   
+}
+
+

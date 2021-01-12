@@ -1,0 +1,45 @@
+
+ROM used: 240 (1%)
+          240 (1%) including unused fragments
+
+          0 Average locations per line
+          8 Average locations per statement
+
+RAM used: 5 (0%) at main() level
+          7 (0%) worst case
+
+Stack used: 1 worst case (out of 31 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   66    31 100  02 PWM hardware.c
+  451     0   0  C:\Program Files (x86)\PICC\devices\18F4550.h
+   21     0   0  C:\Program Files (x86)\PICC\devices\18Fmap.h
+   30     0   0  C:\Program Files (x86)\PICC\devices\18Fconfig1.h
+----- -----
+  568    31 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40   8   1             @delay_ms1
+0    196  41   1   822  4.8  main
+
+Program metrics:
+    Functions               1
+    Statements              31
+    Comments                109
+    Volume (V)              825
+    Difficilty (D)          4.8
+    Effort to implement (E) 3936
+    Time to implement (T)   4 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    58
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-07FFE   236  32528  
+
+
+

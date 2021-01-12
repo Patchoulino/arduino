@@ -1,0 +1,401 @@
+CCS PCH C Compiler, Version 4.104, 5967               01-ene-15 21:44
+
+               Filename: E:\SD\UTA\PICC\QL200\Ejemplo\05 Display seg_2\05 Display seg_2.lst
+
+               ROM used: 534 bytes (2%)
+                         Largest free fragment is 32234
+               RAM used: 5 (0%) at main() level
+                         7 (0%) worst case
+               Stack:    1 locations
+
+*
+0000:  GOTO   002C
+.................... #include <18F4550.h> 
+.................... //////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... #device PIC18F4550 
+.................... #list 
+....................  
+.................... #device adc=8 
+....................  
+.................... #FUSES NOWDT                     //No Watch Dog Timer 
+.................... #FUSES WDT128                    //Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES HSPLL        //cambio para frec      //External clock 
+.................... #FUSES PROTECT                 //Code not protected from reading 
+.................... #FUSES NOBROWNOUT                //No brownout reset 
+.................... #FUSES BORV20                    //Brownout reset at 2.0V 
+.................... #FUSES NOPUT                     //No Power Up Timer 
+.................... #FUSES CPD                     //No EE protection 
+.................... #FUSES STVREN                    //Stack full/underflow will cause reset 
+.................... #FUSES NODEBUG                   //No Debug mode for ICD 
+.................... #FUSES NOLVP                     //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+.................... #FUSES NOWRT                     //Program memory not write protected 
+.................... #FUSES NOWRTD                    //Data EEPROM not write protected 
+.................... #FUSES NOIESO                      //Internal External Switch Over mode enabled 
+.................... #FUSES NOFCMEN                     //Fail-safe clock monitor enabled 
+.................... #FUSES PBADEN                    //PORTB pins are configured as analog input channels on RESET 
+.................... #FUSES NOWRTC                    //configuration not registers write protected 
+.................... #FUSES NOWRTB                    //Boot block not write protected 
+.................... #FUSES NOEBTR                    //Memory not protected from table reads 
+.................... #FUSES NOEBTRB                   //Boot block not protected from table reads 
+.................... #FUSES NOCPB                     //No Boot Block code protection 
+.................... #FUSES MCLR                      //Master Clear pin enabled 
+.................... #FUSES LPT1OSC                   //Timer1 configured for low-power operation 
+.................... #FUSES NOXINST                   //Extended set extension and Indexed Addressing mode disabled (Legacy mode) 
+.................... #FUSES PLL1                //cambio para frec   //Divide By 12(48MHz oscillator input) 
+.................... #FUSES CPUDIV1             //cambio para frec //System Clock by 4 
+.................... #FUSES USBDIV                    //USB clock source comes from PLL divide by 2 
+.................... #FUSES VREGEN                    //USB voltage regulator enabled 
+.................... //#FUSES ICPRT                     //ICPRT enabled 
+....................  
+....................  
+....................     #use delay(clock=48000000)//Frecuencia de reloj 
+0004:  CLRF   FEA
+0006:  MOVLW  07
+0008:  MOVWF  FE9
+000A:  MOVF   FEF,W
+000C:  BZ    002A
+000E:  MOVLW  0F
+0010:  MOVWF  01
+0012:  CLRF   00
+0014:  DECFSZ 00,F
+0016:  BRA    0014
+0018:  DECFSZ 01,F
+001A:  BRA    0012
+001C:  MOVLW  8F
+001E:  MOVWF  00
+0020:  DECFSZ 00,F
+0022:  BRA    0020
+0024:  NOP   
+0026:  DECFSZ FEF,F
+0028:  BRA    000E
+002A:  RETLW  00
+....................  
+....................  
+.................... void main() 
+.................... { 
+002C:  CLRF   FF8
+002E:  BCF    FD0.7
+0030:  CLRF   FEA
+0032:  CLRF   FE9
+0034:  MOVF   FC1,W
+0036:  ANDLW  C0
+0038:  IORLW  0F
+003A:  MOVWF  FC1
+003C:  MOVLW  07
+003E:  MOVWF  FB4
+....................  
+....................    setup_adc_ports(NO_ANALOGS|VSS_VDD); 
+0040:  MOVF   FC1,W
+0042:  ANDLW  C0
+0044:  IORLW  0F
+0046:  MOVWF  FC1
+....................    setup_adc(ADC_CLOCK_DIV_2); 
+0048:  BCF    FC0.0
+004A:  BCF    FC0.1
+004C:  BCF    FC0.2
+004E:  BCF    FC0.7
+0050:  BSF    FC2.0
+....................    setup_psp(PSP_DISABLED); 
+0052:  BCF    F96.4
+....................    setup_spi(SPI_SS_DISABLED); 
+0054:  BCF    FC6.5
+0056:  BCF    F94.7
+0058:  BSF    F93.0
+005A:  BCF    F93.1
+005C:  MOVLW  01
+005E:  MOVWF  FC6
+0060:  MOVLW  00
+0062:  MOVWF  FC7
+....................    setup_wdt(WDT_OFF); 
+0064:  BCF    FD1.0
+....................    setup_timer_0(RTCC_INTERNAL); 
+0066:  MOVLW  80
+0068:  MOVWF  FD5
+....................    setup_timer_1(T1_DISABLED); 
+006A:  CLRF   FCD
+....................    setup_timer_2(T2_DISABLED,0,1); 
+006C:  MOVLW  00
+006E:  MOVWF  FCA
+0070:  MOVLW  00
+0072:  MOVWF  FCB
+....................    setup_comparator(NC_NC_NC_NC); 
+0074:  MOVLW  07
+0076:  MOVWF  FB4
+0078:  MOVF   F92,W
+007A:  MOVWF  F92
+007C:  MOVLW  27
+007E:  MOVWF  00
+0080:  DECFSZ 00,F
+0082:  BRA    0080
+0084:  BRA    0086
+0086:  MOVF   FB4,W
+0088:  BCF    FA1.6
+....................    setup_vref(FALSE); 
+008A:  CLRF   FB5
+.................... //Setup_Oscillator parameter not selected from Intr Oscillator Config tab 
+....................  
+....................  
+....................    set_tris_a(0x0);                   //configura la puerto a como salidas 
+008C:  MOVLW  00
+008E:  MOVWF  F92
+....................    set_tris_c(0x0);                   //configura la puerto c como salidas 
+0090:  MOVWF  F94
+....................    set_tris_d(0x0);                   //configura la puerto d como salidas 
+0092:  MOVWF  F95
+....................  
+....................    // TODO: USER CODE!! 
+....................    int i; 
+....................     
+....................     
+....................    for (i=1;i<3;i++) 
+0094:  MOVLW  01
+0096:  MOVWF  05
+0098:  MOVF   05,W
+009A:  SUBLW  02
+009C:  BNC   00C8
+....................    { 
+....................       output_c(0); 
+009E:  CLRF   F94
+00A0:  CLRF   F8B
+....................       delay_ms(500); 
+00A2:  MOVLW  02
+00A4:  MOVWF  06
+00A6:  MOVLW  FA
+00A8:  MOVWF  07
+00AA:  RCALL  0004
+00AC:  DECFSZ 06,F
+00AE:  BRA    00A6
+....................       output_c(255); 
+00B0:  CLRF   F94
+00B2:  MOVLW  FF
+00B4:  MOVWF  F8B
+....................       delay_ms(500); 
+00B6:  MOVLW  02
+00B8:  MOVWF  06
+00BA:  MOVLW  FA
+00BC:  MOVWF  07
+00BE:  RCALL  0004
+00C0:  DECFSZ 06,F
+00C2:  BRA    00BA
+....................    }    
+00C4:  INCF   05,F
+00C6:  BRA    0098
+....................  
+....................    output_c(0); 
+00C8:  CLRF   F94
+00CA:  CLRF   F8B
+....................    output_a(0b11111110); // seleccion del numero de display con logica negativa 
+00CC:  CLRF   F92
+00CE:  MOVLW  FE
+00D0:  MOVWF  F89
+....................  
+....................  
+....................    while(true) 
+....................    { 
+....................       output_d(0xc0); // display 0  
+00D2:  CLRF   F95
+00D4:  MOVLW  C0
+00D6:  MOVWF  F8C
+....................       delay_ms(500); 
+00D8:  MOVLW  02
+00DA:  MOVWF  06
+00DC:  MOVLW  FA
+00DE:  MOVWF  07
+00E0:  RCALL  0004
+00E2:  DECFSZ 06,F
+00E4:  BRA    00DC
+....................       output_d(0xF9); // display 1  
+00E6:  CLRF   F95
+00E8:  MOVLW  F9
+00EA:  MOVWF  F8C
+....................       delay_ms(500); 
+00EC:  MOVLW  02
+00EE:  MOVWF  06
+00F0:  MOVLW  FA
+00F2:  MOVWF  07
+00F4:  RCALL  0004
+00F6:  DECFSZ 06,F
+00F8:  BRA    00F0
+....................       output_d(0xA4); // display 2  
+00FA:  CLRF   F95
+00FC:  MOVLW  A4
+00FE:  MOVWF  F8C
+....................       delay_ms(500); 
+0100:  MOVLW  02
+0102:  MOVWF  06
+0104:  MOVLW  FA
+0106:  MOVWF  07
+0108:  RCALL  0004
+010A:  DECFSZ 06,F
+010C:  BRA    0104
+....................       output_d(0xB0); // display 3  
+010E:  CLRF   F95
+0110:  MOVLW  B0
+0112:  MOVWF  F8C
+....................       delay_ms(500); 
+0114:  MOVLW  02
+0116:  MOVWF  06
+0118:  MOVLW  FA
+011A:  MOVWF  07
+011C:  RCALL  0004
+011E:  DECFSZ 06,F
+0120:  BRA    0118
+....................       output_d(0x99); // display 4  
+0122:  CLRF   F95
+0124:  MOVLW  99
+0126:  MOVWF  F8C
+....................       delay_ms(500); 
+0128:  MOVLW  02
+012A:  MOVWF  06
+012C:  MOVLW  FA
+012E:  MOVWF  07
+0130:  RCALL  0004
+0132:  DECFSZ 06,F
+0134:  BRA    012C
+....................       output_d(0x92); // display 5  
+0136:  CLRF   F95
+0138:  MOVLW  92
+013A:  MOVWF  F8C
+....................       delay_ms(500); 
+013C:  MOVLW  02
+013E:  MOVWF  06
+0140:  MOVLW  FA
+0142:  MOVWF  07
+0144:  RCALL  0004
+0146:  DECFSZ 06,F
+0148:  BRA    0140
+....................       output_d(0x82); // display 6  
+014A:  CLRF   F95
+014C:  MOVLW  82
+014E:  MOVWF  F8C
+....................       delay_ms(500); 
+0150:  MOVLW  02
+0152:  MOVWF  06
+0154:  MOVLW  FA
+0156:  MOVWF  07
+0158:  RCALL  0004
+015A:  DECFSZ 06,F
+015C:  BRA    0154
+....................       output_d(0xD8); // display 7  
+015E:  CLRF   F95
+0160:  MOVLW  D8
+0162:  MOVWF  F8C
+....................       delay_ms(500); 
+0164:  MOVLW  02
+0166:  MOVWF  06
+0168:  MOVLW  FA
+016A:  MOVWF  07
+016C:  RCALL  0004
+016E:  DECFSZ 06,F
+0170:  BRA    0168
+....................       output_d(0x80); // display 8 
+0172:  CLRF   F95
+0174:  MOVLW  80
+0176:  MOVWF  F8C
+....................       delay_ms(500); 
+0178:  MOVLW  02
+017A:  MOVWF  06
+017C:  MOVLW  FA
+017E:  MOVWF  07
+0180:  RCALL  0004
+0182:  DECFSZ 06,F
+0184:  BRA    017C
+....................       output_d(0x90); // display 9  
+0186:  CLRF   F95
+0188:  MOVLW  90
+018A:  MOVWF  F8C
+....................       delay_ms(500); 
+018C:  MOVLW  02
+018E:  MOVWF  06
+0190:  MOVLW  FA
+0192:  MOVWF  07
+0194:  RCALL  0004
+0196:  DECFSZ 06,F
+0198:  BRA    0190
+....................       output_d(0x88); // display A  
+019A:  CLRF   F95
+019C:  MOVLW  88
+019E:  MOVWF  F8C
+....................       delay_ms(500); 
+01A0:  MOVLW  02
+01A2:  MOVWF  06
+01A4:  MOVLW  FA
+01A6:  MOVWF  07
+01A8:  RCALL  0004
+01AA:  DECFSZ 06,F
+01AC:  BRA    01A4
+....................       output_d(0x83); // display b  
+01AE:  CLRF   F95
+01B0:  MOVLW  83
+01B2:  MOVWF  F8C
+....................       delay_ms(500); 
+01B4:  MOVLW  02
+01B6:  MOVWF  06
+01B8:  MOVLW  FA
+01BA:  MOVWF  07
+01BC:  RCALL  0004
+01BE:  DECFSZ 06,F
+01C0:  BRA    01B8
+....................       output_d(0xC6); // display C  
+01C2:  CLRF   F95
+01C4:  MOVLW  C6
+01C6:  MOVWF  F8C
+....................       delay_ms(500); 
+01C8:  MOVLW  02
+01CA:  MOVWF  06
+01CC:  MOVLW  FA
+01CE:  MOVWF  07
+01D0:  RCALL  0004
+01D2:  DECFSZ 06,F
+01D4:  BRA    01CC
+....................       output_d(0xA1); // display d  
+01D6:  CLRF   F95
+01D8:  MOVLW  A1
+01DA:  MOVWF  F8C
+....................       delay_ms(500); 
+01DC:  MOVLW  02
+01DE:  MOVWF  06
+01E0:  MOVLW  FA
+01E2:  MOVWF  07
+01E4:  RCALL  0004
+01E6:  DECFSZ 06,F
+01E8:  BRA    01E0
+....................       output_d(0x86); // display E  
+01EA:  CLRF   F95
+01EC:  MOVLW  86
+01EE:  MOVWF  F8C
+....................       delay_ms(500); 
+01F0:  MOVLW  02
+01F2:  MOVWF  06
+01F4:  MOVLW  FA
+01F6:  MOVWF  07
+01F8:  RCALL  0004
+01FA:  DECFSZ 06,F
+01FC:  BRA    01F4
+....................       output_d(0x8E); // display F  
+01FE:  CLRF   F95
+0200:  MOVLW  8E
+0202:  MOVWF  F8C
+....................       delay_ms(500); 
+0204:  MOVLW  02
+0206:  MOVWF  06
+0208:  MOVLW  FA
+020A:  MOVWF  07
+020C:  RCALL  0004
+020E:  DECFSZ 06,F
+0210:  BRA    0208
+....................    } 
+0212:  BRA    00D2
+....................     
+.................... } 
+....................  
+0214:  SLEEP 
+
+Configuration Fuses:
+   Word  1: 0E20   NOIESO NOFCMEN HSPLL PLL1 CPUDIV1 USBDIV
+   Word  2: 0E39   NOBROWNOUT WDT128 NOWDT BORV20 NOPUT VREGEN
+   Word  3: 8700   PBADEN CCP2C1 MCLR LPT1OSC
+   Word  4: 0081   STVREN NODEBUG NOLVP NOXINST NOICPRT
+   Word  5: 4000   PROTECT CPD NOCPB
+   Word  6: E00F   NOWRT NOWRTD NOWRTC NOWRTB
+   Word  7: 400F   NOEBTR NOEBTRB

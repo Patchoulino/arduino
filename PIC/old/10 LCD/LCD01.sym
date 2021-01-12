@@ -1,0 +1,94 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+005     lcd_pos.address
+005     lcd_init.i
+005     @PSTRINGC_93.@SCRATCH1
+006     lcd_init.@SCRATCH1
+006     @PSTRINGC_93.@SCRATCH2
+007     lcd_putc.c
+008     @delay_ms1.P1
+008     lcd_gotoxy.x
+009     lcd_gotoxy.y
+00A     lcd_gotoxy.address
+00B     lcd_gotoxy.@SCRATCH1
+00C     lcd_send_byte.address
+00D     lcd_send_byte.n
+00E     lcd_read_byte.low
+00E     lcd_send_byte.@SCRATCH1
+00F     lcd_send_nibble.n
+00F     lcd_read_byte.high
+010     lcd_read_nibble.n
+010     lcd_read_byte.@SCRATCH1
+011     lcd_read_nibble.@SCRATCH1
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0056  @delay_ms1
+0004  LCD_INIT_STRING
+0116  lcd_read_byte
+00C4  lcd_read_nibble
+007E  lcd_send_nibble
+0168  lcd_send_byte
+01A8  lcd_init
+021A  lcd_gotoxy
+0210  lcd_pos
+023E  lcd_putc
+02A4  MAIN
+0018  @const101
+0284  @PSTRINGC_93
+0038  @const103
+02A4  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    E:\SD\UTA\PICC\QL200\Ejemplo\10 LCD\
+
+Project Files:
+    LCD01.c
+    C:\Program Files (x86)\PICC\devices\18F4550.h
+    C:\Program Files (x86)\PICC\drivers\lcd.c
+
+Units:
+    E:\SD\UTA\PICC\QL200\Ejemplo\10 LCD\LCD01 (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      LCD01.err
+    Ext Symbols: LCD01.esym
+    INHX32:      LCD01.hex
+    Symbols:     LCD01.sym
+    List:        LCD01.lst
+    Debug/COFF:  LCD01.cof
+    Project:     LCD01.PJT
+    Call Tree:   LCD01.tre
+    Statistics:  LCD01.sta

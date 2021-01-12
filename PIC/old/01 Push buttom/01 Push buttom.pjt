@@ -1,0 +1,25 @@
+[PROJECT]
+Target=E:\SD\UTA\PICC\QL200\Ejemplo\01 Push buttom\01 Push buttom.hex
+Development_Mode=
+Processor_Text=PIC18F4550
+ToolSuite=CCS
+Processor=0x4550
+[E:\SD\UTA\PICC\QL200\Ejemplo\01 Push buttom\01 Push buttom]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[mru-list]
+1=E:\SD\UTA\PICC\QL200\Ejemplo\01 Push buttom\01 Push buttom.c
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[Units]
+Link=0
+Count=1
+1=E:\SD\UTA\PICC\QL200\Ejemplo\01 Push buttom\01 Push buttom
+[Opened Files]
+1=..\02 PB on off\01 PB on off.c
+2=
+3=

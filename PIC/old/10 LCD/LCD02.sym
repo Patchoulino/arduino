@@ -1,0 +1,112 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+005-008 MAIN.tiempo
+009     lcd_init.i
+009-00C @PRINTF_L32U_93.P1
+009     MAIN.@SCRATCH1
+009     @PSTRINGC_93.@SCRATCH1
+00A     lcd_init.@SCRATCH1
+00A     @PSTRINGC_93.@SCRATCH2
+00D     @PRINTF_L32U_93.@SCRATCH1
+00E     @PRINTF_L32U_93.@SCRATCH2
+00F     @PRINTF_L32U_93.@SCRATCH3
+010     @PRINTF_L32U_93.@SCRATCH4
+011     @PRINTF_L32U_93.@SCRATCH5
+012     @PRINTF_L32U_93.@SCRATCH6
+013     @PRINTF_L32U_93.@SCRATCH7
+014     @PRINTF_L32U_93.@SCRATCH8
+015     lcd_putc.c
+015-018 @DIV3232.P1
+016     lcd_gotoxy.x
+016     @delay_ms1.P1
+017     lcd_gotoxy.y
+018     lcd_gotoxy.address
+019-01C @DIV3232.P1
+019     lcd_gotoxy.@SCRATCH1
+01A     lcd_send_byte.address
+01B     lcd_send_byte.n
+01C     lcd_read_byte.low
+01C     lcd_send_byte.@SCRATCH1
+01D     lcd_send_nibble.n
+01D     lcd_read_byte.high
+01D     @DIV3232.@SCRATCH1
+01E     lcd_read_nibble.n
+01E     lcd_read_byte.@SCRATCH1
+01E     @DIV3232.@SCRATCH2
+01F     lcd_read_nibble.@SCRATCH1
+01F     @DIV3232.@SCRATCH3
+020     @DIV3232.@SCRATCH4
+021     @DIV3232.@SCRATCH5
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0030  @delay_ms1
+0004  LCD_INIT_STRING
+00F0  lcd_read_byte
+009E  lcd_read_nibble
+0058  lcd_send_nibble
+0142  lcd_send_byte
+0182  lcd_init
+01EA  lcd_gotoxy
+020C  lcd_putc
+0396  MAIN
+0018  @const102
+0250  @PSTRINGC_93
+0028  @const104
+0270  @DIV3232
+02EA  @PRINTF_L32U_93
+0396  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    E:\SD\UTA\PICC\QL200\Ejemplo\10 LCD\
+
+Project Files:
+    LCD02.c
+    C:\Program Files (x86)\PICC\devices\18F4550.h
+    C:\Program Files (x86)\PICC\drivers\lcd.c
+
+Units:
+    E:\SD\UTA\PICC\QL200\Ejemplo\10 LCD\LCD02 (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      LCD02.err
+    Ext Symbols: LCD02.esym
+    INHX32:      LCD02.hex
+    Symbols:     LCD02.sym
+    List:        LCD02.lst
+    Debug/COFF:  LCD02.cof
+    Project:     LCD02.PJT
+    Call Tree:   LCD02.tre
+    Statistics:  LCD02.sta

@@ -1,0 +1,49 @@
+
+ROM used: 856 (42%)
+          856 (42%) including unused fragments
+
+          2 Average locations per line
+          4 Average locations per statement
+
+RAM used: 29 (13%) at main() level
+          41 (18%) worst case
+
+Stack used: 3 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  346   206 100  PIC16F628A.c
+  224     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\devices\16F628A.h
+----- -----
+  570   206 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0    421  49   2  5292 13.0  main
+0     21   2   3             @DIV88
+0     37   4   2             @MUL88
+0    182  21   8  2047  7.4  pause
+0      9   1   0             @goto10262
+0    107  12   1   983  3.4  getn
+0     44   5   5   353  5.6  scoreboard
+0     31   4   1   252  3.6  blink_matrix
+
+Program metrics:
+    Functions               5
+    Statements              206
+    Comments                87
+    Volume (V)              11088
+    Difficilty (D)          33.4
+    Effort to implement (E) 370545
+    Time to implement (T)   5 hours, 43 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   62
+    Maintainability (MI)    77
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   852  1192  
+
+
+
