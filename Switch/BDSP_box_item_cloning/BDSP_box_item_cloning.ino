@@ -20,7 +20,7 @@ void setup() {
   }
 }
 
-void loop() {
+void loop() { // Start at box first menu, have menu first selection be pokemon/party
   // Mouseover Check Summary
   button(A, T);
   button(DOWN, T);
