@@ -23,7 +23,7 @@ void setup() {
 void loop() { // Start at battle with arceus so reset of the arduino will open home and restart game
   // Restart game
   button(HOME, T);
-  delay(300);
+  delay(500);
   button(X, T);
   //button(A, T);
   //button(A, T);
