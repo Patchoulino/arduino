@@ -29,14 +29,14 @@ void loop() { // Start at battle with arceus so reset of the arduino will open h
   //button(A, T);
   //button(A, T);
 
-  for (int i = 0; i <= (40000/T/2); i++){ // 38 sec to load + 2sec for the buttons above
+  for (int i = 0; i <= (38500/T/2); i++){ // 38.5 sec to load 
     button(A, T);
   }
 
   digitalWrite(LED, HIGH);
   button(UP, T); // Walk to god
 
-  for (int i = 0; i <= (30000/T/2); i++){ // 30 sec Arceus animation
+  for (int i = 0; i <= (17500/T/2); i++){ // 17.5 sec Arceus animation
     button(A, T);
   }
 
