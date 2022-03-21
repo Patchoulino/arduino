@@ -29,7 +29,7 @@ void loop() { // Start at battle with arceus so reset of the arduino will open h
   //button(A, T);
   //button(A, T);
 
-  for (int i = 0; i <= (38500/T/2); i++){ // 38.5 sec to load 
+  for (int i = 0; i <= (39000/T/2); i++){ // 38.5 sec to load 
     button(A, T);
   }
 
