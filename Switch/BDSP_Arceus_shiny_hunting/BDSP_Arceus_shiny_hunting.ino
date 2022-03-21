@@ -40,7 +40,7 @@ void loop() { // Start at battle with arceus so reset of the arduino will open h
     button(A, T);
   }
 
-  while (true) { // Light the led waiting for a reset
+  while (true) { // Blink led waiting for a reset
     button(LED, T);
   }
   
