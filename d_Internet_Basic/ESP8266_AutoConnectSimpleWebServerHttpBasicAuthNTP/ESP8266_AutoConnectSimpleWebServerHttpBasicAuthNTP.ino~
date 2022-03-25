@@ -8,6 +8,8 @@
 
   NTPtimeESP                 https://github.com/SensorsIot/NTPtimeESP
   
+  Gerardo Abraham Aguilar López
+  abagl@outlook.com
 *********/
 
 #include <ESP8266WiFi.h>

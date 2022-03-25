@@ -8,6 +8,8 @@
 
   NTPtimeESP                 https://github.com/SensorsIot/NTPtimeESP
   
+  Gerardo Abraham Aguilar López
+  abagl@outlook.com
 *********/
 
 #include <ESP8266WiFi.h>
@@ -38,15 +40,18 @@ String webPage = "";
 const int gpio0_pin = 0;
 const int gpio2_pin = 2;
 
+byte upper_threshold = 19;
+byte lower_threshold = 8;
+
+//  <a href=\"upper_19\"><button>19:00</button></a> //button
+//  &nbsp                                           //tab space
 void refreshWebPage () {
   webPage = "<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" /></head>";
   webPage += "<h1>ESP8266 Web Server</h1>";
-  webPage += "<p>Socket #0 <a href=\"socket0On\"><button>ON</button></a>&nbsp;<a href=\"socket0Off\"><button>OFF</button></a></p>";
-  webPage += "<p>Socket #0 <a href=\"socket0Toggle\"><button>Toggle</button></a>&nbsp;</p>";
-  webPage += "<p>Status: "; webPage += String(digitalRead(gpio0_pin));  webPage += "</p>";
-  webPage += "<p>Socket #2 <a href=\"socket2On\"><button>ON</button></a>&nbsp;<a href=\"socket2Off\"><button>OFF</button></a></p>";
-  webPage += "<p>Socket #2 <a href=\"socket2Toggle\"><button>Toggle</button></a>&nbsp;</p>";
-  webPage += "<p>Status: "; webPage += String(digitalRead(gpio2_pin));  webPage += "</p>";
+  webPage += "<p>Upper Threshold: "; webPage += String(upper_threshold);  webPage += "</p>";
+  webPage += "<p><a href=\"upper_19\"><button>19:00</button></a><a href=\"upper_20\"><button>20:00</button></a><a href=\"upper_21\"><button>21:00</button></a><a href=\"upper_22\"><button>22:00</button></a><a href=\"upper_23\"><button>23:00</button></a><a href=\"upper_00\"><button>00:00</button></a></p>";
+  webPage += "<p>Lower Threshold: "; webPage += String(lower_threshold);  webPage += "</p>";
+  webPage += "<p><a href=\"lower_05\"><button>05:00</button></a><a href=\"lower_06\"><button>06:00</button></a><a href=\"lower_07\"><button>07:00</button></a><a href=\"lower_08\"><button>08:00</button></a><a href=\"lower_09\"><button>09:00</button></a><a href=\"lower_10\"><button>10:00</button></a></p>";
   server.send(200, "text/html", webPage);
 }
 
@@ -93,94 +98,153 @@ void setup(void){
     }
   });
   
-  server.on("/socket0On", [](){
+  server.on("/upper_19", [](){
     if(!server.authenticate(www_username, www_password)) {
       return server.requestAuthentication();
       ArduinoOTA.handle();
     }
     else {
-      digitalWrite(gpio0_pin, HIGH);
+      upper_threshold = 19;
       refreshWebPage();
     }
   });
-  server.on("/socket0Off", [](){
+  server.on("/upper_20", [](){
     if(!server.authenticate(www_username, www_password)) {
       return server.requestAuthentication();
       ArduinoOTA.handle();
     }
     else {
-      digitalWrite(gpio0_pin, LOW);
+      upper_threshold = 20;
       refreshWebPage();
     }
   });
-  server.on("/socket0Toggle", [](){
+  server.on("/upper_21", [](){
     if(!server.authenticate(www_username, www_password)) {
       return server.requestAuthentication();
       ArduinoOTA.handle();
     }
     else {
-      digitalWrite(gpio0_pin, !digitalRead(gpio0_pin));
+      upper_threshold = 21;
       refreshWebPage();
     }
   });
-  server.on("/socket2On", [](){
+  server.on("/upper_22", [](){
     if(!server.authenticate(www_username, www_password)) {
       return server.requestAuthentication();
       ArduinoOTA.handle();
     }
     else {
-      digitalWrite(gpio2_pin, HIGH);
+      upper_threshold = 22;
       refreshWebPage();
     }
   });
-  server.on("/socket2Off", [](){
+  server.on("/upper_23", [](){
     if(!server.authenticate(www_username, www_password)) {
       return server.requestAuthentication();
       ArduinoOTA.handle();
     }
     else {
-      digitalWrite(gpio2_pin, LOW);
+      upper_threshold = 23;
       refreshWebPage();
     }
   });
-  server.on("/socket2Toggle", [](){
+  server.on("/upper_00", [](){
     if(!server.authenticate(www_username, www_password)) {
       return server.requestAuthentication();
       ArduinoOTA.handle();
     }
     else {
-      digitalWrite(gpio2_pin, !digitalRead(gpio2_pin));
+      upper_threshold = 0;
       refreshWebPage();
     }
   });
+
+  server.on("/lower_05", [](){
+    if(!server.authenticate(www_username, www_password)) {
+      return server.requestAuthentication();
+      ArduinoOTA.handle();
+    }
+    else {
+      lower_threshold = 5;
+      refreshWebPage();
+    }
+  });
+  server.on("/lower_06", [](){
+    if(!server.authenticate(www_username, www_password)) {
+      return server.requestAuthentication();
+      ArduinoOTA.handle();
+    }
+    else {
+      lower_threshold = 6;
+      refreshWebPage();
+    }
+  });
+  server.on("/lower_07", [](){
+    if(!server.authenticate(www_username, www_password)) {
+      return server.requestAuthentication();
+      ArduinoOTA.handle();
+    }
+    else {
+      lower_threshold = 7;
+      refreshWebPage();
+    }
+  });
+  server.on("/lower_08", [](){
+    if(!server.authenticate(www_username, www_password)) {
+      return server.requestAuthentication();
+      ArduinoOTA.handle();
+    }
+    else {
+      lower_threshold = 8;
+      refreshWebPage();
+    }
+  });
+  server.on("/lower_09", [](){
+    if(!server.authenticate(www_username, www_password)) {
+      return server.requestAuthentication();
+      ArduinoOTA.handle();
+    }
+    else {
+      lower_threshold = 9;
+      refreshWebPage();
+    }
+  });
+  server.on("/lower_10", [](){
+    if(!server.authenticate(www_username, www_password)) {
+      return server.requestAuthentication();
+      ArduinoOTA.handle();
+    }
+    else {
+      lower_threshold = 10;
+      refreshWebPage();
+    }
+  });
+  
   server.begin();
   Serial.println("HTTP server started");
 }
  
 void loop(void){
-
-    // first parameter: Time zone in floating point (for India); second parameter: 1 for European summer time; 2 for US daylight saving time; 0 for no DST adjustment; (contributed by viewwer, not tested by me)
+  // first parameter: Time zone in floating point (for India); second parameter: 1 for European summer time; 2 for US daylight saving time; 0 for no DST adjustment; (contributed by viewwer, not tested by me)
   dateTime = NTPch.getNTPtime(-6.0, 0);
 
   // check dateTime.valid before using the returned time
   // Use "setSendInterval" or "setRecvTimeout" if required
   if(dateTime.valid){
-    NTPch.printDateTime(dateTime);
-
+    /*NTPch.printDateTime(dateTime);
     byte actualHour = dateTime.hour;
     byte actualMinute = dateTime.minute;
     byte actualsecond = dateTime.second;
     int actualyear = dateTime.year;
     byte actualMonth = dateTime.month;
     byte actualday =dateTime.day;
-    byte actualdayofWeek = dateTime.dayofWeek;
-  }
-
-  if((dateTime.minute % 2) == 0){
-    digitalWrite(gpio2_pin, 0);
-  }
-  else{
-    digitalWrite(gpio2_pin, 1);
+    byte actualdayofWeek = dateTime.dayofWeek;*/
+    if((dateTime.hour < upper_threshold) && (dateTime.hour > lower_threshold)){
+      digitalWrite(gpio2_pin, LOW);
+    }
+    else{
+      digitalWrite(gpio2_pin, HIGH);
+    }
   }
   
   server.handleClient();

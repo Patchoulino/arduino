@@ -1,3 +1,5 @@
+//	Gerardo Abraham Aguilar López
+
 #include <16F628A.h>
 
 #FUSES WDT                      //Watch Dog Timer
