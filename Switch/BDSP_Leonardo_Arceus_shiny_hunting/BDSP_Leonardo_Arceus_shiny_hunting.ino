@@ -86,8 +86,9 @@ void loop() { // Start at battle with arceus so reset of the arduino will open h
     button(A, T);
   }
 
-  while (true) { // Blink LED_BUILTIN waiting for a reset
-    button_old(LED_BUILTIN, 100);
+  while (true){ // Blink LED_BUILTIN waiting for a reset
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+    delay(100);
   }
   
 }
@@ -107,12 +108,5 @@ void dpad(int btn, int timing) {
   delay(timing);
   Joystick.setHatSwitch(RELEASE);
   //Joystick.sendState();
-  delay(timing);
-}
-
-void button_old(int btn, int timing) {
-  digitalWrite(btn, LOW);
-  delay(timing);
-  digitalWrite(btn, HIGH);
   delay(timing);
 }
