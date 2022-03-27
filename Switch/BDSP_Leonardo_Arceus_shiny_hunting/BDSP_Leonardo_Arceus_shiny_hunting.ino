@@ -5,6 +5,7 @@
 */
 
 const int T = 300;
+int blinke = 0;
 const int Y = 0;
 const int B = 1;
 const int A = 2;
@@ -86,19 +87,22 @@ void loop() { // Start at battle with arceus so reset of the arduino will open h
     button(A, T);
   }
 
-  while (true){ // Blink LED_BUILTIN waiting for a reset
-    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-    delay(100);
+  blinke = 1;
+  for (int i = 0; i <= (20000/T/2); i++){ // blink and spam first move, waiting for reset
+    button(A, T);
   }
-  
+  blinke = 0;
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void button(int btn, int timing) {
   Joystick.pressButton(btn);
   //Joystick.sendState();
+  if (blinke) digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   delay(timing);
   Joystick.releaseButton(btn);
   //Joystick.sendState();
+  if (blinke) digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   delay(timing);
 }
 

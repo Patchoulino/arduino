@@ -5,11 +5,11 @@
  */
 
 const int T = 300;
+int blinke = 0;
 const int HOME = 2;
 const int X = 3;
 const int A = 4;
 const int UP = 5;
-int blinke = 0;
 
 void setup() {
   for (int i = 2; i <= 5; i++) { // Set all pins as outputs and 1
