@@ -9,15 +9,14 @@ const int HOME = 2;
 const int X = 3;
 const int A = 4;
 const int UP = 5;
-const int LED = 13;
 
 void setup() {
   for (int i = 2; i <= 5; i++) { // Set all pins as outputs and 1
     pinMode(i, OUTPUT);
     digitalWrite(i, HIGH);
   }
-  pinMode(LED, OUTPUT);
-  digitalWrite(LED, LOW);
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void loop() { // Start at battle with arceus so reset of the arduino will open home and restart game
@@ -29,19 +28,19 @@ void loop() { // Start at battle with arceus so reset of the arduino will open h
   //button(A, T);
   //button(A, T);
 
-  for (int i = 0; i <= (39500/T/2); i++){ // 38.5 sec to load 
+  for (int i = 0; i <= (40000/T/2); i++){ // 38.5 sec to load 
     button(A, T);
   }
 
-  digitalWrite(LED, HIGH);
+  digitalWrite(LED_BUILTIN, HIGH);
   button(UP, T); // Walk to god
 
   for (int i = 0; i <= (17500/T/2); i++){ // 17.5 sec Arceus animation
     button(A, T);
   }
 
-  while (true) { // Blink led waiting for a reset
-    button(LED, T);
+  while (true) { // Blink LED_BUILTIN waiting for a reset
+    button(LED_BUILTIN, T);
   }
   
 }
