@@ -9,6 +9,7 @@ const int HOME = 2;
 const int X = 3;
 const int A = 4;
 const int UP = 5;
+int blinke = 0;
 
 void setup() {
   for (int i = 2; i <= 5; i++) { // Set all pins as outputs and 1
@@ -39,15 +40,19 @@ void loop() { // Start at battle with arceus so reset of the arduino will open h
     button(A, T);
   }
 
-  while (true) { // Blink LED_BUILTIN waiting for a reset
-    button(LED_BUILTIN, T);
+  blinke = 1;
+  for (int i = 0; i <= (20000/T/2); i++){ // blink and spam first move, waiting for reset
+    button(A, T);
   }
-  
+  blinke = 0;
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void button(int btn, int timing) {
   digitalWrite(btn, LOW);
+  if (blinke) digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   delay(timing);
   digitalWrite(btn, HIGH);
+  if (blinke) digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   delay(timing);
 }
