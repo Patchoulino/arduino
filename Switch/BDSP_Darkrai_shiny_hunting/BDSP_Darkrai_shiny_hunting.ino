@@ -38,7 +38,7 @@ void loop() { // Start at battle with darkrai so reset of the arduino will open 
   }
 
   blinke = 1;
-  for (int i = 0; i <= (13000/T/2); i++){ // blink and spam first move, waiting for reset
+  for (int i = 0; i <= (15000/T/2); i++){ // blink and spam first move, waiting for reset
     button(A, T);
   }
   blinke = 0;
