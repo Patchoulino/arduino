@@ -33,12 +33,12 @@ void loop() { // Start at battle with darkrai so reset of the arduino will open 
   digitalWrite(LED_BUILTIN, HIGH);
   button(A, T); // Engage
 
-  for (int i = 0; i <= (13000/T/2); i++){ // 13 sec animation
+  for (int i = 0; i <= (10000/T/2); i++){ // animation
     button(A, T);
   }
 
   blinke = 1;
-  for (int i = 0; i <= (20000/T/2); i++){ // blink and spam first move, waiting for reset
+  for (int i = 0; i <= (13000/T/2); i++){ // blink and spam first move, waiting for reset
     button(A, T);
   }
   blinke = 0;
