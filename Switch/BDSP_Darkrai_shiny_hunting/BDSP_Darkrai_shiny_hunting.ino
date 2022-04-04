@@ -1,7 +1,7 @@
 /*
  * BDSP Darkrai shiny hunting
  * buttons needed
- * HOME X A
+ * HOME X A UP
  */
 
 const int T = 300;
@@ -9,7 +9,7 @@ int blinke = 0;
 const int HOME = 2;
 const int X = 3;
 const int A = 4;
-//const int UP = 5;
+const int UP = 5;
 
 void setup() {
   for (int i = 2; i <= 5; i++) { // Set all pins as outputs and 1
@@ -31,9 +31,9 @@ void loop() { // Start at battle with darkrai so reset of the arduino will open 
   }
 
   digitalWrite(LED_BUILTIN, HIGH);
-  button(A, T); // Engage
+  button(UP, T); // Engage
 
-  for (int i = 0; i <= (10000/T/2); i++){ // animation
+  for (int i = 0; i <= (13000/T/2); i++){ // animation
     button(A, T);
   }
 
