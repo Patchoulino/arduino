@@ -1,5 +1,5 @@
 /*
- * BDSP Darkrai shiny hunting
+ * BDSP Darkrai shiny hunting (4 days)
  * buttons needed
  * HOME X A UP
  */

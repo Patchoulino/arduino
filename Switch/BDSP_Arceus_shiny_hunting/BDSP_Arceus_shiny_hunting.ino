@@ -1,5 +1,5 @@
 /*
- * BDSP Arceus shiny hunting
+ * BDSP Arceus shiny hunting (2 weeks)
  * buttons needed
  * HOME X A UP
  */
