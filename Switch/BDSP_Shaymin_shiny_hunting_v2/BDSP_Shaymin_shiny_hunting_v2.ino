@@ -41,7 +41,7 @@ void loop() { // Start in front of spawn
   }
 
   blinke = 1;
-  for (int i = 0; i <= (12500/T/2); i++){ // blink and spam B
+  for (int i = 0; i <= (12000/T/2); i++){ // blink and spam B
     button(B, T);
   }
   blinke = 0;
