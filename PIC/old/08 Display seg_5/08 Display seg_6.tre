@@ -1,6 +1,0 @@
-ÀÄ08 Display seg_6
-   ÀÄmain  0/282  Ram=1
-      ÃÄ??0??
-      ÃÄ@delay_ms1  0/40  Ram=1
-      ÃÄ@goto10057  0/38  Ram=0
-      ÀÄ@delay_ms1  0/40  Ram=1

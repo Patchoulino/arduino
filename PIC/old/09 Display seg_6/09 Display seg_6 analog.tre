@@ -1,6 +1,0 @@
-ÀÄ09 Display seg_6 analog
-   ÀÄmain  0/364  Ram=1
-      ÃÄ??0??
-      ÃÄ@goto10055  0/38  Ram=0
-      ÃÄ@delay_ms1  0/40  Ram=1
-      ÀÄ@delay_ms1  0/40  Ram=1
