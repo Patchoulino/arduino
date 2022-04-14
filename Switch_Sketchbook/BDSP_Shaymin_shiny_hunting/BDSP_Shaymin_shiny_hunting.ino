@@ -1,5 +1,5 @@
 /*
- * BDSP Shaymin shiny hunting
+ * BDSP Shaymin shiny hunting (6 days)
  * buttons needed
  * HOME X A UP
  */
