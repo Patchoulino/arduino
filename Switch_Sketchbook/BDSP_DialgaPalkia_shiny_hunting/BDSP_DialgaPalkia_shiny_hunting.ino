@@ -4,6 +4,8 @@
  * HOME X A UP
 */
 
+#include <EEPROM.h>
+
 const int T = 300;
 int blinke = 0;
 const int HOME = 2;
@@ -21,6 +23,9 @@ void setup() {
 }
 
 void loop() { // Start at battle so reset of the arduino will open home and restart game
+  // Add 1 to the counter
+  eewrite(eeread(0) + 1, 0);
+  
   // Restart game
   button(HOME, T);
   delay(500);
@@ -52,4 +57,13 @@ void button(int btn, int timing) {
   digitalWrite(btn, HIGH);
   if (blinke) digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   delay(timing);
+}
+
+void eewrite(unsigned int value, int address) {
+  EEPROM.write(address, value & 0xFF);
+  EEPROM.write(address + 1, value >> 8);
+}
+
+unsigned int eeread(int address) {
+  return  (EEPROM.read(address + 1) << 8) + EEPROM.read(address);
 }
