@@ -1,5 +1,5 @@
 /*
- * BDSP Shaymin shiny hunting no game reset
+ * BDSP Shaymin shiny hunting no game reset (6 days)
  * buttons needed
  * A UP DOWN B
  */
