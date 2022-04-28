@@ -1,5 +1,7 @@
 /*
  * BDSP Dialga/Palkia shiny hunting
+ * Palkia (7 days)
+ * Dialga (15 days) 8240 resets or 9.15hrs per day of resets
  * buttons needed
  * HOME X A UP
 */
