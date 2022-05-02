@@ -32,6 +32,8 @@ shiny/events/0591 Amoonguss 2020-08-09 SWSH Cherish - 6.jpg
 ![](shiny/events/0591%20Amoonguss%202020-08-09%20SWSH%20Cherish%20-%206.jpg)
 shiny/events/0716 Xerneas 2016-05-11 ORAS Cherish.jpg
 ![](shiny/events/0716%20Xerneas%202016-05-11%20ORAS%20Cherish.jpg)
+shiny/events/0716 Xerneas 2016-05-11 XY Cherish.jpg
+![](shiny/events/0716%20Xerneas%202016-05-11%20XY%20Cherish.jpg)
 shiny/events/0717 Yveltal 2016-05-20 ORAS Cherish Pau.jpg
 ![](shiny/events/0717%20Yveltal%202016-05-20%20ORAS%20Cherish%20Pau.jpg)
 shiny/events/0717 Yveltal 2016-05-21 ORAS Cherish.jpg
