@@ -74,6 +74,8 @@ shiny/0101 Electrode 2022-01-04 LGPE Premier.jpg
 ![](shiny/0101%20Electrode%202022-01-04%20LGPE%20Premier.jpg)
 shiny/0112 Rhydon 2020-12-12 POGO Premier.jpg
 ![](shiny/0112%20Rhydon%202020-12-12%20POGO%20Premier.jpg)
+shiny/0113 Chansey 2020-06-21 LGPE Ultra.jpg
+![](shiny/0113%20Chansey%202020-06-21%20LGPE%20Ultra.jpg)
 shiny/0113 Chansey 2020-07-09 LGPE Premier.jpg
 ![](shiny/0113%20Chansey%202020-07-09%20LGPE%20Premier.jpg)
 shiny/0121 Starmie 2020-07-02 LGPE Poke.jpg
@@ -134,6 +136,8 @@ shiny/0198 Murkrow 2022-02-26 PLA Wing.jpg
 ![](shiny/0198%20Murkrow%202022-02-26%20PLA%20Wing.jpg)
 shiny/0207 Gligar 2022-02-22 PLA Wing.jpg
 ![](shiny/0207%20Gligar%202022-02-22%20PLA%20Wing.jpg)
+shiny/0208 Steelix 2020-06-18 LGPE Ultra.jpg
+![](shiny/0208%20Steelix%202020-06-18%20LGPE%20Ultra.jpg)
 shiny/0215 Hisuian-Sneasel 2022-02-26 PLA Wing.jpg
 ![](shiny/0215%20Hisuian-Sneasel%202022-02-26%20PLA%20Wing.jpg)
 shiny/0230 Kingdra 2020-11-25 LGPE Premier.jpg
@@ -146,6 +150,8 @@ shiny/0238 Smoochum 2022-01-30 POGO Poke.jpg
 ![](shiny/0238%20Smoochum%202022-01-30%20POGO%20Poke.jpg)
 shiny/0242 Blissey 2020-06-21 LGPE Ultra.jpg
 ![](shiny/0242%20Blissey%202020-06-21%20LGPE%20Ultra.jpg)
+shiny/0242 Blissey 2020-07-15 LGPE Premier.jpg
+![](shiny/0242%20Blissey%202020-07-15%20LGPE%20Premier.jpg)
 shiny/0251 Celebi 2021-01-19 POGO Poke.jpg
 ![](shiny/0251%20Celebi%202021-01-19%20POGO%20Poke.jpg)
 shiny/0260 Swampert 2019-07-22 POGO Ultra Designr.jpg
@@ -228,6 +234,8 @@ shiny/0471 Glaceon 2021-08-15 POGO Premier.jpg
 ![](shiny/0471%20Glaceon%202021-08-15%20POGO%20Premier.jpg)
 shiny/0474 Porygon-Z 2020-09-20 POGO Premier.jpg
 ![](shiny/0474%20Porygon-Z%202020-09-20%20POGO%20Premier.jpg)
+shiny/0477 Dusknoir 2021-10-09 POGO Ultra.jpg
+![](shiny/0477%20Dusknoir%202021-10-09%20POGO%20Ultra.jpg)
 shiny/0482 Azelf 2021-12-12 BDSP Quick.jpg
 ![](shiny/0482%20Azelf%202021-12-12%20BDSP%20Quick.jpg)
 shiny/0483 Dialga 2022-04-27 BDSP Master.jpg

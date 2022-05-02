@@ -6,6 +6,8 @@ shiny/events/0145 Galarian-Zapdos 2022-03-14 SWSH Cherish.jpg
 ![](shiny/events/0145%20Galarian-Zapdos%202022-03-14%20SWSH%20Cherish.jpg)
 shiny/events/0146 Galarian-Moltres 2022-04-18 SWSH Cherish.jpg
 ![](shiny/events/0146%20Galarian-Moltres%202022-04-18%20SWSH%20Cherish.jpg)
+shiny/events/0251 Celebi 2021-10-07 SWSH Cherish.jpg
+![](shiny/events/0251%20Celebi%202021-10-07%20SWSH%20Cherish.jpg)
 shiny/events/0251 Celebi 2021-10-08 SWSH Cherish - 1.jpg
 ![](shiny/events/0251%20Celebi%202021-10-08%20SWSH%20Cherish%20-%201.jpg)
 shiny/events/0251 Celebi 2021-10-08 SWSH Cherish - 2.jpg
