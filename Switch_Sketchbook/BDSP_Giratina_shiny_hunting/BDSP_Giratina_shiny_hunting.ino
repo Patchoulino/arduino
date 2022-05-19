@@ -1,5 +1,5 @@
 /*
- * BDSP Giratina shiny hunting
+ * BDSP Giratina shiny hunting (17 days) 8553 resets
  * buttons needed
  * HOME X A UP
 */
