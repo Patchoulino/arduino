@@ -244,6 +244,8 @@ shiny/0484 Palkia 2021-11-28 BDSP Premier.jpg
 ![](shiny/0484%20Palkia%202021-11-28%20BDSP%20Premier.jpg)
 shiny/0486 Regigigas 2020-12-22 SWSH Heavy.jpg
 ![](shiny/0486%20Regigigas%202020-12-22%20SWSH%20Heavy.jpg)
+shiny/0487 Giratina 2022-05-18 BDSP Master.jpg
+![](shiny/0487%20Giratina%202022-05-18%20BDSP%20Master.jpg)
 shiny/0491 Darkrai 2022-04-07 BDSP Master.jpg
 ![](shiny/0491%20Darkrai%202022-04-07%20BDSP%20Master.jpg)
 shiny/0492 Shaymin 2022-04-13 BDSP Moon.jpg
