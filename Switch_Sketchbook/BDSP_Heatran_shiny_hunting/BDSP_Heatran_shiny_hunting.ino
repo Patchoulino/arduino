@@ -1,5 +1,5 @@
 /*
- * BDSP Heatran shiny hunting (_ days) _ resets
+ * BDSP Heatran shiny hunting (4 days) 1034 resets
  * buttons needed
  * HOME X A UP
 */
