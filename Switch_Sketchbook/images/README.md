@@ -10,6 +10,8 @@ shiny/0006 Charizard 2020-10-17 POGO Premier.jpg
 ![](shiny/0006%20Charizard%202020-10-17%20POGO%20Premier.jpg)
 shiny/0006 Charizard 2020-12-13 POGO Premier.jpg
 ![](shiny/0006%20Charizard%202020-12-13%20POGO%20Premier.jpg)
+shiny/0012 Butterfree 2022-06-04 LGPE Premier.jpg
+![](shiny/0012%20Butterfree%202022-06-04%20LGPE%20Premier.jpg)
 shiny/0018 Pidgeot 2020-06-20 LGPE Ultra.jpg
 ![](shiny/0018%20Pidgeot%202020-06-20%20LGPE%20Ultra.jpg)
 shiny/0018 Pidgeot 2020-06-21 LGPE Ultra.jpg
@@ -56,6 +58,8 @@ shiny/0068 Machamp 2021-01-16 POGO Ultra.jpg
 ![](shiny/0068%20Machamp%202021-01-16%20POGO%20Ultra.jpg)
 shiny/0073 Tentacruel 2022-01-01 LGPE Premier.jpg
 ![](shiny/0073%20Tentacruel%202022-01-01%20LGPE%20Premier.jpg)
+shiny/0074 Alolan-Geodude 2022-05-21 POGO Ultra.jpg
+![](shiny/0074%20Alolan-Geodude%202022-05-21%20POGO%20Ultra.jpg)
 shiny/0076 Golem 2020-08-22 LGPE Premier.jpg
 ![](shiny/0076%20Golem%202020-08-22%20LGPE%20Premier.jpg)
 shiny/0078 Rapidash 2022-02-15 PLA Wing.jpg
@@ -146,6 +150,8 @@ shiny/0242 Blissey 2020-07-15 LGPE Premier.jpg
 ![](shiny/0242%20Blissey%202020-07-15%20LGPE%20Premier.jpg)
 shiny/0251 Celebi 2021-01-19 POGO Poke.jpg
 ![](shiny/0251%20Celebi%202021-01-19%20POGO%20Poke.jpg)
+shiny/0258 Mudkip 2022-04-10 POGO Ultra.jpg
+![](shiny/0258%20Mudkip%202022-04-10%20POGO%20Ultra.jpg)
 shiny/0260 Swampert 2019-07-22 POGO Ultra Designr.jpg
 ![](shiny/0260%20Swampert%202019-07-22%20POGO%20Ultra%20Designr.jpg)
 shiny/0273 Seedot 2020-12-12 POGO Ultra - 2.jpg
