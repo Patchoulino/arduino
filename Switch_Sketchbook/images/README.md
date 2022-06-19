@@ -10,8 +10,12 @@ shiny/0006 Charizard 2020-10-17 POGO Premier.jpg
 ![](shiny/0006%20Charizard%202020-10-17%20POGO%20Premier.jpg)
 shiny/0006 Charizard 2020-12-13 POGO Premier.jpg
 ![](shiny/0006%20Charizard%202020-12-13%20POGO%20Premier.jpg)
+shiny/0006 Charizard 2022-06-10 LGPE Ultra.jpg
+![](shiny/0006%20Charizard%202022-06-10%20LGPE%20Ultra.jpg)
 shiny/0012 Butterfree 2022-06-04 LGPE Premier.jpg
 ![](shiny/0012%20Butterfree%202022-06-04%20LGPE%20Premier.jpg)
+shiny/0016 Pidgey 2022-06-07 LGPE Ultra.jpg
+![](shiny/0016%20Pidgey%202022-06-07%20LGPE%20Ultra.jpg)
 shiny/0018 Pidgeot 2020-06-20 LGPE Ultra.jpg
 ![](shiny/0018%20Pidgeot%202020-06-20%20LGPE%20Ultra.jpg)
 shiny/0018 Pidgeot 2020-06-21 LGPE Ultra.jpg
@@ -56,6 +60,8 @@ shiny/0065 Alakazam 2020-04-25 POGO Ultra Aisline.jpg
 ![](shiny/0065%20Alakazam%202020-04-25%20POGO%20Ultra%20Aisline.jpg)
 shiny/0068 Machamp 2021-01-16 POGO Ultra.jpg
 ![](shiny/0068%20Machamp%202021-01-16%20POGO%20Ultra.jpg)
+shiny/0072 Tentacool 2022-06-09 LGPE Premier.jpg
+![](shiny/0072%20Tentacool%202022-06-09%20LGPE%20Premier.jpg)
 shiny/0073 Tentacruel 2022-01-01 LGPE Premier.jpg
 ![](shiny/0073%20Tentacruel%202022-01-01%20LGPE%20Premier.jpg)
 shiny/0074 Alolan-Geodude 2022-05-21 POGO Ultra.jpg
@@ -128,6 +134,8 @@ shiny/0143 Snorlax 2021-12-24 LGPE Ultra.jpg
 ![](shiny/0143%20Snorlax%202021-12-24%20LGPE%20Ultra.jpg)
 shiny/0149 Dragonite 2020-12-06 LGPE Ultra.jpg
 ![](shiny/0149%20Dragonite%202020-12-06%20LGPE%20Ultra.jpg)
+shiny/0149 Dragonite 2022-06-08 LGPE Premier.jpg
+![](shiny/0149%20Dragonite%202022-06-08%20LGPE%20Premier.jpg)
 shiny/0169 Crobat 2020-07-10 LGPE Ultra.jpg
 ![](shiny/0169%20Crobat%202020-07-10%20LGPE%20Ultra.jpg)
 shiny/0173 Cleffa 2021-03-06 GSC Poke.jpg
