@@ -2,7 +2,7 @@
  * BDSP Ramanas Park shiny hunting
  * buttons needed
  * HOME X A UP
- * Latios 2022-05-28 - 18261 as of 9/01
+ * Latios 2022-05-28 - 18261 as of 9/01 and gaveup
  * Latias 
 */
 
