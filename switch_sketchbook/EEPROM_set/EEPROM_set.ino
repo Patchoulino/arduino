@@ -7,7 +7,7 @@ void setup() {
   Serial.begin(9600);
   Serial << "EEPROM length: " << EEPROM.length() << endl;
 
-  unsigned int x = 0;
+  unsigned int x = 600;
   eewrite(x, 0);
   Serial << "Int: " << eeread(0) << " byte(0): " << EEPROM.read(0) << " byte(1): " << EEPROM.read(1) << endl;
   

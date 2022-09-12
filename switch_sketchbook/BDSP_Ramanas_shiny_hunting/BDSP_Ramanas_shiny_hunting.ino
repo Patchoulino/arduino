@@ -2,7 +2,7 @@
  * BDSP Ramanas Park shiny hunting
  * buttons needed
  * HOME X A UP
- * Latios 2022-05-28 - 18261 as of 9/01 and gaveup
+ * Latios 2022-05-28 -
  * Latias 
 */
 
@@ -37,7 +37,7 @@ void loop() { // Start at battle so reset of the arduino will open home and rest
   delay(500);
   button(X, T);
 
-  for (int i = 0; i <= (41000/T/2); i++){ // 40 sec to load 
+  for (int i = 0; i <= (40500/T/2); i++){ // 40 sec to load 
     button(A, T);
   }
 
@@ -49,7 +49,7 @@ void loop() { // Start at battle so reset of the arduino will open home and rest
   }
 
   blinke = 1;
-  for (int i = 0; i <= (9500/T/2); i++){ // blink and spam first move, waiting for reset
+  for (int i = 0; i <= (10000/T/2); i++){ // blink and spam first move, waiting for reset
     button(A, T);
   }
   blinke = 0;
