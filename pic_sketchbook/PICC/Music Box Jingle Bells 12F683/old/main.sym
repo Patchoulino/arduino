@@ -1,0 +1,108 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+019.6   C1OUT
+020     @SCRATCH
+021     @SCRATCH
+021     _RETURN_
+022     @SCRATCH
+023     @SCRATCH
+024     quartet
+025     duration
+026     pause
+027     i
+028     MAIN.@SCRATCH1
+029     MAIN.@SCRATCH2
+02A     MAIN.@SCRATCH3
+02B-02C generate_tone.frequency
+02D-02E generate_tone.duration
+02F-032 generate_tone.total_delay_time
+033-034 generate_tone.total_ms_delay_time
+035-036 generate_tone.total_us_delay_time
+037     generate_tone.num_us_delays
+038     generate_tone.num_ms_delays
+039     generate_tone.ms_delay_time
+03A     generate_tone.us_delay_time
+03B-03C generate_tone.num_periods
+03D     do_delay.ms_delay
+03D-03E @DIV1616.P1
+03D     generate_tone.@SCRATCH1
+03E     do_delay.num_ms
+03E     generate_tone.@SCRATCH2
+03F     do_delay.us_delay
+03F-040 @DIV1616.P1
+03F     generate_tone.@SCRATCH3
+040     do_delay.num_us
+040     generate_tone.@SCRATCH4
+041-044 @MUL3232.P1
+041     do_delay.i
+041     generate_tone.@SCRATCH5
+041     @DIV1616.@SCRATCH1
+042     @delay_us1.P1
+042     @delay_ms1.P2
+042     generate_tone.@SCRATCH6
+043     generate_tone.@SCRATCH7
+044     generate_tone.@SCRATCH8
+045-048 @MUL3232.P1
+045-048 @DIV3232.P2
+049-04C @DIV3232.P1
+049     @MUL3232.@SCRATCH1
+04A     @MUL3232.@SCRATCH2
+04B     @MUL3232.@SCRATCH3
+04C     @MUL3232.@SCRATCH4
+04D     @DIV3232.@SCRATCH1
+04D     @MUL3232.@SCRATCH5
+04E     @DIV3232.@SCRATCH2
+04F     @DIV3232.@SCRATCH3
+050     @DIV3232.@SCRATCH4
+051     @DIV3232.@SCRATCH5
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+0046  @delay_ms1
+00E7  @delay_us1
+000A  C_NOTE
+0016  D_NOTE
+0022  E_NOTE
+002E  F_NOTE
+003A  G_NOTE
+00CD  do_delay
+00FA  generate_tone
+005A  @DIV3232
+00A8  @DIV1616
+0191  @MUL3232
+021A  MAIN
+021A  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\Patchouli\Documents\PIC\Music Box Jingle Bells 12F675\
+
+Project Files:
+    main.c
+    12F675.h
+    TONES.C
+
+Units:
+    C:\Users\Patchouli\Documents\PIC\Music Box Jingle Bells 12F675\main (main)
+
+Compiler Settings:
+    Processor:      PIC12F675
+    Pointer Size:   8
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.PJT
+    Call Tree:   main.tre
+    Statistics:  main.sta

@@ -1,0 +1,9 @@
+>>> Warning 202 "C:\Users\Patchouli\Documents\PIC\Music Box Jingle Bells 12F675\TONES.C" Line 24(12,19): Variable never used:   Db_NOTE
+>>> Warning 202 "C:\Users\Patchouli\Documents\PIC\Music Box Jingle Bells 12F675\TONES.C" Line 26(12,19): Variable never used:   Eb_NOTE
+>>> Warning 202 "C:\Users\Patchouli\Documents\PIC\Music Box Jingle Bells 12F675\TONES.C" Line 29(12,19): Variable never used:   Gb_NOTE
+>>> Warning 202 "C:\Users\Patchouli\Documents\PIC\Music Box Jingle Bells 12F675\TONES.C" Line 31(12,19): Variable never used:   Ab_NOTE
+>>> Warning 202 "C:\Users\Patchouli\Documents\PIC\Music Box Jingle Bells 12F675\TONES.C" Line 32(12,18): Variable never used:   A_NOTE
+>>> Warning 202 "C:\Users\Patchouli\Documents\PIC\Music Box Jingle Bells 12F675\TONES.C" Line 33(12,19): Variable never used:   Bb_NOTE
+>>> Warning 202 "C:\Users\Patchouli\Documents\PIC\Music Box Jingle Bells 12F675\TONES.C" Line 34(12,18): Variable never used:   B_NOTE
+      Memory usage:   ROM=97%      RAM=17% - 78%
+      0 Errors,  7 Warnings.

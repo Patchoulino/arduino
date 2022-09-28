@@ -1,0 +1,422 @@
+CCS PCM C Compiler, Version 4.110, 5967               24-Jun-17 20:57
+
+               Filename: C:\Users\Abraham\Documents\Engineering\PIC\PIC12F683 Hello World RS232 FIXED\main.lst
+
+               ROM used: 902 words (44%)
+                         Largest free fragment is 1146
+               RAM used: 5 (4%) at main() level
+                         34 (27%) worst case
+               Stack:    2 locations
+
+*
+0000:  MOVLW  02
+0001:  MOVWF  0A
+0002:  GOTO   26D
+0003:  NOP
+.................... #include <12F683.h> 
+.................... //////// Standard Header file for the PIC12F683 device //////////////// 
+.................... #device PIC12F683 
+.................... #list 
+....................  
+.................... #device adc=10 
+....................  
+.................... #FUSES NOWDT                    //No Watch Dog Timer 
+.................... #FUSES INTRC_IO                 //Internal RC Osc, no CLKOUT 
+.................... #FUSES NOCPD                    //No EE protection 
+.................... #FUSES NOPROTECT                //Code not protected from reading 
+.................... #FUSES NOMCLR                   //Master Clear pin used for I/O 
+.................... #FUSES PUT                      //Power Up Timer 
+.................... #FUSES NOBROWNOUT               //No brownout reset 
+.................... #FUSES NOIESO                   //Internal External Switch Over mode disabled 
+.................... #FUSES NOFCMEN                  //Fail-safe clock monitor disabled 
+....................  
+.................... #use delay(int=8000000) 
+025A:  MOVLW  2B
+025B:  MOVWF  04
+025C:  MOVF   00,W
+025D:  BTFSC  03.2
+025E:  GOTO   26C
+025F:  MOVLW  02
+0260:  MOVWF  21
+0261:  CLRF   20
+0262:  DECFSZ 20,F
+0263:  GOTO   262
+0264:  DECFSZ 21,F
+0265:  GOTO   261
+0266:  MOVLW  97
+0267:  MOVWF  20
+0268:  DECFSZ 20,F
+0269:  GOTO   268
+026A:  DECFSZ 00,F
+026B:  GOTO   25F
+026C:  GOTO   384 (RETURN)
+.................... #use rs232(baud=9600,parity=N,xmit=PIN_A0,rcv=PIN_A1,bits=8) 
+*
+0021:  BSF    03.5
+0022:  BCF    05.0
+0023:  BCF    03.5
+0024:  BCF    05.0
+0025:  MOVLW  08
+0026:  MOVWF  21
+0027:  GOTO   028
+0028:  NOP
+0029:  BSF    21.7
+002A:  GOTO   039
+002B:  BCF    21.7
+002C:  RRF    36,F
+002D:  BTFSC  03.0
+002E:  BSF    05.0
+002F:  BTFSS  03.0
+0030:  BCF    05.0
+0031:  BSF    21.6
+0032:  GOTO   039
+0033:  BCF    21.6
+0034:  DECFSZ 21,F
+0035:  GOTO   02C
+0036:  GOTO   037
+0037:  NOP
+0038:  BSF    05.0
+0039:  MOVLW  3F
+003A:  MOVWF  04
+003B:  DECFSZ 04,F
+003C:  GOTO   03B
+003D:  NOP
+003E:  BTFSC  21.7
+003F:  GOTO   02B
+0040:  BTFSC  21.6
+0041:  GOTO   033
+0042:  RETURN
+....................  
+.................... void main() 
+.................... { 
+*
+026D:  CLRF   04
+026E:  MOVLW  1F
+026F:  ANDWF  03,F
+0270:  MOVLW  71
+0271:  BSF    03.5
+0272:  MOVWF  0F
+0273:  MOVF   0F,W
+0274:  BCF    05.0
+0275:  BCF    03.5
+0276:  BSF    05.0
+0277:  BCF    1F.6
+0278:  BSF    03.5
+0279:  BCF    1F.0
+027A:  BCF    1F.1
+027B:  BCF    1F.2
+027C:  BCF    1F.3
+027D:  MOVLW  07
+027E:  BCF    03.5
+027F:  MOVWF  19
+....................  
+....................    setup_oscillator(OSC_8MHZ); 
+0280:  MOVLW  71
+0281:  BSF    03.5
+0282:  MOVWF  0F
+0283:  MOVF   0F,W
+....................  
+....................    setup_adc_ports(sAN3|VSS_VDD); 
+0284:  BCF    03.5
+0285:  BCF    1F.6
+0286:  BSF    03.5
+0287:  BCF    1F.0
+0288:  BCF    1F.1
+0289:  BCF    1F.2
+028A:  BSF    1F.3
+....................    setup_adc(ADC_CLOCK_DIV_2); 
+028B:  BCF    1F.4
+028C:  BCF    1F.5
+028D:  BCF    1F.6
+028E:  BCF    03.5
+028F:  BSF    1F.7
+0290:  BSF    1F.0
+....................    setup_timer_0(RTCC_INTERNAL|RTCC_DIV_1); 
+0291:  BSF    03.5
+0292:  MOVF   01,W
+0293:  ANDLW  C7
+0294:  IORLW  08
+0295:  MOVWF  01
+....................    setup_timer_1(T1_DISABLED); 
+0296:  BCF    03.5
+0297:  CLRF   10
+....................    //setup_timer_2(T2_DIV_BY_4,99,1);  //5KHz 
+....................    setup_timer_2(T2_DIV_BY_16,255,1);  //500Hz 
+0298:  MOVLW  00
+0299:  MOVWF  21
+029A:  IORLW  06
+029B:  MOVWF  12
+029C:  MOVLW  FF
+029D:  BSF    03.5
+029E:  MOVWF  12
+....................    //setup_timer_2(T2_DIV_BY_4,255,1);  //2KHz 
+....................    //setup_timer_2(T2_DIV_BY_4,127,1);  //4KHz 
+....................    setup_ccp1(CCP_PWM); 
+029F:  BCF    05.2
+02A0:  BCF    03.5
+02A1:  BCF    05.2
+02A2:  MOVLW  0C
+02A3:  MOVWF  15
+....................    set_pwm1_duty(512); 
+02A4:  MOVLW  80
+02A5:  MOVWF  13
+02A6:  MOVF   15,W
+02A7:  ANDLW  CF
+02A8:  MOVWF  15
+....................    setup_comparator(NC_NC); 
+02A9:  MOVLW  07
+02AA:  MOVWF  19
+02AB:  BSF    03.5
+02AC:  MOVF   05,W
+02AD:  MOVWF  05
+02AE:  MOVLW  06
+02AF:  BCF    03.5
+02B0:  MOVWF  20
+02B1:  DECFSZ 20,F
+02B2:  GOTO   2B1
+02B3:  NOP
+02B4:  MOVF   19,W
+02B5:  BCF    0C.3
+....................     
+....................    set_adc_channel(3); 
+02B6:  MOVLW  0C
+02B7:  MOVWF  21
+02B8:  MOVF   1F,W
+02B9:  ANDLW  F3
+02BA:  IORWF  21,W
+02BB:  MOVWF  1F
+....................    delay_us(10); 
+02BC:  MOVLW  06
+02BD:  MOVWF  20
+02BE:  DECFSZ 20,F
+02BF:  GOTO   2BE
+02C0:  NOP
+....................     
+....................    const long c = 64511; 
+....................    long long_integer; 
+....................    float float_var; 
+....................  
+....................     while(true) 
+....................     { 
+....................       long_integer = read_adc(); 
+02C1:  BSF    1F.1
+02C2:  BTFSC  1F.1
+02C3:  GOTO   2C2
+02C4:  BSF    03.5
+02C5:  MOVF   1E,W
+02C6:  BCF    03.5
+02C7:  MOVWF  25
+02C8:  MOVF   1E,W
+02C9:  MOVWF  26
+....................       set_pwm1_duty(long_integer); 
+02CA:  MOVF   26,W
+02CB:  MOVWF  22
+02CC:  MOVF   25,W
+02CD:  MOVWF  21
+02CE:  RRF    22,F
+02CF:  RRF    21,F
+02D0:  RRF    22,F
+02D1:  RRF    21,F
+02D2:  RRF    22,F
+02D3:  MOVF   21,W
+02D4:  MOVWF  13
+02D5:  RRF    22,F
+02D6:  RRF    22,W
+02D7:  ANDLW  30
+02D8:  MOVWF  20
+02D9:  MOVF   15,W
+02DA:  ANDLW  CF
+02DB:  IORWF  20,W
+02DC:  MOVWF  15
+....................        
+....................       putc(10); 
+02DD:  MOVLW  0A
+02DE:  MOVWF  36
+02DF:  CALL   021
+....................       putc(13); 
+02E0:  MOVLW  0D
+02E1:  MOVWF  36
+02E2:  CALL   021
+....................        
+....................       if(long_integer > 512) 
+02E3:  MOVF   26,W
+02E4:  SUBLW  01
+02E5:  BTFSC  03.0
+02E6:  GOTO   338
+02E7:  XORLW  FF
+02E8:  BTFSS  03.2
+02E9:  GOTO   2EE
+02EA:  MOVF   25,W
+02EB:  SUBLW  00
+02EC:  BTFSC  03.0
+02ED:  GOTO   338
+....................       {     //CCS printf has a bug printing Longs 
+....................          //float_var = (long_integer-c) * 0.004887585; // (n/1023)*5 doesn't work REAL LINE 
+....................          //fprintf(1,"long = %lu || float = %f",long_integer-c,float_var); //REAL LINE 
+....................          float_var = long_integer * 0.004887585; //SIMULATION 
+02EE:  MOVF   26,W
+02EF:  MOVWF  2C
+02F0:  MOVF   25,W
+02F1:  MOVWF  2B
+02F2:  CALL   043
+02F3:  MOVF   23,W
+02F4:  MOVWF  39
+02F5:  MOVF   22,W
+02F6:  MOVWF  38
+02F7:  MOVF   21,W
+02F8:  MOVWF  37
+02F9:  MOVF   20,W
+02FA:  MOVWF  36
+02FB:  MOVLW  09
+02FC:  MOVWF  3D
+02FD:  MOVLW  28
+02FE:  MOVWF  3C
+02FF:  MOVLW  20
+0300:  MOVWF  3B
+0301:  MOVLW  77
+0302:  MOVWF  3A
+0303:  CALL   060
+0304:  MOVF   23,W
+0305:  MOVWF  2A
+0306:  MOVF   22,W
+0307:  MOVWF  29
+0308:  MOVF   21,W
+0309:  MOVWF  28
+030A:  MOVF   20,W
+030B:  MOVWF  27
+....................          fprintf(1,"long = %lu || float = %f",long_integer,float_var); //SIMULATION 
+030C:  CLRF   2B
+030D:  MOVF   2B,W
+030E:  CALL   004
+030F:  INCF   2B,F
+0310:  MOVWF  20
+0311:  MOVWF  36
+0312:  CALL   021
+0313:  MOVLW  07
+0314:  SUBWF  2B,W
+0315:  BTFSS  03.2
+0316:  GOTO   30D
+0317:  MOVLW  10
+0318:  MOVWF  04
+0319:  MOVF   26,W
+031A:  MOVWF  2C
+031B:  MOVF   25,W
+031C:  MOVWF  2B
+031D:  CALL   0D5
+031E:  MOVLW  0A
+031F:  MOVWF  2B
+0320:  MOVF   2B,W
+0321:  CALL   004
+0322:  INCF   2B,F
+0323:  MOVWF  20
+0324:  MOVWF  36
+0325:  CALL   021
+0326:  MOVLW  16
+0327:  SUBWF  2B,W
+0328:  BTFSS  03.2
+0329:  GOTO   320
+032A:  MOVLW  89
+032B:  MOVWF  04
+032C:  MOVF   2A,W
+032D:  MOVWF  2E
+032E:  MOVF   29,W
+032F:  MOVWF  2D
+0330:  MOVF   28,W
+0331:  MOVWF  2C
+0332:  MOVF   27,W
+0333:  MOVWF  2B
+0334:  MOVLW  02
+0335:  MOVWF  2F
+0336:  CALL   17B
+....................       } 
+....................       else 
+0337:  GOTO   381
+....................       { 
+....................          float_var = long_integer * 0.004887585; // (n/1023)*5 doesn't work 
+0338:  MOVF   26,W
+0339:  MOVWF  2C
+033A:  MOVF   25,W
+033B:  MOVWF  2B
+033C:  CALL   043
+033D:  MOVF   23,W
+033E:  MOVWF  39
+033F:  MOVF   22,W
+0340:  MOVWF  38
+0341:  MOVF   21,W
+0342:  MOVWF  37
+0343:  MOVF   20,W
+0344:  MOVWF  36
+0345:  MOVLW  09
+0346:  MOVWF  3D
+0347:  MOVLW  28
+0348:  MOVWF  3C
+0349:  MOVLW  20
+034A:  MOVWF  3B
+034B:  MOVLW  77
+034C:  MOVWF  3A
+034D:  CALL   060
+034E:  MOVF   23,W
+034F:  MOVWF  2A
+0350:  MOVF   22,W
+0351:  MOVWF  29
+0352:  MOVF   21,W
+0353:  MOVWF  28
+0354:  MOVF   20,W
+0355:  MOVWF  27
+....................          fprintf(1,"long = %lu || float = %f",long_integer,float_var); 
+0356:  CLRF   2B
+0357:  MOVF   2B,W
+0358:  CALL   004
+0359:  INCF   2B,F
+035A:  MOVWF  20
+035B:  MOVWF  36
+035C:  CALL   021
+035D:  MOVLW  07
+035E:  SUBWF  2B,W
+035F:  BTFSS  03.2
+0360:  GOTO   357
+0361:  MOVLW  10
+0362:  MOVWF  04
+0363:  MOVF   26,W
+0364:  MOVWF  2C
+0365:  MOVF   25,W
+0366:  MOVWF  2B
+0367:  CALL   0D5
+0368:  MOVLW  0A
+0369:  MOVWF  2B
+036A:  MOVF   2B,W
+036B:  CALL   004
+036C:  INCF   2B,F
+036D:  MOVWF  20
+036E:  MOVWF  36
+036F:  CALL   021
+0370:  MOVLW  16
+0371:  SUBWF  2B,W
+0372:  BTFSS  03.2
+0373:  GOTO   36A
+0374:  MOVLW  89
+0375:  MOVWF  04
+0376:  MOVF   2A,W
+0377:  MOVWF  2E
+0378:  MOVF   29,W
+0379:  MOVWF  2D
+037A:  MOVF   28,W
+037B:  MOVWF  2C
+037C:  MOVF   27,W
+037D:  MOVWF  2B
+037E:  MOVLW  02
+037F:  MOVWF  2F
+0380:  CALL   17B
+....................       } 
+....................        
+....................       delay_ms(100); 
+0381:  MOVLW  64
+0382:  MOVWF  2B
+0383:  GOTO   25A
+....................     } 
+0384:  GOTO   2C1
+.................... } 
+0385:  SLEEP
+
+Configuration Fuses:
+   Word  1: 30C4   NOWDT NOCPD NOPROTECT NOMCLR PUT INTRC_IO NOBROWNOUT NOIESO NOFCMEN
