@@ -1,5 +1,0 @@
->>> Warning 203 "PIC16F628A.c" Line 174(1,1): Condition always TRUE
->>> Warning 203 "PIC16F628A.c" Line 182(1,1): Condition always TRUE
->>> Warning 203 "PIC16F628A.c" Line 190(1,1): Condition always TRUE
-      Memory usage:   ROM=42%      RAM=13% - 18%
-      0 Errors,  3 Warnings.
