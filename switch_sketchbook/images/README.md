@@ -124,6 +124,10 @@ shiny/0133 Eevee 2021-08-14 POGO Premier.jpg
 ![](shiny/0133%20Eevee%202021-08-14%20POGO%20Premier.jpg)
 shiny/0133 Eevee 2021-08-15 POGO Premier.jpg
 ![](shiny/0133%20Eevee%202021-08-15%20POGO%20Premier.jpg)
+shiny/0133 Eevee 2022-07-17 POGO Ultra.jpg
+![](shiny/0133%20Eevee%202022-07-17%20POGO%20Ultra.jpg)
+shiny/0133 Eevee 2022-08-20 POGO Ultra.jpg
+![](shiny/0133%20Eevee%202022-08-20%20POGO%20Ultra.jpg)
 shiny/0134 Vaporeon 2021-08-15 POGO Premier.jpg
 ![](shiny/0134%20Vaporeon%202021-08-15%20POGO%20Premier.jpg)
 shiny/0135 Jolteon 2021-08-15 POGO Premier.jpg
@@ -132,6 +136,22 @@ shiny/0136 Flareon 2021-08-15 POGO Premier.jpg
 ![](shiny/0136%20Flareon%202021-08-15%20POGO%20Premier.jpg)
 shiny/0143 Snorlax 2021-12-24 LGPE Ultra.jpg
 ![](shiny/0143%20Snorlax%202021-12-24%20LGPE%20Ultra.jpg)
+shiny/0147 Dratini 2022-11-05 POGO Ultra - 1.jpg
+![](shiny/0147%20Dratini%202022-11-05%20POGO%20Ultra%20-%201.jpg)
+shiny/0147 Dratini 2022-11-05 POGO Ultra - 2.jpg
+![](shiny/0147%20Dratini%202022-11-05%20POGO%20Ultra%20-%202.jpg)
+shiny/0147 Dratini 2022-11-05 POGO Ultra - 3.jpg
+![](shiny/0147%20Dratini%202022-11-05%20POGO%20Ultra%20-%203.jpg)
+shiny/0147 Dratini 2022-11-05 POGO Ultra - 4.jpg
+![](shiny/0147%20Dratini%202022-11-05%20POGO%20Ultra%20-%204.jpg)
+shiny/0147 Dratini 2022-11-05 POGO Ultra - 5.jpg
+![](shiny/0147%20Dratini%202022-11-05%20POGO%20Ultra%20-%205.jpg)
+shiny/0147 Dratini 2022-11-05 POGO Ultra - 6.jpg
+![](shiny/0147%20Dratini%202022-11-05%20POGO%20Ultra%20-%206.jpg)
+shiny/0147 Dratini 2022-11-05 POGO Ultra - 7.jpg
+![](shiny/0147%20Dratini%202022-11-05%20POGO%20Ultra%20-%207.jpg)
+shiny/0148 Dragonair 2022-11-05 POGO Ultra.jpg
+![](shiny/0148%20Dragonair%202022-11-05%20POGO%20Ultra.jpg)
 shiny/0149 Dragonite 2020-12-06 LGPE Ultra.jpg
 ![](shiny/0149%20Dragonite%202020-12-06%20LGPE%20Ultra.jpg)
 shiny/0149 Dragonite 2022-06-08 LGPE Premier.jpg
@@ -140,12 +160,22 @@ shiny/0169 Crobat 2020-07-10 LGPE Ultra.jpg
 ![](shiny/0169%20Crobat%202020-07-10%20LGPE%20Ultra.jpg)
 shiny/0173 Cleffa 2021-03-06 GSC Poke.jpg
 ![](shiny/0173%20Cleffa%202021-03-06%20GSC%20Poke.jpg)
+shiny/0195 Quagsire 2022-10-10 USUM Heal.jpg
+![](shiny/0195%20Quagsire%202022-10-10%20USUM%20Heal.jpg)
+shiny/0195 Quagsire 2022-10-17 USUM Heal.jpg
+![](shiny/0195%20Quagsire%202022-10-17%20USUM%20Heal.jpg)
+shiny/0195 Quagsire 2022-10-26 USUM Heal.jpg
+![](shiny/0195%20Quagsire%202022-10-26%20USUM%20Heal.jpg)
 shiny/0196 Espeon 2021-08-15 POGO Premier.jpg
 ![](shiny/0196%20Espeon%202021-08-15%20POGO%20Premier.jpg)
 shiny/0197 Umbreon 2021-08-15 POGO Premier.jpg
 ![](shiny/0197%20Umbreon%202021-08-15%20POGO%20Premier.jpg)
 shiny/0208 Steelix 2020-06-18 LGPE Ultra.jpg
 ![](shiny/0208%20Steelix%202020-06-18%20LGPE%20Ultra.jpg)
+shiny/0216 Teddiursa 2022-11-12 POGO Ultra - 1.jpg
+![](shiny/0216%20Teddiursa%202022-11-12%20POGO%20Ultra%20-%201.jpg)
+shiny/0216 Teddiursa 2022-11-12 POGO Ultra - 2.jpg
+![](shiny/0216%20Teddiursa%202022-11-12%20POGO%20Ultra%20-%202.jpg)
 shiny/0230 Kingdra 2020-11-25 LGPE Premier.jpg
 ![](shiny/0230%20Kingdra%202020-11-25%20LGPE%20Premier.jpg)
 shiny/0230 Kingdra 2021-01-01 SWSH Dive.jpg
@@ -162,22 +192,54 @@ shiny/0258 Mudkip 2022-04-10 POGO Ultra.jpg
 ![](shiny/0258%20Mudkip%202022-04-10%20POGO%20Ultra.jpg)
 shiny/0260 Swampert 2019-07-22 POGO Ultra Designr.jpg
 ![](shiny/0260%20Swampert%202019-07-22%20POGO%20Ultra%20Designr.jpg)
+shiny/0263 Galarian-Zigzagoon 2022-08-13 POGO Great.jpg
+![](shiny/0263%20Galarian-Zigzagoon%202022-08-13%20POGO%20Great.jpg)
+shiny/0263 Galarian-Zigzagoon 2022-08-13 POGO Poke - 1.jpg
+![](shiny/0263%20Galarian-Zigzagoon%202022-08-13%20POGO%20Poke%20-%201.jpg)
+shiny/0263 Galarian-Zigzagoon 2022-08-13 POGO Poke - 2.jpg
+![](shiny/0263%20Galarian-Zigzagoon%202022-08-13%20POGO%20Poke%20-%202.jpg)
+shiny/0263 Galarian-Zigzagoon 2022-08-13 POGO Poke - 3.jpg
+![](shiny/0263%20Galarian-Zigzagoon%202022-08-13%20POGO%20Poke%20-%203.jpg)
+shiny/0263 Galarian-Zigzagoon 2022-08-13 POGO Poke - 4.jpg
+![](shiny/0263%20Galarian-Zigzagoon%202022-08-13%20POGO%20Poke%20-%204.jpg)
+shiny/0263 Galarian-Zigzagoon 2022-08-13 POGO Poke - 5.jpg
+![](shiny/0263%20Galarian-Zigzagoon%202022-08-13%20POGO%20Poke%20-%205.jpg)
+shiny/0271 Lombre 2022-10-11 USUM Net.jpg
+![](shiny/0271%20Lombre%202022-10-11%20USUM%20Net.jpg)
+shiny/0271 Lombre 2022-10-18 USUM Net.jpg
+![](shiny/0271%20Lombre%202022-10-18%20USUM%20Net.jpg)
 shiny/0273 Seedot 2020-12-12 POGO Ultra - 2.jpg
 ![](shiny/0273%20Seedot%202020-12-12%20POGO%20Ultra%20-%202.jpg)
 shiny/0273 Seedot 2020-12-12 POGO Ultra.jpg
 ![](shiny/0273%20Seedot%202020-12-12%20POGO%20Ultra.jpg)
+shiny/0274 Nuzleaf 2022-10-12 USUM Nest.jpg
+![](shiny/0274%20Nuzleaf%202022-10-12%20USUM%20Nest.jpg)
+shiny/0277 Swellow 2022-10-11 USUM Nest.jpg
+![](shiny/0277%20Swellow%202022-10-11%20USUM%20Nest.jpg)
 shiny/0279 Pelipper 2020-12-24 SWSH Dive.jpg
 ![](shiny/0279%20Pelipper%202020-12-24%20SWSH%20Dive.jpg)
 shiny/0282 Gardevoir 2020-07-16 SWSH Premier.jpg
 ![](shiny/0282%20Gardevoir%202020-07-16%20SWSH%20Premier.jpg)
 shiny/0293 Wishmur 2015-12-05 ORAS Dusk.jpg
 ![](shiny/0293%20Wishmur%202015-12-05%20ORAS%20Dusk.jpg)
+shiny/0303 Mawile 2022-10-19 USUM Ultra Paulina.jpg
+![](shiny/0303%20Mawile%202022-10-19%20USUM%20Ultra%20Paulina.jpg)
+shiny/0308 Medicham 2022-10-20 USUM Dive.jpg
+![](shiny/0308%20Medicham%202022-10-20%20USUM%20Dive.jpg)
+shiny/0308 Medicham 2022-10-27 USUM Dive.jpg
+![](shiny/0308%20Medicham%202022-10-27%20USUM%20Dive.jpg)
 shiny/0311 Plusle 2018-07-14 POGO Poke Gloria.jpg
 ![](shiny/0311%20Plusle%202018-07-14%20POGO%20Poke%20Gloria.jpg)
 shiny/0312 Minum 2018-07-15 POGO Poke Gloria.jpg
 ![](shiny/0312%20Minum%202018-07-15%20POGO%20Poke%20Gloria.jpg)
 shiny/0320 Wailmer 2018-07-18 POGO Poke Gloria.jpg
 ![](shiny/0320%20Wailmer%202018-07-18%20POGO%20Poke%20Gloria.jpg)
+shiny/0326 Grumpig 2022-10-25 USUM Ultra.jpg
+![](shiny/0326%20Grumpig%202022-10-25%20USUM%20Ultra.jpg)
+shiny/0334 Altaria 2022-10-12 USUM Premier.jpg
+![](shiny/0334%20Altaria%202022-10-12%20USUM%20Premier.jpg)
+shiny/0334 Altaria 2022-10-19 USUM Premier.jpg
+![](shiny/0334%20Altaria%202022-10-19%20USUM%20Premier.jpg)
 shiny/0353 Shuppet 2015-11-18 ORAS Dusk.jpg
 ![](shiny/0353%20Shuppet%202015-11-18%20ORAS%20Dusk.jpg)
 shiny/0355 Duskull 2021-10-09 POGO Ultra.jpg
@@ -202,6 +264,8 @@ shiny/0363 Spheal 2022-01-16 POGO Ultra - 4.jpg
 ![](shiny/0363%20Spheal%202022-01-16%20POGO%20Ultra%20-%204.jpg)
 shiny/0393 Piplup 2020-12-12 POGO Ultra.jpg
 ![](shiny/0393%20Piplup%202020-12-12%20POGO%20Ultra.jpg)
+shiny/0396 Starly 2022-07-17 POGO Great.jpg
+![](shiny/0396%20Starly%202022-07-17%20POGO%20Great.jpg)
 shiny/0400 Bibarel 2022-02-14 PLA Ultra.jpg
 ![](shiny/0400%20Bibarel%202022-02-14%20PLA%20Ultra.jpg)
 shiny/0402 Kricketune 2022-02-12 PLA Ultra.jpg
@@ -212,6 +276,8 @@ shiny/0405 Luxray 2022-02-26 PLA Ultra.jpg
 ![](shiny/0405%20Luxray%202022-02-26%20PLA%20Ultra.jpg)
 shiny/0407 Roserade 2021-02-07 POGO Ultra.jpg
 ![](shiny/0407%20Roserade%202021-02-07%20POGO%20Ultra.jpg)
+shiny/0419 Floatzel 2022-09-24 USUM Ultra Paulina.jpg
+![](shiny/0419%20Floatzel%202022-09-24%20USUM%20Ultra%20Paulina.jpg)
 shiny/0430 Honchkrow 2022-02-26 PLA Wing.jpg
 ![](shiny/0430%20Honchkrow%202022-02-26%20PLA%20Wing.jpg)
 shiny/0443 Gible 2021-06-06 POGO Great.jpg
@@ -226,6 +292,8 @@ shiny/0445 Garchomp 2021-06-06 POGO Ultra.jpg
 ![](shiny/0445%20Garchomp%202021-06-06%20POGO%20Ultra.jpg)
 shiny/0450 Hippowdon 2022-02-07 PLA Ultra.jpg
 ![](shiny/0450%20Hippowdon%202022-02-07%20PLA%20Ultra.jpg)
+shiny/0450 Hippowdon 2022-10-15 USUM Luxury.jpg
+![](shiny/0450%20Hippowdon%202022-10-15%20USUM%20Luxury.jpg)
 shiny/0461 Weavile 2021-01-31 POGO Ultra.jpg
 ![](shiny/0461%20Weavile%202021-01-31%20POGO%20Ultra.jpg)
 shiny/0464 Rhyperior 2020-02-22 POGO Ultra Aisline.jpg
@@ -252,6 +320,8 @@ shiny/0482 Azelf 2021-12-12 BDSP Quick.jpg
 ![](shiny/0482%20Azelf%202021-12-12%20BDSP%20Quick.jpg)
 shiny/0483 Dialga 2022-04-27 BDSP Master.jpg
 ![](shiny/0483%20Dialga%202022-04-27%20BDSP%20Master.jpg)
+shiny/0483 Dialga 2022-08-01 DPPt Timer.jpg
+![](shiny/0483%20Dialga%202022-08-01%20DPPt%20Timer.jpg)
 shiny/0484 Palkia 2021-11-28 BDSP Premier.jpg
 ![](shiny/0484%20Palkia%202021-11-28%20BDSP%20Premier.jpg)
 shiny/0485 Heatran 2022-05-24 BDSP Repeat.jpg
@@ -266,6 +336,20 @@ shiny/0492 Shaymin 2022-04-13 BDSP Moon.jpg
 ![](shiny/0492%20Shaymin%202022-04-13%20BDSP%20Moon.jpg)
 shiny/0493 Arceus 2022-04-04 BDSP Heavy.jpg
 ![](shiny/0493%20Arceus%202022-04-04%20BDSP%20Heavy.jpg)
+shiny/0506 Lillipup 2022-07-20 POGO Ultra.jpg
+![](shiny/0506%20Lillipup%202022-07-20%20POGO%20Ultra.jpg)
+shiny/0531 Audino 2022-10-11 USUM Heal.jpg
+![](shiny/0531%20Audino%202022-10-11%20USUM%20Heal.jpg)
+shiny/0552 Krokorok 2022-10-07 USUM Luxury.jpg
+![](shiny/0552%20Krokorok%202022-10-07%20USUM%20Luxury.jpg)
+shiny/0561 Sigilyph 2022-10-19 USUM Ultra Paulina.jpg
+![](shiny/0561%20Sigilyph%202022-10-19%20USUM%20Ultra%20Paulina.jpg)
+shiny/0607 Litwick 2022-10-15 POGO Ultra - 1.jpg
+![](shiny/0607%20Litwick%202022-10-15%20POGO%20Ultra%20-%201.jpg)
+shiny/0607 Litwick 2022-10-15 POGO Ultra - 2.jpg
+![](shiny/0607%20Litwick%202022-10-15%20POGO%20Ultra%20-%202.jpg)
+shiny/0618 Stunfisk 2022-10-13 USUM Dive.jpg
+![](shiny/0618%20Stunfisk%202022-10-13%20USUM%20Dive.jpg)
 shiny/0628 Hisuian-Braviary 2022-02-12 PLA Ultra.jpg
 ![](shiny/0628%20Hisuian-Braviary%202022-02-12%20PLA%20Ultra.jpg)
 shiny/0661 Fletchling 2021-03-06 POGO Ultra - 1.jpg
@@ -280,6 +364,10 @@ shiny/0662 Fletchinder 2021-03-06 POGO Ultra.jpg
 ![](shiny/0662%20Fletchinder%202021-03-06%20POGO%20Ultra.jpg)
 shiny/0663 Talonflame 2021-03-06 POGO Ultra.jpg
 ![](shiny/0663%20Talonflame%202021-03-06%20POGO%20Ultra.jpg)
+shiny/0695 Heliolisk 2022-10-08 USUM Repeat.jpg
+![](shiny/0695%20Heliolisk%202022-10-08%20USUM%20Repeat.jpg)
+shiny/0695 Heliolisk 2022-10-27 USUM Repeat.jpg
+![](shiny/0695%20Heliolisk%202022-10-27%20USUM%20Repeat.jpg)
 shiny/0700 Sylveon 2021-08-15 POGO Premier.jpg
 ![](shiny/0700%20Sylveon%202021-08-15%20POGO%20Premier.jpg)
 shiny/0808 Meltan 2020-11-20 POGO Premier.jpg
