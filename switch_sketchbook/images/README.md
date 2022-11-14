@@ -294,6 +294,8 @@ shiny/0450 Hippowdon 2022-02-07 PLA Ultra.jpg
 ![](shiny/0450%20Hippowdon%202022-02-07%20PLA%20Ultra.jpg)
 shiny/0450 Hippowdon 2022-10-15 USUM Luxury.jpg
 ![](shiny/0450%20Hippowdon%202022-10-15%20USUM%20Luxury.jpg)
+shiny/0450 Hippowdon 2022-10-29 USUM Luxury.jpg
+![](shiny/0450%20Hippowdon%202022-10-29%20USUM%20Luxury.jpg)
 shiny/0461 Weavile 2021-01-31 POGO Ultra.jpg
 ![](shiny/0461%20Weavile%202021-01-31%20POGO%20Ultra.jpg)
 shiny/0464 Rhyperior 2020-02-22 POGO Ultra Aisline.jpg
