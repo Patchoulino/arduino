@@ -3,9 +3,7 @@
  * 1 item evey 19~20 sec
 */
 
-const int T = 300;
-int blinke = 0;
-
+const int T = 200;
 const int Y = 0;
 const int B = 1;
 const int A = 2;
@@ -69,8 +67,8 @@ void setup() {
 
 void loop() { // Have your box 1 highlighted, miraidon/koraidon clone on party slot 2, and looking at it
 
-// A uu AAAA r dd A delay XX L A uuu A B delay l
-  for (int i = 0; i <= 26; i++){
+// A uu AAAA r dd A XX L A uuu A B l
+  for (int i = 0; i <= 22; i++){
     switch (i) {
       case 0:
         button(A, T);
@@ -80,53 +78,57 @@ void loop() { // Have your box 1 highlighted, miraidon/koraidon clone on party s
         dpad(UP, T);
         break;
       case 3:
+        button(A, T);
+        delay(1000);
+        break;
       case 4:
+        button(A, T);
+        break;
       case 5:
+        button(A, T);
+        delay(2000);
+        break;
       case 6:
+        button(A, T);
+        break;
       case 7:
+        dpad(RIGHT, T);
+        break;
       case 8:
       case 9:
+        dpad(DOWN, T);
+        break;
       case 10:
         button(A, T);
         break;
       case 11:
-        dpad(RIGHT, T);
+        delay(2500);
         break;
       case 12:
       case 13:
-        dpad(DOWN, T);
+        button(X, T);
         break;
       case 14:
-        button(A, T);
+        button(L, T);
         break;
       case 15:
-        delay(3000);
+        button(A, T);
         break;
       case 16:
       case 17:
-        button(X, T);
-        break;
       case 18:
-        button(L, T);
+        dpad(UP, T);
         break;
       case 19:
         button(A, T);
         break;
       case 20:
-      case 21:
-      case 22:
-        dpad(UP, T);
-        break;
-      case 23:
-        button(A, T);
-        break;
-      case 24:
         button(B, T);
         break;
-      case 25:
+      case 21:
         delay(2000);
         break;
-      case 26:
+      case 22:
         dpad(LEFT, T);
         break;
     }
@@ -135,20 +137,14 @@ void loop() { // Have your box 1 highlighted, miraidon/koraidon clone on party s
 
 void button(int btn, int timing) {
   Joystick.pressButton(btn);
-  //Joystick.sendState();
-  if (blinke) digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   delay(timing);
   Joystick.releaseButton(btn);
-  //Joystick.sendState();
-  if (blinke) digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   delay(timing);
 }
 
 void dpad(int btn, int timing) {
   Joystick.setHatSwitch(btn);
-  //Joystick.sendState();
   delay(timing);
   Joystick.setHatSwitch(RELEASE);
-  //Joystick.sendState();
   delay(timing);
 }
