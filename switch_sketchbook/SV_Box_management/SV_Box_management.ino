@@ -1,6 +1,6 @@
 /*
  * SV Box management ;)
- * 1 item evey 16~ sec
+ * 1 item evey 18~ sec
 */
 
 const int T = 250;
