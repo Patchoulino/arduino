@@ -1,9 +1,9 @@
 /*
  * SV Box management ;)
- * 1 item evey 16 sec
+ * 1 item evey 16~ sec
 */
 
-const int T = 200;
+const int T = 250;
 const int Y = 0;
 const int B = 1;
 const int A = 2;
@@ -65,7 +65,7 @@ void setup() {
 
 }
 
-void loop() { // Have your box 1 highlighted, miraidon/koraidon clone on party slot 2, and looking at it
+void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/koraidon clone on party slot 2, and looking at it
 
 // A uu AAAA r dd A XX L A uuu A B l
   for (int i = 0; i <= 22; i++){
@@ -86,7 +86,7 @@ void loop() { // Have your box 1 highlighted, miraidon/koraidon clone on party s
         break;
       case 5:
         button(A, T);
-        delay(2000);
+        delay(2100);
         break;
       case 6:
         button(A, T);
@@ -102,11 +102,11 @@ void loop() { // Have your box 1 highlighted, miraidon/koraidon clone on party s
         button(A, T);
         break;
       case 11:
-        delay(2500);
+        delay(2100);
         break;
       case 12:
       case 13:
-        button(X, T);
+        button(X, 250);
         break;
       case 14:
         button(L, T);
@@ -121,12 +121,13 @@ void loop() { // Have your box 1 highlighted, miraidon/koraidon clone on party s
         break;
       case 19:
         button(A, T);
+        delay(200);
         break;
       case 20:
         button(B, T);
         break;
       case 21:
-        delay(2000);
+        delay(2300);
         break;
       case 22:
         dpad(LEFT, T);
