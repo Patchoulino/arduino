@@ -1,11 +1,11 @@
 /*
  * SV Box management ;)
- * 1 item evey 18~ sec
- * 30 min for 100
- * 5 hrs for 999
+ * 1 item evey 14~ sec
+ * 23.3 min for 100
+ * 3 hrs 54 min for 999
 */
 
-const int T = 250;
+const int T = 150;
 const int Y = 0;
 const int B = 1;
 const int A = 2;
@@ -62,7 +62,7 @@ void setup() {
    *  it will listen to the buttons on the main void loop()
    */
   for (int i = 0; i <= 2; i++){
-    dpad(DOWN, T);
+    dpad(DOWN, 250);
   }
 
 }
@@ -70,7 +70,7 @@ void setup() {
 void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/koraidon clone on party slot 2, and looking at it
 
 // A uu AAAA r dd A XX L A uuu A B l
-  for (int i = 0; i <= 22; i++){
+  for (int i = 0; i <= 20; i++){
     switch (i) {
       case 0:
         button(A, T);
@@ -102,36 +102,33 @@ void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/
         break;
       case 10:
         button(A, T);
-        break;
-      case 11:
         delay(2100);
         break;
+      case 11:
       case 12:
-      case 13:
-        button(X, 250);
+        button(X, T);
         break;
-      case 14:
+      case 13:
         button(L, T);
         break;
-      case 15:
+      case 14:
         button(A, T);
         break;
+      case 15:
       case 16:
       case 17:
-      case 18:
         dpad(UP, T);
         break;
-      case 19:
+      case 18:
         button(A, T);
         delay(200);
         break;
-      case 20:
+      case 19:
         button(B, T);
+        //delay(2300); // anywhere
+        delay(1300); // restaurant
         break;
-      case 21:
-        delay(2300);
-        break;
-      case 22:
+      case 20:
         dpad(LEFT, T);
         break;
     }
@@ -142,12 +139,12 @@ void button(int btn, int timing) {
   Joystick.pressButton(btn);
   delay(timing);
   Joystick.releaseButton(btn);
-  delay(timing);
+  delay(250);
 }
 
 void dpad(int btn, int timing) {
   Joystick.setHatSwitch(btn);
   delay(timing);
   Joystick.setHatSwitch(RELEASE);
-  delay(timing);
+  delay(250);
 }
