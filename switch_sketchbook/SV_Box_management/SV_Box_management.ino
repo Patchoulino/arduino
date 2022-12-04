@@ -5,7 +5,10 @@
  * 5 hrs for 999
 */
 
+const int IN[] = {A0, 7, 2};
+const int LENGTH = 2;
 const int T = 250;
+
 const int Y = 0;
 const int B = 1;
 const int A = 2;
@@ -41,6 +44,11 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
+  for(int i = 0; i <= LENGTH; i++)
+  {
+    pinMode(IN[i], INPUT);
+  }
+  
   if (testAutoSendMode)
   {
     Joystick.begin();
@@ -67,10 +75,12 @@ void setup() {
 
 }
 
+void(* resetFunc) (void) = 0; //declare reset function @ address 0
+
 void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/koraidon clone on party slot 2, and looking at it
 
 // A uu AAAA r dd A XX L A uuu A B l
-  for (int i = 0; i <= 22; i++){
+  for (int i = 0; i <= 20; i++){
     switch (i) {
       case 0:
         button(A, T);
@@ -102,36 +112,32 @@ void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/
         break;
       case 10:
         button(A, T);
-        break;
-      case 11:
         delay(2100);
         break;
+      case 11:
       case 12:
-      case 13:
-        button(X, 250);
+        button(X, T);
         break;
-      case 14:
+      case 13:
         button(L, T);
         break;
-      case 15:
+      case 14:
         button(A, T);
         break;
+      case 15:
       case 16:
       case 17:
-      case 18:
         dpad(UP, T);
         break;
-      case 19:
+      case 18:
         button(A, T);
         delay(200);
         break;
-      case 20:
+      case 19:
         button(B, T);
-        break;
-      case 21:
         delay(2300);
         break;
-      case 22:
+      case 20:
         dpad(LEFT, T);
         break;
     }
@@ -139,6 +145,8 @@ void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/
 }
 
 void button(int btn, int timing) {
+  for(int i = 0; i <= LENGTH-1; i++)  if(digitalRead(IN[i]))  resetFunc();
+  if(!digitalRead(IN[2]))  resetFunc();
   Joystick.pressButton(btn);
   delay(timing);
   Joystick.releaseButton(btn);
@@ -146,6 +154,8 @@ void button(int btn, int timing) {
 }
 
 void dpad(int btn, int timing) {
+  for(int i = 0; i <= LENGTH-1; i++)  if(digitalRead(IN[i]))  resetFunc();
+  if(!digitalRead(IN[2]))  resetFunc();
   Joystick.setHatSwitch(btn);
   delay(timing);
   Joystick.setHatSwitch(RELEASE);
