@@ -5,6 +5,8 @@
  * 5 hrs for 999
 */
 
+const int IN[] = {A0, 7, 2};
+const int LENGTH = 2;
 const int T = 250;
 
 const int Y = 0;
@@ -40,6 +42,11 @@ const bool testAutoSendMode = true;
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
+
+  for(int i = 0; i <= LENGTH; i++)
+  {
+    pinMode(IN[i], INPUT);
+  }
   
   if (testAutoSendMode)
   {
@@ -66,6 +73,8 @@ void setup() {
   }
 
 }
+
+void(* resetFunc) (void) = 0; //declare reset function @ address 0
 
 void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/koraidon clone on party slot 2, and looking at it
 // A up*2 A*4 right down*2 A X*2 L A up*3 A B left
@@ -134,6 +143,7 @@ void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/
 }
 
 void button(int btn, int timing) {
+  for(int i = 0; i <= LENGTH; i++)  if(!digitalRead(IN[i]))  resetFunc();
   Joystick.pressButton(btn);
   delay(timing);
   Joystick.releaseButton(btn);
@@ -141,6 +151,7 @@ void button(int btn, int timing) {
 }
 
 void dpad(int btn, int timing) {
+  for(int i = 0; i <= LENGTH; i++)  if(!digitalRead(IN[i]))  resetFunc();
   Joystick.setHatSwitch(btn);
   delay(timing);
   Joystick.setHatSwitch(RELEASE);
