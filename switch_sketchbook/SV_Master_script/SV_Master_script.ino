@@ -1,11 +1,14 @@
 /*
- * SV Egg picking 
- * every 4min
- * 20 sec of turbo A
+ * SV Master Script
+ * 1  - Box Management
+ * 2  - Egg pickup
+ * 3  - Egg hatcher
+ * 4  - Box Mass Release
+ * 8  - 
 */
 
-const int IN[] = {A0, 7, 2};
-const int LENGTH = 2;
+const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
+const int LENGTH = 8;
 const int T = 100;
 
 const int Y = 0;
@@ -42,10 +45,7 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
-  for(int i = 0; i <= LENGTH; i++)
-  {
-    pinMode(IN[i], INPUT);
-  }
+  for(int i = 0; i <= LENGTH; i++)  pinMode(IN[i], INPUT);
   
   if (testAutoSendMode)
   {
@@ -64,32 +64,19 @@ void setup() {
 
   // Pairing controller
   for (int i = 0; i <= 2; i++){
-    button(X, 250);  // X does not do anything while on picnic
+    button(LSTICK, 250);
   }
 
 }
 
 void(* resetFunc) (void) = 0; //declare reset function @ address 0
 
-void loop() { // Look at the picnic and wait 
-  for (int c = 0; c < 7; c++){  // 30min/7 = 4min 17.14sec
-    delay(4 * 60UL * 1000); // wait 4min
-    delay(140);
-    for (int i = 0; i <= (16800/T/2); i++){ // spam A 
-      button(A, T);
-    }
-    for (int i = 0; i <= (200/T/2); i++){ // spam B 
-      button(B, T);
-    }
-  }
-  while(true){
-    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-    delay(500);
-  }
+void loop() {
+
 }
 
 void button(int btn, int timing) {
-  for(int i = 0; i <= LENGTH; i++)  if(!digitalRead(IN[i]))  resetFunc();
+  for(int i = 7; i <= LENGTH; i++)  if(!digitalRead(IN[i]))  resetFunc();
   Joystick.pressButton(btn);
   delay(timing);
   Joystick.releaseButton(btn);
@@ -97,7 +84,7 @@ void button(int btn, int timing) {
 }
 
 void dpad(int btn, int timing) {
-  for(int i = 0; i <= LENGTH; i++)  if(!digitalRead(IN[i]))  resetFunc();
+  for(int i = 7; i <= LENGTH; i++)  if(!digitalRead(IN[i]))  resetFunc();
   Joystick.setHatSwitch(btn);
   delay(timing);
   Joystick.setHatSwitch(RELEASE);

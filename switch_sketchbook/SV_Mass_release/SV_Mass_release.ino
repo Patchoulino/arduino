@@ -4,7 +4,7 @@
 
 const int IN[] = {A0, 7, 2};
 const int LENGTH = 2;
-const int T = 100;
+const int T = 150;
 
 const int Y = 0;
 const int B = 1;
@@ -91,11 +91,13 @@ void loop() { // Look at the picnic and wait
             dpad(UP, T);
             break;
           case 4:
+            delay(700);
+            break;
           case 7:
-            delay(1200);
+            delay(1300);
             break;
           case 9:
-            delay(500);
+            delay(600);
             break;
         }
       }
