@@ -63,7 +63,7 @@ void(* resetFunc) (void) = 0; //declare reset function @ address 0
 
 void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/koraidon clone on party slot 2, and looking at it
 // A up*2 A*4 right down*2 A X*2 L A up*3 A B left
-  for (int item = 1; item <= 21; item++){
+  for (int item = 1; item <= 999; item++){
     for (int i = 0; i <= 25; i++){
       switch (i) {
         case 0:

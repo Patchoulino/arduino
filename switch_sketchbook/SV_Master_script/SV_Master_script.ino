@@ -77,6 +77,7 @@ void loop() {
       box_release(150);
       break;
     case 16:
+      box_management(200, 100);
       break;
     case 32:
       box_management(200, 5);
@@ -85,6 +86,8 @@ void loop() {
       box_management(200, 21);
       break;
   }
+  digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+  delay(100);
 }
 
 byte bin2byte(){
