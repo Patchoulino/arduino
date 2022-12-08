@@ -1,13 +1,13 @@
 /*
  * SV Box management ;) with pause
- * 1 item evey 18~ sec
- * 30 min for 100
- * 5 hrs for 999
+ * 1 item evey 12.4~ sec
+ * 30 min for 145
+ * 3 hrs 26.46 min for 999
 */
 
 const int IN[] = {A0, 7, 2};
 const int LENGTH = 2;
-const int T = 250;
+const int T = 150;
 
 const int Y = 0;
 const int B = 1;
@@ -65,7 +65,7 @@ void setup() {
 
   // Pairing controller
   for (int i = 0; i <= 2; i++){
-    button(ZR, T);  // ZR does not do anything while menu open
+    button(ZR, 250);  // ZR does not do anything while menu open
   }
 
 }
@@ -74,65 +74,57 @@ void(* resetFunc) (void) = 0; //declare reset function @ address 0
 
 void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/koraidon clone on party slot 2, and looking at it
 // A up*2 A*4 right down*2 A X*2 L A up*3 A B left
-  for (int i = 0; i <= 20; i++){
+  for (int i = 0; i <= 25; i++){
     switch (i) {
       case 0:
+      case 3:
+      case 5:
+      case 6:
+      case 8:
+      case 12:
+      case 17:
+      case 21:
         button(A, T);
+        break;
+      case 23:
+        button(B, T);
+        break;
+      case 14:
+      case 15:
+        button(X, T);
+        break;
+      case 16:
+        button(L, T);
         break;
       case 1:
       case 2:
+      case 18:
+      case 19:
+      case 20:
         dpad(UP, T);
-        break;
-      case 3:
-        button(A, T);
-        delay(1000);
-        break;
-      case 4:
-        button(A, T);
-        break;
-      case 5:
-        button(A, T);
-        delay(2100);
-        break;
-      case 6:
-        button(A, T);
-        break;
-      case 7:
-        dpad(RIGHT, T);
-        break;
-      case 8:
-      case 9:
-        dpad(DOWN, T);
         break;
       case 10:
-        button(A, T);
-        delay(2100);
-        break;
       case 11:
-      case 12:
-        button(X, T);
+        dpad(DOWN, T);
+        break;
+      case 9:
+        dpad(RIGHT, T);
+        break;
+      case 25:
+        dpad(LEFT, T);
+        break;
+      case 4:
+        delay(1000);
+        break;
+      case 7:
+        delay(1900);
         break;
       case 13:
-        button(L, T);
+      case 24:
+        delay(1500);
         break;
-      case 14:
-        button(A, T);
-        break;
-      case 15:
-      case 16:
-      case 17:
-        dpad(UP, T);
-        break;
-      case 18:
-        button(A, T);
+      case 22:
         delay(200);
-        break;
-      case 19:
-        button(B, T);
-        delay(2300);
-        break;
-      case 20:
-        dpad(LEFT, T);
         break;
     }
   }

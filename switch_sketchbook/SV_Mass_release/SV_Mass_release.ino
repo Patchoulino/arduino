@@ -62,7 +62,7 @@ void setup() {
 
   // Pairing controller
   for (int i = 0; i <= 2; i++){
-    button(ZR, T);  // ZR does not do anything while on box
+    button(ZR, 250);  // ZR does not do anything while on box
   }
 
 }
@@ -91,13 +91,11 @@ void loop() { // Look at the picnic and wait
             dpad(UP, T);
             break;
           case 4:
-          case 9:
-            delay(500);
-            digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-            break;
           case 7:
             delay(1200);
-            digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+            break;
+          case 9:
+            delay(500);
             break;
         }
       }

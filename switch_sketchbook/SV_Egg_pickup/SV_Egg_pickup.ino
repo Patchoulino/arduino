@@ -6,7 +6,7 @@
 
 const int IN[] = {A0, 7, 2};
 const int LENGTH = 2;
-const int T = 50;
+const int T = 100;
 
 const int Y = 0;
 const int B = 1;
@@ -64,7 +64,7 @@ void setup() {
 
   // Pairing controller
   for (int i = 0; i <= 2; i++){
-    button(X, T);  // X does not do anything while on picnic
+    button(X, 250);  // X does not do anything while on picnic
   }
 
 }
@@ -74,10 +74,11 @@ void(* resetFunc) (void) = 0; //declare reset function @ address 0
 void loop() { // Look at the picnic and wait 
   for (int c = 0; c < 7; c++){  // 30min/7 = 4min 17.14sec
     delay(4 * 60UL * 1000); // wait 4min
-    for (int i = 0; i <= (16000/T/2); i++){ // spam A for 16 sec
+    delay(1640);
+    for (int i = 0; i <= (15000/T/2); i++){ // spam A for 15 sec
       button(A, T);
     }
-    for (int i = 0; i <= (1000/T/2); i++){ // spam B for 1 sec
+    for (int i = 0; i <= (500/T/2); i++){ // spam B for 0.5 sec
       button(B, T);
     }
   }

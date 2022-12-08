@@ -61,8 +61,8 @@ void setup() {
   Joystick.sendState();
 
   // Pairing controller
-  for (int i = 0; i <= 3; i++){
-    button(L, T);  // L to re-focus camera
+  for (int i = 0; i <= 2; i++){
+    button(L, 250);  // L to re-focus camera
   }
 
 }
