@@ -1,11 +1,12 @@
 /*
- * SV Box management ;)
- * 1 item evey 18~ sec
- * 30 min for 100
- * 5 hrs for 999
+ * SV Egg picking 
+ * every 4min
+ * 20 sec of turbo A
 */
 
-const int T = 250;
+const int IN[] = {A0, 7, 2};
+const int LENGTH = 2;
+const int T = 50;
 
 const int Y = 0;
 const int B = 1;
@@ -40,6 +41,11 @@ const bool testAutoSendMode = true;
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
+
+  for(int i = 0; i <= LENGTH; i++)
+  {
+    pinMode(IN[i], INPUT);
+  }
   
   if (testAutoSendMode)
   {
@@ -58,78 +64,31 @@ void setup() {
 
   // Pairing controller
   for (int i = 0; i <= 2; i++){
-    button(ZR, T);  // ZR does not do anything while menu open
+    button(X, T);  // X does not do anything while on picnic
   }
 
 }
 
-void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/koraidon clone on party slot 2, and looking at it
-// A up*2 A*4 right down*2 A X*2 L A up*3 A B left
-  for (int i = 0; i <= 20; i++){
-    switch (i) {
-      case 0:
-        button(A, T);
-        break;
-      case 1:
-      case 2:
-        dpad(UP, T);
-        break;
-      case 3:
-        button(A, T);
-        delay(1000);
-        break;
-      case 4:
-        button(A, T);
-        break;
-      case 5:
-        button(A, T);
-        delay(2100);
-        break;
-      case 6:
-        button(A, T);
-        break;
-      case 7:
-        dpad(RIGHT, T);
-        break;
-      case 8:
-      case 9:
-        dpad(DOWN, T);
-        break;
-      case 10:
-        button(A, T);
-        delay(2100);
-        break;
-      case 11:
-      case 12:
-        button(X, T);
-        break;
-      case 13:
-        button(L, T);
-        break;
-      case 14:
-        button(A, T);
-        break;
-      case 15:
-      case 16:
-      case 17:
-        dpad(UP, T);
-        break;
-      case 18:
-        button(A, T);
-        delay(200);
-        break;
-      case 19:
-        button(B, T);
-        delay(2300);
-        break;
-      case 20:
-        dpad(LEFT, T);
-        break;
+void(* resetFunc) (void) = 0; //declare reset function @ address 0
+
+void loop() { // Look at the picnic and wait 
+  for (int c = 0; c < 7; c++){  // 30min/7 = 4min 17.14sec
+    delay(4 * 60UL * 1000); // wait 4min
+    for (int i = 0; i <= (16000/T/2); i++){ // spam A for 16 sec
+      button(A, T);
     }
+    for (int i = 0; i <= (1000/T/2); i++){ // spam B for 1 sec
+      button(B, T);
+    }
+  }
+  while(true){
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+    delay(500);
   }
 }
 
 void button(int btn, int timing) {
+  for(int i = 0; i <= LENGTH; i++)  if(!digitalRead(IN[i]))  resetFunc();
   Joystick.pressButton(btn);
   delay(timing);
   Joystick.releaseButton(btn);
@@ -137,6 +96,7 @@ void button(int btn, int timing) {
 }
 
 void dpad(int btn, int timing) {
+  for(int i = 0; i <= LENGTH; i++)  if(!digitalRead(IN[i]))  resetFunc();
   Joystick.setHatSwitch(btn);
   delay(timing);
   Joystick.setHatSwitch(RELEASE);

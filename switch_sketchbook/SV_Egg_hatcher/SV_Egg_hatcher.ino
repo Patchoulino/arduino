@@ -1,13 +1,10 @@
 /*
- * SV Box management ;) with pause
- * 1 item evey 18~ sec
- * 30 min for 100
- * 5 hrs for 999
+ * SV Egg hatcher
 */
 
 const int IN[] = {A0, 7, 2};
 const int LENGTH = 2;
-const int T = 250;
+const int T = 100;
 
 const int Y = 0;
 const int B = 1;
@@ -64,77 +61,32 @@ void setup() {
   Joystick.sendState();
 
   // Pairing controller
-  for (int i = 0; i <= 2; i++){
-    button(ZR, T);  // ZR does not do anything while menu open
+  for (int i = 0; i <= 3; i++){
+    button(L, T);  // L to re-focus camera
   }
 
 }
 
 void(* resetFunc) (void) = 0; //declare reset function @ address 0
 
-void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/koraidon clone on party slot 2, and looking at it
-// A up*2 A*4 right down*2 A X*2 L A up*3 A B left
-  for (int i = 0; i <= 20; i++){
-    switch (i) {
-      case 0:
-        button(A, T);
-        break;
-      case 1:
-      case 2:
-        dpad(UP, T);
-        break;
-      case 3:
-        button(A, T);
-        delay(1000);
-        break;
-      case 4:
-        button(A, T);
-        break;
-      case 5:
-        button(A, T);
-        delay(2100);
-        break;
-      case 6:
-        button(A, T);
-        break;
-      case 7:
-        dpad(RIGHT, T);
-        break;
-      case 8:
-      case 9:
-        dpad(DOWN, T);
-        break;
-      case 10:
-        button(A, T);
-        delay(2100);
-        break;
-      case 11:
-      case 12:
-        button(X, T);
-        break;
-      case 13:
-        button(L, T);
-        break;
-      case 14:
-        button(A, T);
-        break;
-      case 15:
-      case 16:
-      case 17:
-        dpad(UP, T);
-        break;
-      case 18:
-        button(A, T);
-        delay(200);
-        break;
-      case 19:
-        button(B, T);
-        delay(2300);
-        break;
-      case 20:
-        dpad(LEFT, T);
-        break;
-    }
+void loop() {
+  Joystick.setYAxis(0);   // Left joystick UP
+  //Joystick.setRzAxis(255); // Right joystick DOWN (camera zoom out)
+  Joystick.setZAxis(255); // Right joystick RIGHT (camera left)
+  
+  for (int i = 0; i <= ((3 * 60UL * 900)/T/4); i++){ // spam A and LSTICK for 3 min
+    button(LSTICK, T);
+    button(A, T);
+  }
+
+  Joystick.setXAxis(128);
+  Joystick.setYAxis(128);
+  Joystick.setZAxis(128);
+  Joystick.setRzAxis(128);
+
+  while(true){  // change eggs and reset
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+    delay(500);
   }
 }
 
