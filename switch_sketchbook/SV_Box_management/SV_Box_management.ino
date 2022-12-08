@@ -1,11 +1,11 @@
 /*
  * SV Box management ;) with pause
- * 1 item evey 12.4~ sec
- * 30 min for 145
- * 3 hrs 26.46 min for 999
+ * T 200 14.5s
+ * 999 4hr 1.425min
+ * 30min 124 iems
 */
 
-const int T = 150;
+const int T = 200;
 
 const int Y = 0;
 const int B = 1;
@@ -41,14 +41,8 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
   
-  if (testAutoSendMode)
-  {
-    Joystick.begin();
-  }
-  else
-  {
-    Joystick.begin(false);
-  }
+  if (testAutoSendMode) Joystick.begin();
+  else  Joystick.begin(false);
 
   Joystick.setXAxis(128);
   Joystick.setYAxis(128);
@@ -57,67 +51,74 @@ void setup() {
   Joystick.sendState();
 
   // Pairing controller
-  for (int i = 0; i <= 2; i++){
-    button(ZR, 250);  // ZR does not do anything while menu open
-  }
+  for (int i = 0; i <= 2; i++)  button(ZR, 250);  // ZR does not do anything while menu open
 
 }
 
+void(* resetFunc) (void) = 0; //declare reset function @ address 0
+
 void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/koraidon clone on party slot 2, and looking at it
 // A up*2 A*4 right down*2 A X*2 L A up*3 A B left
-  for (int i = 0; i <= 25; i++){
-    switch (i) {
-      case 0:
-      case 3:
-      case 5:
-      case 6:
-      case 8:
-      case 12:
-      case 17:
-      case 21:
-        button(A, T);
-        break;
-      case 23:
-        button(B, T);
-        break;
-      case 14:
-      case 15:
-        button(X, T);
-        break;
-      case 16:
-        button(L, T);
-        break;
-      case 1:
-      case 2:
-      case 18:
-      case 19:
-      case 20:
-        dpad(UP, T);
-        break;
-      case 10:
-      case 11:
-        dpad(DOWN, T);
-        break;
-      case 9:
-        dpad(RIGHT, T);
-        break;
-      case 25:
-        dpad(LEFT, T);
-        break;
-      case 4:
-        delay(1000);
-        break;
-      case 7:
-        delay(1900);
-        break;
-      case 13:
-      case 24:
-        delay(1500);
-        break;
-      case 22:
-        delay(200);
-        break;
+  for (int item = 1; item <= 999; item++){
+    for (int i = 0; i <= 25; i++){
+      switch (i) {
+        case 0:
+        case 3:
+        case 5:
+        case 6:
+        case 8:
+        case 12:
+        case 17:
+        case 21:
+          button(A, T);
+          break;
+        case 23:
+          button(B, T);
+          break;
+        case 14:
+        case 15:
+          button(X, T);
+          break;
+        case 16:
+          button(L, T);
+          break;
+        case 1:
+        case 2:
+        case 18:
+        case 19:
+        case 20:
+          dpad(UP, T);
+          break;
+        case 10:
+        case 11:
+          dpad(DOWN, T);
+          break;
+        case 9:
+          dpad(RIGHT, T);
+          break;
+        case 25:
+          dpad(LEFT, T);
+          break;
+        case 4:
+          delay(1000);
+          break;
+        case 7:
+          delay(1900);
+          break;
+        case 13:
+        case 24:
+          delay(1500);
+          break;
+        case 22:
+          delay(200);
+          break;
+      }
     }
+  }
+
+  while(true){
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+    delay(500);
   }
 }
 

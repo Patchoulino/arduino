@@ -65,7 +65,7 @@ byte bin2byte(){
   int c = 0;
   for(int i = 0; i <= 7; i++)
   {
-    if(digitalRead(IN[i]) == HIGH)  
+    if(digitalRead(IN[i]))  
     {
       if(i <= 1)  c = c + pow(2,i);
       else        c = c + pow(2,i) + 1;

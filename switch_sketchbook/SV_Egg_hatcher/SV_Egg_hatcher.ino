@@ -40,19 +40,10 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
-  for(int i = 0; i <= LENGTH; i++)
-  {
-    pinMode(IN[i], INPUT);
-  }
+  for(int i = 0; i <= LENGTH; i++)  pinMode(IN[i], INPUT);
   
-  if (testAutoSendMode)
-  {
-    Joystick.begin();
-  }
-  else
-  {
-    Joystick.begin(false);
-  }
+  if (testAutoSendMode) Joystick.begin();
+  else  Joystick.begin(false);
 
   Joystick.setXAxis(128);
   Joystick.setYAxis(128);
@@ -61,9 +52,7 @@ void setup() {
   Joystick.sendState();
 
   // Pairing controller
-  for (int i = 0; i <= 2; i++){
-    button(L, 250);  // L to re-focus camera
-  }
+  for (int i = 0; i <= 2; i++)  button(L, 250);  // L to re-focus camera
 
 }
 

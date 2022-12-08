@@ -43,19 +43,10 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
-  for(int i = 0; i <= LENGTH; i++)
-  {
-    pinMode(IN[i], INPUT);
-  }
+  for(int i = 0; i <= LENGTH; i++)  pinMode(IN[i], INPUT);
   
-  if (testAutoSendMode)
-  {
-    Joystick.begin();
-  }
-  else
-  {
-    Joystick.begin(false);
-  }
+  if (testAutoSendMode) Joystick.begin();
+  else  Joystick.begin(false);
 
   Joystick.setXAxis(128);
   Joystick.setYAxis(128);
@@ -64,9 +55,7 @@ void setup() {
   Joystick.sendState();
 
   // Pairing controller
-  for (int i = 0; i <= 2; i++){
-    button(ZR, 250);  // ZR does not do anything while menu open
-  }
+  for (int i = 0; i <= 2; i++)  button(ZR, 250);  // ZR does not do anything while menu open
 
 }
 
@@ -129,6 +118,11 @@ void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/
           break;
       }
     }
+  }
+
+  while(true){
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+    delay(500);
   }
 }
 

@@ -42,19 +42,10 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
-  for(int i = 0; i <= LENGTH; i++)
-  {
-    pinMode(IN[i], INPUT);
-  }
+  for(int i = 0; i <= LENGTH; i++)  pinMode(IN[i], INPUT);
   
-  if (testAutoSendMode)
-  {
-    Joystick.begin();
-  }
-  else
-  {
-    Joystick.begin(false);
-  }
+  if (testAutoSendMode) Joystick.begin();
+  else  Joystick.begin(false);
 
   Joystick.setXAxis(128);
   Joystick.setYAxis(128);
@@ -63,9 +54,7 @@ void setup() {
   Joystick.sendState();
 
   // Pairing controller
-  for (int i = 0; i <= 2; i++){
-    button(X, 250);  // X does not do anything while on picnic
-  }
+  for (int i = 0; i <= 2; i++)  button(X, 250);  // X does not do anything while on picnic
 
 }
 
@@ -75,12 +64,8 @@ void loop() { // Look at the picnic and wait
   for (int c = 0; c < 7; c++){  // 30min/7 = 4min 17.14sec
     delay(4 * 60UL * 1000); // wait 4min
     delay(140);
-    for (int i = 0; i <= (16800/T/2); i++){ // spam A 
-      button(A, T);
-    }
-    for (int i = 0; i <= (200/T/2); i++){ // spam B 
-      button(B, T);
-    }
+    for (int i = 0; i <= (16800/T/2); i++)  button(A, T);
+    for (int i = 0; i <= (200/T/2); i++)  button(B, T);
   }
   while(true){
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));

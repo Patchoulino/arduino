@@ -40,19 +40,10 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
-  for(int i = 0; i <= LENGTH; i++)
-  {
-    pinMode(IN[i], INPUT);
-  }
+  for(int i = 0; i <= LENGTH; i++)  pinMode(IN[i], INPUT);
   
-  if (testAutoSendMode)
-  {
-    Joystick.begin();
-  }
-  else
-  {
-    Joystick.begin(false);
-  }
+  if (testAutoSendMode) Joystick.begin();
+  else  Joystick.begin(false);
 
   Joystick.setXAxis(128);
   Joystick.setYAxis(128);
@@ -61,15 +52,13 @@ void setup() {
   Joystick.sendState();
 
   // Pairing controller
-  for (int i = 0; i <= 2; i++){
-    button(ZR, 250);  // ZR does not do anything while on box
-  }
+  for (int i = 0; i <= 2; i++)  button(ZR, 250);  // ZR does not do anything while on box
 
 }
 
 void(* resetFunc) (void) = 0; //declare reset function @ address 0
 
-void loop() { // Look at the picnic and wait 
+void loop() { // Look at box slot 1,1
   int orientation = 1;  // 1 = Right
   for (int y = 0; y <= 4; y++) {
     for (int x = 0; x <= 5; x++) {
