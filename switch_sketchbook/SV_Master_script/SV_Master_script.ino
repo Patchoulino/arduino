@@ -68,21 +68,24 @@ void loop() {
       box_management(200, 999);
       break;
     case 2:
-      egg_pickup(100);
+      egg_pickup(50);
       break;
     case 4:
       egg_hatcher(100);
       break;
     case 8:
-      box_release(150);
+      egg_hatcher_box(100);
       break;
     case 16:
-      box_management(200, 100);
+      box_release(150);
       break;
     case 32:
-      box_management(200, 5);
+      speedrun(100);
       break;
     case 64:
+      box_management(200, 100);
+      break;
+    case 128:
       box_management(200, 21);
       break;
   }
@@ -92,7 +95,7 @@ void loop() {
 
 byte bin2byte(){
   int c = 0;
-  for(int i = 0; i <= LENGTH-2; i++)
+  for(int i = 0; i <= LENGTH-1; i++)
   {
     if(!digitalRead(IN[i]))  
     {
@@ -173,9 +176,9 @@ void box_management(int T, int items) { // Have your box 1 highlighted and empty
 void egg_pickup(int T) { // Look at the picnic and wait 
   for (int c = 1; c <= 7; c++){  // 30min/7 = 4min 17.14sec
     delay(4 * 60UL * 1000); // wait 4min
-    delay(140);
-    for (int i = 0; i <= (16800/T/2); i++)  button(A, T);
-    for (int i = 0; i <= (200/T/2); i++)  button(B, T);
+    delay(640);
+    for (int i = 0; i <= (16000/T/2); i++)  button(A, T);
+    for (int i = 0; i <= (500/T/2); i++)  button(B, T);
   }
   wait();
 }
@@ -184,7 +187,22 @@ void egg_hatcher(int T) {
   button(L, T);
   Joystick.setYAxis(0);   // Left joystick UP
   Joystick.setZAxis(255); // Right joystick RIGHT (camera left)
-  for (int i = 0; i <= ((3 * 60UL * 900)/T/4); i++){ // spam A and LSTICK for 3 min
+  for (int i = 0; i <= ((3 * 60UL * 855)/T/4); i++){ // spam A and LSTICK for 3 min
+    button(LSTICK, T);
+    button(A, T);
+  }
+  Joystick.setXAxis(128);
+  Joystick.setYAxis(128);
+  Joystick.setZAxis(128);
+  Joystick.setRzAxis(128);
+  wait();
+}
+
+void egg_hatcher_box(int T) {
+  button(L, T);
+  Joystick.setYAxis(0);   // Left joystick UP
+  Joystick.setZAxis(255); // Right joystick RIGHT (camera left)
+  for (int i = 0; i <= ((3 * 60UL * 855)/T/4); i++){ // spam A and LSTICK for 3 min
     button(LSTICK, T);
     button(A, T);
   }
@@ -237,8 +255,15 @@ void box_release(int T) { // Look at box slot 1,1
   wait();
 }
 
+void speedrun(int T) {
+  while (true){
+    button(A, T);
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+  }
+}
+
 void button(int btn, int timing) {
-  for(int i = 7; i <= LENGTH; i++)  if(!digitalRead(IN[i]))  resetFunc();
+  if(!digitalRead(IN[LENGTH]))  resetFunc();
   Joystick.pressButton(btn);
   delay(timing);
   Joystick.releaseButton(btn);
@@ -246,7 +271,7 @@ void button(int btn, int timing) {
 }
 
 void dpad(int btn, int timing) {
-  for(int i = 7; i <= LENGTH; i++)  if(!digitalRead(IN[i]))  resetFunc();
+  if(!digitalRead(IN[LENGTH]))  resetFunc();
   Joystick.setHatSwitch(btn);
   delay(timing);
   Joystick.setHatSwitch(RELEASE);
