@@ -1,5 +1,5 @@
 /*
- * SV Box management ;) with pause
+ * SV Box management ;)
  * T 200 14.5s
  * 999 4hr 1.425min
  * 30min 124 iems
