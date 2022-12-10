@@ -187,7 +187,7 @@ void run_circles(int T) {
   button(L, T);
   Joystick.setYAxis(0);   // Left joystick UP
   Joystick.setZAxis(255); // Right joystick RIGHT (camera left)
-  for (int i = 0; i <= ((3 * 60UL * 855)/T/4); i++){ // spam A and LSTICK for 3 min
+  for (int i = 0; i <= ((3 * 60UL * 855)/T/4); i++){ // spam A and LSTICK for 3~ min
     button(LSTICK, T);
     button(A, T);
   }

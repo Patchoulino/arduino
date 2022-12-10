@@ -1,10 +1,12 @@
 /*
- * SV Box management ;)
+ * SV Box management ;) with pause
  * T 200 14.5s
  * 999 4hr 1.425min
  * 30min 124 iems
 */
 
+const int IN[] = {A0, 7, 2};
+const int LENGTH = 2;
 const int T = 200;
 
 const int Y = 0;
@@ -40,6 +42,8 @@ const bool testAutoSendMode = true;
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
+
+  for(int i = 0; i <= LENGTH; i++)  pinMode(IN[i], INPUT);
   
   if (testAutoSendMode) Joystick.begin();
   else  Joystick.begin(false);
@@ -123,6 +127,7 @@ void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/
 }
 
 void button(int btn, int timing) {
+  for(int i = 0; i <= LENGTH; i++)  if(!digitalRead(IN[i]))  resetFunc();
   Joystick.pressButton(btn);
   delay(timing);
   Joystick.releaseButton(btn);
@@ -130,6 +135,7 @@ void button(int btn, int timing) {
 }
 
 void dpad(int btn, int timing) {
+  for(int i = 0; i <= LENGTH; i++)  if(!digitalRead(IN[i]))  resetFunc();
   Joystick.setHatSwitch(btn);
   delay(timing);
   Joystick.setHatSwitch(RELEASE);
