@@ -183,7 +183,7 @@ void egg_pickup(int T) { // Look at the picnic and wait
   wait();
 }
 
-void egg_hatcher(int T) {
+void run_circles(int T) {
   button(L, T);
   Joystick.setYAxis(0);   // Left joystick UP
   Joystick.setZAxis(255); // Right joystick RIGHT (camera left)
@@ -195,21 +195,21 @@ void egg_hatcher(int T) {
   Joystick.setYAxis(128);
   Joystick.setZAxis(128);
   Joystick.setRzAxis(128);
+}
+
+void egg_hatcher(int T) {
+  run_circles(T);
   wait();
 }
 
 void egg_hatcher_box(int T) {
-  button(L, T);
-  Joystick.setYAxis(0);   // Left joystick UP
-  Joystick.setZAxis(255); // Right joystick RIGHT (camera left)
-  for (int i = 0; i <= ((3 * 60UL * 855)/T/4); i++){ // spam A and LSTICK for 3 min
-    button(LSTICK, T);
-    button(A, T);
-  }
-  Joystick.setXAxis(128);
-  Joystick.setYAxis(128);
-  Joystick.setZAxis(128);
-  Joystick.setRzAxis(128);
+  run_circles(T);
+/*
+menu      boxes      select current                move to
+X delay1s A bigdelay right down select down*4 A up right*loop A right select select down*4 A left*loop+1 down A
+B B
+run again
+ */
   wait();
 }
 
