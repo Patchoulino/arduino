@@ -49,10 +49,7 @@ void setup() {
   if (testAutoSendMode) Joystick.begin();
   else  Joystick.begin(false);
 
-  Joystick.setXAxis(128);
-  Joystick.setYAxis(128);
-  Joystick.setZAxis(128);
-  Joystick.setRzAxis(128);
+  reset_joysticks();
   Joystick.sendState();
 
   // Pairing controller
@@ -111,6 +108,13 @@ void wait(){
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
     delay(500);
   }
+}
+
+void reset_joysticks(){
+  Joystick.setXAxis(128);
+  Joystick.setYAxis(128);
+  Joystick.setZAxis(128);
+  Joystick.setRzAxis(128);
 }
 
 void box_management(int T, int items) { // Have your box 1 highlighted and empty to load faster, miraidon/koraidon clone on party slot 2, and looking at it
@@ -174,11 +178,10 @@ void box_management(int T, int items) { // Have your box 1 highlighted and empty
 }
 
 void egg_pickup(int T) { // Look at the picnic and wait 
-  for (int c = 1; c <= 7; c++){  // 30min/7 = 4min 17.14sec
-    delay(4 * 60UL * 1000); // wait 4min
-    delay(640);
-    for (int i = 0; i <= (16000/T/2); i++)  button(A, T);
-    for (int i = 0; i <= (500/T/2); i++)  button(B, T);
+  for (int c = 1; c <= 15; c++){  // 30min 15*2m
+    delay(2 * 60UL * 920);
+    for (int i = 0; i <= (8800/T/2); i++)  button(A, T);
+    for (int i = 0; i <= (800/T/2); i++)  button(B, T);
   }
   wait();
 }
@@ -187,14 +190,28 @@ void run_circles(int T) {
   button(L, T);
   Joystick.setYAxis(0);   // Left joystick UP
   Joystick.setZAxis(255); // Right joystick RIGHT (camera left)
-  for (int i = 0; i <= ((3 * 60UL * 855)/T/4); i++){ // spam A and LSTICK for 3~ min
+  for (int i = 0; i < ((3 * 60UL * 950)/T/4); i++){ // spam A and LSTICK for 3~ min
     button(LSTICK, T);
     button(A, T);
   }
-  Joystick.setXAxis(128);
-  Joystick.setYAxis(128);
-  Joystick.setZAxis(128);
-  Joystick.setRzAxis(128);
+  reset_joysticks();
+}
+
+void run_line(int T){
+  button(L, T);
+  int angle = 255;
+  Joystick.setRzAxis(255); // Right joystick DOWN (camera zoom out)
+  for (int i = 0; i <= (3 * 68UL); i++){ // spam A and LSTICK for 3~ min
+    if (angle == 255) angle = 0;
+    else  angle = 255;
+    //Joystick.setYAxis(angle);   // Left joystick UP@0 DOWN@255
+    Joystick.setXAxis(angle);   // Left joystick LEFT@0 RIGHT@255
+    for (int i = 0; i < (800/T/4); i++){
+      button(LSTICK, T);
+      button(A, T);
+    }
+  }
+  reset_joysticks();
 }
 
 void egg_hatcher(int T) {
@@ -203,14 +220,33 @@ void egg_hatcher(int T) {
 }
 
 void egg_hatcher_box(int T) {
-  run_circles(T);
-/*
-menu      boxes      select current                move to
-X delay1s A bigdelay right down select down*4 A up right*loop A right select select down*4 A left*loop+1 down A
-B B
-run again
- */
-  wait();
+  int t = 200;
+  for (int x = 0; x <= 4; x++){
+    run_circles(T);
+    button(X, t);
+    delay(4000);
+    button(A, t);
+    delay(1500);
+    dpad(LEFT, t);
+    dpad(DOWN, t);
+    button(MINUS, t);
+    for (int i = 0; i < 4; i++) dpad(DOWN, t);
+    button(A, t);
+    for (int i = 0; i < (x + 1); i++) dpad(RIGHT, t);
+    dpad(UP, t);
+    button(A, t);
+    if (x == 4) wait();
+    dpad(RIGHT, t);
+    button(MINUS, t);
+    for (int i = 0; i < 4; i++) dpad(DOWN, t);
+    button(A, t);
+    for (int i = 0; i < (x + 2); i++) dpad(LEFT, t);
+    dpad(DOWN, t);
+    button(A, t);
+    button(B, t);
+    delay(1500);
+    button(B, t);
+  }
 }
 
 void box_release(int T) { // Look at box slot 1,1
