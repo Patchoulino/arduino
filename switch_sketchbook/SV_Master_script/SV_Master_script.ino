@@ -1,10 +1,5 @@
 /*
  * SV Master Script
- * 1  - Box Management
- * 2  - Egg pickup
- * 3  - Egg hatcher
- * 4  - Box Mass Release
- * 8  - Pause
 */
 
 const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
@@ -179,9 +174,9 @@ void box_management(int T, int items) { // Have your box 1 highlighted and empty
 
 void egg_pickup(int T) { // Look at the picnic and wait 
   for (int c = 1; c <= 15; c++){  // 30min 15*2m
-    delay(2 * 60UL * 920);
-    for (int i = 0; i <= (8800/T/2); i++)  button(A, T);
-    for (int i = 0; i <= (800/T/2); i++)  button(B, T);
+    delay(2 * 60UL * 910);
+    for (int i = 0; i <= (8900/T/2); i++)  button(A, T);
+    for (int i = 0; i <= (1900/T/2); i++)  button(B, T);
   }
   wait();
 }
