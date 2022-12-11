@@ -58,6 +58,7 @@ void loop() {
   switch (x) {
     case 1:
       box_management(200, 999);
+      wait();
       break;
     case 2:
       egg_pickup(50);
@@ -75,10 +76,15 @@ void loop() {
       speedrun(100);
       break;
     case 64:
-      box_management(200, 100);
+      box_management(200, 999);
+      shift_item(200);
+      box_management(200, 999);
+      wait();
       break;
     case 128:
+      //box_management(200, 100);
       box_management(200, 21);
+      wait();
       break;
   }
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
@@ -169,14 +175,14 @@ void box_management(int T, int items) { // Have your box 1 highlighted and empty
       }
     }
   }
-  wait();
+  //wait();
 }
 
 void egg_pickup(int T) { // Look at the picnic and wait 
   for (int c = 1; c <= 15; c++){  // 30min 15*2m
     delay(2 * 60UL * 910);
-    for (int i = 0; i <= (8900/T/2); i++)  button(A, T);
-    for (int i = 0; i <= (1900/T/2); i++)  button(B, T);
+    for (int i = 0; i <= (9800/T/2); i++)  button(A, T);
+    for (int i = 0; i <= (1000/T/2); i++)  button(B, T);
   }
   wait();
 }
@@ -199,10 +205,10 @@ void egg_hatcher(int T) {
 
 void egg_hatcher_box(int T) {
   int t = 200;
-  for (int x = 0; x <= 4; x++){
+  for (int x = 0; x <= 5; x++){
     run_circles(T);
     button(X, t);
-    delay(2000);
+    delay(1500);
     button(A, t);
     delay(1500);
     dpad(LEFT, t);
@@ -213,7 +219,7 @@ void egg_hatcher_box(int T) {
     for (int i = 0; i < (x + 1); i++) dpad(RIGHT, t);
     dpad(UP, t);
     button(A, t);
-    if (x == 4) wait();
+    if (x == 5) wait();
     dpad(RIGHT, t);
     button(MINUS, t);
     for (int i = 0; i < 4; i++) dpad(DOWN, t);
@@ -274,6 +280,35 @@ void speedrun(int T) {
     button(A, T);
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   }
+}
+
+void shift_item(int T) {  // starts looking at koraidon/miraidon
+    dpad(RIGHT, T);
+    button(A, T);
+    delay(1500);
+    dpad(LEFT, T);
+    dpad(DOWN, T);
+    button(X, T);
+    button(A, T);
+    dpad(DOWN, T);
+    button(A, T);
+    // does swap item works with box full?
+    for (int i = 0; i <= 3; i++) dpad(RIGHT, T);  //items
+    dpad(DOWN, T);
+    button(A, T);
+    dpad(DOWN, T);
+    button(A, T);
+    delay(1500);
+    dpad(DOWN, T);
+    button(A, T);
+    delay(1500);
+    button(A, T);
+    delay(1500);
+    button(A, T);
+    button(B, T);
+    delay(1500);
+    dpad(DOWN, T);
+    dpad(LEFT, T);
 }
 
 void button(int btn, int timing) {
