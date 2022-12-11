@@ -185,7 +185,7 @@ void run_circles(int T) {
   button(L, T);
   Joystick.setYAxis(0);   // Left joystick UP
   Joystick.setZAxis(255); // Right joystick RIGHT (camera left)
-  for (int i = 0; i < ((3 * 60UL * 950)/T/4); i++){ // spam A and LSTICK for 3~ min
+  for (int i = 0; i < ((3 * 60UL * 900)/T/4); i++){ // spam A and LSTICK for 3~ min
     button(LSTICK, T);
     button(A, T);
   }
@@ -219,7 +219,7 @@ void egg_hatcher_box(int T) {
   for (int x = 0; x <= 4; x++){
     run_circles(T);
     button(X, t);
-    delay(4000);
+    delay(2000);
     button(A, t);
     delay(1500);
     dpad(LEFT, t);
