@@ -185,26 +185,9 @@ void run_circles(int T) {
   button(L, T);
   Joystick.setYAxis(0);   // Left joystick UP
   Joystick.setZAxis(255); // Right joystick RIGHT (camera left)
-  for (int i = 0; i < ((3 * 60UL * 900)/T/4); i++){ // spam A and LSTICK for 3~ min
+  for (int i = 0; i < ((3 * 60UL * 920)/T/4); i++){ // spam A and LSTICK for 3~ min
     button(LSTICK, T);
     button(A, T);
-  }
-  reset_joysticks();
-}
-
-void run_line(int T){
-  button(L, T);
-  int angle = 255;
-  Joystick.setRzAxis(255); // Right joystick DOWN (camera zoom out)
-  for (int i = 0; i <= (3 * 68UL); i++){ // spam A and LSTICK for 3~ min
-    if (angle == 255) angle = 0;
-    else  angle = 255;
-    //Joystick.setYAxis(angle);   // Left joystick UP@0 DOWN@255
-    Joystick.setXAxis(angle);   // Left joystick LEFT@0 RIGHT@255
-    for (int i = 0; i < (800/T/4); i++){
-      button(LSTICK, T);
-      button(A, T);
-    }
   }
   reset_joysticks();
 }
