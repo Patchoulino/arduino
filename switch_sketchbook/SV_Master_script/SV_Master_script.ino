@@ -76,15 +76,12 @@ void loop() {
       speedrun(100);
       break;
     case 64:
-      box_management(200, 999);
-      shift_item(200);
-      box_management(200, 999);
-      wait();
+      box_management(200, 100); //2 Berrys | 3 Items | 4 TMs
+      shift_item(200, 2);
       break;
     case 128:
-      //box_management(200, 100);
-      box_management(200, 21);
-      wait();
+      box_management(200, 100);
+      shift_item(200, 4);
       break;
   }
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
@@ -266,7 +263,7 @@ void box_release(int T) { // Look at box slot 1,1
         }
       }
     }
-    if (y < 4) {  // Change orentiation and shift down
+    if (y < 4) {  // Change orentiation and shift down, not on last row
       if (orientation == 1) orientation = 0;
       else  orientation = 1;
       dpad(DOWN, T);
@@ -282,33 +279,34 @@ void speedrun(int T) {
   }
 }
 
-void shift_item(int T) {  // starts looking at koraidon/miraidon
-    dpad(RIGHT, T);
-    button(A, T);
-    delay(1500);
-    dpad(LEFT, T);
-    dpad(DOWN, T);
-    button(X, T);
-    button(A, T);
-    dpad(DOWN, T);
-    button(A, T);
-    // does swap item works with box full?
-    for (int i = 0; i <= 3; i++) dpad(RIGHT, T);  //items
-    dpad(DOWN, T);
-    button(A, T);
-    dpad(DOWN, T);
-    button(A, T);
-    delay(1500);
-    dpad(DOWN, T);
-    button(A, T);
-    delay(1500);
-    button(A, T);
-    delay(1500);
-    button(A, T);
-    button(B, T);
-    delay(1500);
-    dpad(DOWN, T);
-    dpad(LEFT, T);
+void shift_item(int T, int category) {  // starts looking at koraidon/miraidon
+  // Boxes
+  dpad(RIGHT, T);
+  button(A, T);
+  delay(1500);
+  // Take item
+  dpad(LEFT, T);
+  dpad(DOWN, T);
+  button(X, T);
+  button(A, T);
+  dpad(DOWN, T);
+  dpad(DOWN, T);
+  button(A, T);
+  // Give a new item
+  button(A, T);
+  button(A, T);
+  delay(1500);
+  for (int i = 0; i <= category; i++) dpad(RIGHT, T);  //2 Berrys | 3 Items | 4 TMs
+  dpad(DOWN, T);
+  button(A, T);
+  button(A, T);
+  delay(1500);
+  button(B, T);
+  button(B, T);
+  delay(1500);
+  button(B, T);
+  delay(1500);
+  dpad(LEFT, T);
 }
 
 void button(int btn, int timing) {
