@@ -56,32 +56,60 @@ void(* resetFunc) (void) = 0; //declare reset function @ address 0
 void loop() {
   int x = bin2byte();
   switch (x) {
-    case 1:
+    case 1:    // 0000 0001
       box_management(200, 999);
       wait();
       break;
-    case 2:
+    case 2:    // 0000 0010
       egg_pickup(50);
       break;
-    case 4:
+    case 4:    // 0000 0100
       egg_hatcher(100);
       break;
-    case 8:
+    case 8:    // 0000 1000
       egg_hatcher_box(100);
       break;
-    case 16:
+    case 16:   // 0001 0000
       box_release(150);
       break;
-    case 32:
+    case 32:   // 0010 0000
       speedrun(100);
       break;
-    case 64:
+    case 64:   // 0100 0000
       box_management(200, 100); //2 Berrys | 3 Items | 4 TMs
       shift_item(200, 2);
       break;
-    case 128:
+    case 65:   // 0100 0001
+      box_management(200, 20); //2 Berrys | 3 Items | 4 TMs
+      shift_item(200, 2);
+      break;
+    case 67:   // 0100 0011
+      box_management(200, 999); //2 Berrys | 3 Items | 4 TMs
+      shift_item(200, 2);
+      break;
+    case 128:  // 1000 0000
       box_management(200, 100);
       shift_item(200, 4);
+      break;
+    case 129:  // 1000 0001
+      box_management(200, 20);
+      shift_item(200, 4);
+      break;
+    case 131:  // 1000 0011
+      box_management(200, 999);
+      shift_item(200, 4);
+      break;
+    case 192:  // 1100 0000
+      box_management(200, 100);
+      shift_item(200, 3);
+      break;
+    case 193:  // 1100 0001
+      box_management(200, 20);
+      shift_item(200, 3);
+      break;
+    case 195:  // 1100 0011
+      box_management(200, 999);
+      shift_item(200, 3);
       break;
   }
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
