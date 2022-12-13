@@ -320,6 +320,7 @@ void shift_item(int T, int category) {  // starts looking at koraidon/miraidon
   dpad(DOWN, T);
   dpad(DOWN, T);
   button(A, T);
+  delay(200);
   // Give a new item
   button(A, T);
   button(A, T);
