@@ -4,6 +4,9 @@
 
 const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
 const int LENGTH = 8;
+const int BERRY = 2;
+const int ITEM = 3;
+const int TM = 4;
 
 const int Y = 0;
 const int B = 1;
@@ -57,8 +60,23 @@ void loop() {
   int x = bin2byte();
   switch (x) {
     case 1:    // 0000 0001
+      box_management(200, 20);
+      wait();
+      break;
+    case 3:    // 0000 0011
+      box_management(200, 50);
+      wait();
+      break;
+    case 7:    // 0000 0111
+      box_management(200, 100);
+      wait();
+      break;
+    case 15:    // 0000 1111
       box_management(200, 999);
       wait();
+      break;
+    case 9:    // 0000 1001
+      shift_item(200, TM);
       break;
     case 2:    // 0000 0010
       egg_pickup(50);
@@ -66,50 +84,62 @@ void loop() {
     case 4:    // 0000 0100
       egg_hatcher(100);
       break;
-    case 8:    // 0000 1000
+    case 6:    // 0000 0110
       egg_hatcher_box(100);
       break;
-    case 16:   // 0001 0000
-      box_release(150);
+    case 14:   // 0000 1110
+      box_release(100);
       break;
-    case 32:   // 0010 0000
+    case 16:   // 0001 0000
       speedrun(100);
       break;
-    case 64:   // 0100 0000
-      box_management(200, 100); //2 Berrys | 3 Items | 4 TMs
-      shift_item(200, 2);
-      break;
     case 65:   // 0100 0001
-      box_management(200, 20); //2 Berrys | 3 Items | 4 TMs
-      shift_item(200, 2);
+      box_management(200, 20);
+      shift_item(200, BERRY);
       break;
     case 67:   // 0100 0011
-      box_management(200, 999); //2 Berrys | 3 Items | 4 TMs
-      shift_item(200, 2);
+      box_management(200, 50);
+      shift_item(200, BERRY);
       break;
-    case 128:  // 1000 0000
+    case 71:   // 0100 0111
       box_management(200, 100);
-      shift_item(200, 4);
+      shift_item(200, BERRY);
+      break;
+    case 79:   // 0100 1111
+      box_management(200, 999);
+      shift_item(200, BERRY);
       break;
     case 129:  // 1000 0001
       box_management(200, 20);
-      shift_item(200, 4);
+      shift_item(200, TM);
       break;
     case 131:  // 1000 0011
-      box_management(200, 999);
-      shift_item(200, 4);
+      box_management(200, 50);
+      shift_item(200, TM);
       break;
-    case 192:  // 1100 0000
+    case 135:  // 1000 0111
       box_management(200, 100);
-      shift_item(200, 3);
+      shift_item(200, TM);
+      break;
+    case 143:  // 1000 1111
+      box_management(200, 999);
+      shift_item(200, TM);
       break;
     case 193:  // 1100 0001
       box_management(200, 20);
-      shift_item(200, 3);
+      shift_item(200, ITEM);
       break;
     case 195:  // 1100 0011
+      box_management(200, 50);
+      shift_item(200, ITEM);
+      break;
+    case 199:  // 1100 0111
+      box_management(200, 100);
+      shift_item(200, ITEM);
+      break;
+    case 207:  // 1100 1111
       box_management(200, 999);
-      shift_item(200, 3);
+      shift_item(200, ITEM);
       break;
   }
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
@@ -280,13 +310,13 @@ void box_release(int T) { // Look at box slot 1,1
             dpad(UP, T);
             break;
           case 4:
-            delay(700);
+            delay(800);
             break;
           case 7:
-            delay(1300);
+            delay(1400);
             break;
           case 9:
-            delay(600);
+            delay(700);
             break;
         }
       }
@@ -320,21 +350,21 @@ void shift_item(int T, int category) {  // starts looking at koraidon/miraidon
   dpad(DOWN, T);
   dpad(DOWN, T);
   button(A, T);
-  delay(200);
+  delay(500);
   // Give a new item
   button(A, T);
   button(A, T);
-  delay(1500);
+  delay(1200);
   for (int i = 0; i <= category; i++) dpad(RIGHT, T);  //2 Berrys | 3 Items | 4 TMs
   dpad(DOWN, T);
   button(A, T);
   button(A, T);
-  delay(1500);
+  delay(1200);
   button(B, T);
   button(B, T);
-  delay(1500);
+  delay(1200);
   button(B, T);
-  delay(1500);
+  delay(1200);
   dpad(LEFT, T);
 }
 
