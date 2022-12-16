@@ -3,7 +3,10 @@
 */
 
 const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
-const int LENGTH = 8;
+const int IN_LENGTH = 8;
+const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
+const int OUT_LENGTH = 7;
+
 const int BERRY = 2;
 const int ITEM = 3;
 const int TM = 4;
@@ -42,7 +45,13 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
-  for(int i = 0; i <= LENGTH; i++)  pinMode(IN[i], INPUT);
+  for(int i = 0; i <= IN_LENGTH; i++)  pinMode(IN[i], INPUT);
+  for(int i = 0; i <= OUT_LENGTH; i++) {
+    pinMode(OUT[i], OUTPUT);
+    digitalWrite(OUT[i], HIGH);
+    delay(20);
+    digitalWrite(OUT[i], LOW);
+  }
   
   if (testAutoSendMode) Joystick.begin();
   else  Joystick.begin(false);
@@ -88,7 +97,7 @@ void loop() {
       egg_hatcher_box(100);
       break;
     case 14:   // 0000 1110
-      box_release(100);
+      box_release(150);
       break;
     case 16:   // 0001 0000
       speedrun(100);
@@ -106,7 +115,7 @@ void loop() {
       shift_item(200, BERRY);
       break;
     case 79:   // 0100 1111
-      box_management(200, 999);
+      box_management(200, 300);
       shift_item(200, BERRY);
       break;
     case 129:  // 1000 0001
@@ -148,7 +157,7 @@ void loop() {
 
 byte bin2byte(){
   int c = 0;
-  for(int i = 0; i <= LENGTH-1; i++)
+  for(int i = 0; i <= IN_LENGTH-1; i++)
   {
     if(!digitalRead(IN[i]))  
     {
@@ -160,6 +169,7 @@ byte bin2byte(){
 }
 
 void wait(){
+  //for (int i = 0; i <= OUT_LENGTH; i++)  digitalWrite(OUT[i], LOW);
   while(true){
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
     delay(500);
@@ -173,8 +183,17 @@ void reset_joysticks(){
   Joystick.setRzAxis(128);
 }
 
+void led_progress(int cycle, int range){
+  float leds = ((cycle * 8.0) / range);
+  for (int i = 0; i <= OUT_LENGTH; i++) {
+    if (leds >= (i + 1))  digitalWrite(OUT[i], HIGH);
+    else  digitalWrite(OUT[i], LOW);
+  }
+}
+
 void box_management(int T, int items) { // Have your box 1 highlighted and empty to load faster, miraidon/koraidon clone on party slot 2, and looking at it
   for (int item = 1; item <= items; item++){  // A up*2 A*4 right down*2 A X*2 L A up*3 A B left
+    led_progress(item, items);
     for (int i = 0; i <= 25; i++){
       switch (i) {
         case 0:
@@ -230,11 +249,11 @@ void box_management(int T, int items) { // Have your box 1 highlighted and empty
       }
     }
   }
-  //wait();
 }
 
 void egg_pickup(int T) { // Look at the picnic and wait 
   for (int c = 1; c <= 15; c++){  // 30min 15*2m
+    led_progress(c, 15);
     delay(2 * 60UL * 910);
     for (int i = 0; i <= (9800/T/2); i++)  button(A, T);
     for (int i = 0; i <= (1000/T/2); i++)  button(B, T);
@@ -246,7 +265,9 @@ void run_circles(int T) {
   button(L, T);
   Joystick.setYAxis(0);   // Left joystick UP
   Joystick.setZAxis(255); // Right joystick RIGHT (camera left)
-  for (int i = 0; i < ((3 * 60UL * 930)/T/4); i++){ // spam A and LSTICK for 3~ min
+  int range = ((3 * 60UL * 930)/T/4);
+  for (int i = 0; i <= range; i++){ // spam A and LSTICK for 3~ min
+    led_progress(i, range);
     button(LSTICK, T);
     button(A, T);
   }
@@ -262,6 +283,7 @@ void egg_hatcher_box(int T) {
   int t = 200;
   for (int x = 0; x <= 5; x++){
     run_circles(T);
+    led_progress(x, 5);
     button(X, t);
     delay(1500);
     button(A, t);
@@ -290,8 +312,11 @@ void egg_hatcher_box(int T) {
 
 void box_release(int T) { // Look at box slot 1,1
   int orientation = 1;  // 1 = Right
+  int c = 0;
   for (int y = 0; y <= 4; y++) {
     for (int x = 0; x <= 5; x++) {
+      c++;
+      led_progress(c, 30);
       if (x > 0) {  // Shift L/R not on first mon
         if (orientation == 1) dpad(RIGHT, T);
         else  dpad(LEFT, T);
@@ -369,7 +394,7 @@ void shift_item(int T, int category) {  // starts looking at koraidon/miraidon
 }
 
 void button(int btn, int timing) {
-  if(!digitalRead(IN[LENGTH]))  resetFunc();
+  if(!digitalRead(IN[IN_LENGTH]))  resetFunc();
   Joystick.pressButton(btn);
   delay(timing);
   Joystick.releaseButton(btn);
@@ -377,7 +402,7 @@ void button(int btn, int timing) {
 }
 
 void dpad(int btn, int timing) {
-  if(!digitalRead(IN[LENGTH]))  resetFunc();
+  if(!digitalRead(IN[IN_LENGTH]))  resetFunc();
   Joystick.setHatSwitch(btn);
   delay(timing);
   Joystick.setHatSwitch(RELEASE);

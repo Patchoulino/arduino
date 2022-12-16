@@ -2,8 +2,6 @@
  * SV Egg hatcher
 */
 
-const int IN[] = {A0, 7, 2};
-const int LENGTH = 2;
 const int T = 100;
 
 const int Y = 0;
@@ -39,8 +37,6 @@ const bool testAutoSendMode = true;
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
-
-  for(int i = 0; i <= LENGTH; i++)  pinMode(IN[i], INPUT);
   
   if (testAutoSendMode) Joystick.begin();
   else  Joystick.begin(false);
@@ -56,22 +52,14 @@ void setup() {
 
 }
 
-void(* resetFunc) (void) = 0; //declare reset function @ address 0
-
 void loop() {
+  button(L, T);
   Joystick.setYAxis(0);   // Left joystick UP
-  //Joystick.setRzAxis(255); // Right joystick DOWN (camera zoom out)
   Joystick.setZAxis(255); // Right joystick RIGHT (camera left)
-  
-  for (int i = 0; i <= ((3 * 60UL * 900)/T/4); i++){ // spam A and LSTICK for 3 min
+  for (int i = 0; i < ((3 * 60UL * 930)/T/4); i++){ // spam A and LSTICK for 3~ min
     button(LSTICK, T);
     button(A, T);
   }
-
-  Joystick.setXAxis(128);
-  Joystick.setYAxis(128);
-  Joystick.setZAxis(128);
-  Joystick.setRzAxis(128);
 
   while(true){  // change eggs and reset
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
@@ -80,7 +68,6 @@ void loop() {
 }
 
 void button(int btn, int timing) {
-  for(int i = 0; i <= LENGTH; i++)  if(!digitalRead(IN[i]))  resetFunc();
   Joystick.pressButton(btn);
   delay(timing);
   Joystick.releaseButton(btn);
@@ -88,7 +75,6 @@ void button(int btn, int timing) {
 }
 
 void dpad(int btn, int timing) {
-  for(int i = 0; i <= LENGTH; i++)  if(!digitalRead(IN[i]))  resetFunc();
   Joystick.setHatSwitch(btn);
   delay(timing);
   Joystick.setHatSwitch(RELEASE);
