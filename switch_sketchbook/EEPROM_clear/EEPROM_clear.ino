@@ -30,7 +30,7 @@ void setup() {
   ***/
 
   for (int i = 0 ; i < EEPROM.length() ; i++) {
-    //Serial << "EEPROM byte(" << i << "): " << EEPROM.read(i) << endl;
+    Serial << "EEPROM byte(" << i << "): " << EEPROM.read(i) << endl;
     EEPROM.write(i, 0);
   }
 
