@@ -99,6 +99,9 @@ void loop() {
     case 14:   // 0000 1110
       box_release(150);
       break;
+    case 8:    // 0000 1000
+      regi_shiny_hunting(300);
+      break;
     case 16:   // 0001 0000
       speedrun(100);
       break;
@@ -111,12 +114,18 @@ void loop() {
       shift_item(200, BERRY);
       break;
     case 71:   // 0100 0111
-      box_management(200, 100);
-      shift_item(200, BERRY);
+      for(int i = 0; i <= 5; i++) {
+        box_management(200, 100);
+        if (i < 5)  shift_item(200, BERRY);
+      }
+      wait();
       break;
     case 79:   // 0100 1111
-      box_management(200, 300);
-      shift_item(200, BERRY);
+      for(int i = 0; i <= 5; i++) {
+        box_management(200, 999);
+        if (i < 5)  shift_item(200, BERRY);
+      }
+      wait();
       break;
     case 129:  // 1000 0001
       box_management(200, 20);
@@ -169,7 +178,7 @@ byte bin2byte(){
 }
 
 void wait(){
-  //for (int i = 0; i <= OUT_LENGTH; i++)  digitalWrite(OUT[i], LOW);
+  reset_joysticks();
   while(true){
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
     delay(500);
@@ -254,9 +263,9 @@ void box_management(int T, int items) { // Have your box 1 highlighted and empty
 void egg_pickup(int T) { // Look at the picnic and wait 
   for (int c = 1; c <= 15; c++){  // 30min 15*2m
     led_progress(c, 15);
-    delay(2 * 60UL * 910);
-    for (int i = 0; i <= (9800/T/2); i++)  button(A, T);
-    for (int i = 0; i <= (1000/T/2); i++)  button(B, T);
+    delay(2 * 60UL * 908);
+    for (int i = 0; i <= (10000/T/2); i++)  button(A, T);
+    for (int i = 0; i <= (1040/T/2); i++)  button(B, T);
   }
   wait();
 }
@@ -391,6 +400,13 @@ void shift_item(int T, int category) {  // starts looking at koraidon/miraidon
   button(B, T);
   delay(1200);
   dpad(LEFT, T);
+}
+
+void regi_shiny_hunting(int T) {
+  button(HOME, T);
+  delay(500);
+  button(X, T);
+  for (int i = 1; i < (40000/T/2); i++)  button(A, T);
 }
 
 void button(int btn, int timing) {
