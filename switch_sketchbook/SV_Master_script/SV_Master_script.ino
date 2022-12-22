@@ -17,6 +17,7 @@ const int IN_LENGTH = 8;
 const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
 const int OUT_LENGTH = 7;
 
+const int BALL = 0;
 const int BERRY = 2;
 const int ITEM = 3;
 const int TM = 4;

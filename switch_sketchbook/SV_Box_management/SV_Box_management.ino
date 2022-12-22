@@ -5,7 +5,10 @@
  * 30min 124 iems
 */
 
-const int T = 200;
+const int BALL = 0;
+const int BERRY = 2;
+const int ITEM = 3;
+const int TM = 4;
 
 const int Y = 0;
 const int B = 1;
@@ -55,9 +58,26 @@ void setup() {
 
 }
 
-void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/koraidon clone on party slot 2, and looking at it
-// A up*2 A*4 right down*2 A X*2 L A up*3 A B left
-  for (int item = 1; item <= 999; item++){
+void loop() {
+  box_management(200, 999);
+  shift_item(200, BALL);
+  
+  /*for(int i = 0; i <= 5; i++) {
+    box_management(200, 999);
+    if (i < 5)  shift_item(200, BERRY);
+  }
+  wait();*/
+}
+
+void wait(){
+  while(true){
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+    delay(500);
+  }
+}
+
+void box_management(int T, int items) { // Have your box 1 highlighted and empty to load faster, miraidon/koraidon clone on party slot 2, and looking at it
+  for (int item = 1; item <= items; item++){  // A up*2 A*4 right down*2 A X*2 L A up*3 A B left
     for (int i = 0; i <= 25; i++){
       switch (i) {
         case 0:
@@ -113,11 +133,37 @@ void loop() { // Have your box 1 highlighted and empty to load faster, miraidon/
       }
     }
   }
+}
 
-  while(true){
-    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-    delay(500);
-  }
+void shift_item(int T, int category) {  // starts looking at koraidon/miraidon
+  // Boxes
+  dpad(RIGHT, T);
+  button(A, T);
+  delay(1500);
+  // Take item
+  dpad(LEFT, T);
+  dpad(DOWN, T);
+  button(X, T);
+  button(A, T);
+  dpad(DOWN, T);
+  dpad(DOWN, T);
+  button(A, T);
+  delay(500);
+  // Give a new item
+  button(A, T);
+  button(A, T);
+  delay(1200);
+  for (int i = 0; i <= category; i++) dpad(RIGHT, T);  //2 Berrys | 3 Items | 4 TMs
+  dpad(DOWN, T);
+  button(A, T);
+  button(A, T);
+  delay(1200);
+  button(B, T);
+  button(B, T);
+  delay(1200);
+  button(B, T);
+  delay(1200);
+  dpad(LEFT, T);
 }
 
 void button(int btn, int timing) {
