@@ -1,5 +1,15 @@
 /*
  * SV Master Script
+ * List of functions:
+ * box_management
+ * egg_pickup
+ * run_circles
+ * egg_hatcher
+ * egg_hatcher_box
+ * box_release
+ * shift_item
+ * speedrun
+ * regi_shiny_hunting (actually SWSH)
 */
 
 const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
@@ -45,13 +55,9 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
-  for(int i = 0; i <= IN_LENGTH; i++)  pinMode(IN[i], INPUT);
-  for(int i = 0; i <= OUT_LENGTH; i++) {
-    pinMode(OUT[i], OUTPUT);
-    digitalWrite(OUT[i], HIGH);
-    delay(20);
-    digitalWrite(OUT[i], LOW);
-  }
+  for(int i = 0; i <= IN_LENGTH; i++)   pinMode(IN[i], INPUT);
+  for(int i = 0; i <= OUT_LENGTH; i++)  pinMode(OUT[i], OUTPUT);
+  groovy();
   
   if (testAutoSendMode) Joystick.begin();
   else  Joystick.begin(false);
@@ -62,8 +68,6 @@ void setup() {
   // Pairing controller
   for (int i = 0; i <= 2; i++)  button(LSTICK, 250);
 }
-
-void(* resetFunc) (void) = 0; //declare reset function @ address 0
 
 void loop() {
   int x = bin2byte();
@@ -175,6 +179,22 @@ byte bin2byte(){
     }
   }
   return c;
+}
+
+void groovy() {
+    for(int i = 0; i <= OUT_LENGTH; i++) {
+    digitalWrite(OUT[i], HIGH);
+    delay(50);
+    digitalWrite(OUT[i], LOW);
+  }
+}
+
+//void(* resetFunc) (void) = 0; //declare reset function @ address 0
+
+void paused(){
+  while(!digitalRead(IN[IN_LENGTH]))  groovy();
+  while(digitalRead(IN[IN_LENGTH]))   groovy();
+  while(!digitalRead(IN[IN_LENGTH]))  groovy();
 }
 
 void wait(){
@@ -364,13 +384,6 @@ void box_release(int T) { // Look at box slot 1,1
   wait();
 }
 
-void speedrun(int T) {
-  while (true){
-    button(A, T);
-    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-  }
-}
-
 void shift_item(int T, int category) {  // starts looking at koraidon/miraidon
   // Boxes
   dpad(RIGHT, T);
@@ -402,6 +415,13 @@ void shift_item(int T, int category) {  // starts looking at koraidon/miraidon
   dpad(LEFT, T);
 }
 
+void speedrun(int T) {
+  while (true){
+    button(A, T);
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+  }
+}
+
 void regi_shiny_hunting(int T) {
   button(HOME, T);
   delay(500);
@@ -410,7 +430,7 @@ void regi_shiny_hunting(int T) {
 }
 
 void button(int btn, int timing) {
-  if(!digitalRead(IN[IN_LENGTH]))  resetFunc();
+  if(!digitalRead(IN[IN_LENGTH]))  paused();
   Joystick.pressButton(btn);
   delay(timing);
   Joystick.releaseButton(btn);
@@ -418,7 +438,7 @@ void button(int btn, int timing) {
 }
 
 void dpad(int btn, int timing) {
-  if(!digitalRead(IN[IN_LENGTH]))  resetFunc();
+  if(!digitalRead(IN[IN_LENGTH]))  paused();
   Joystick.setHatSwitch(btn);
   delay(timing);
   Joystick.setHatSwitch(RELEASE);
