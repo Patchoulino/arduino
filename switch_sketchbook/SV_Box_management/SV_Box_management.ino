@@ -61,12 +61,11 @@ void setup() {
 void loop() {
   box_management(200, 999);
   shift_item(200, BALL);
-  
   /*for(int i = 0; i <= 5; i++) {
     box_management(200, 999);
     if (i < 5)  shift_item(200, BERRY);
-  }
-  wait();*/
+  }*/
+  //wait();
 }
 
 void wait(){

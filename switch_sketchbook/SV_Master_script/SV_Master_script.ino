@@ -158,11 +158,11 @@ void loop() {
       break;
     case 199:  // 1100 0111
       box_management(200, 100);
-      shift_item(200, ITEM);
+      shift_item(200, BALL);
       break;
     case 207:  // 1100 1111
       box_management(200, 999);
-      shift_item(200, ITEM);
+      shift_item(200, BALL);
       break;
   }
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
@@ -183,9 +183,9 @@ byte bin2byte(){
 }
 
 void groovy() {
-    for(int i = 0; i <= OUT_LENGTH; i++) {
+  for(int i = 0; i <= OUT_LENGTH; i++) {
     digitalWrite(OUT[i], HIGH);
-    delay(50);
+    delay(30);
     digitalWrite(OUT[i], LOW);
   }
 }
@@ -193,6 +193,7 @@ void groovy() {
 //void(* resetFunc) (void) = 0; //declare reset function @ address 0
 
 void paused(){
+  reset_joysticks();
   while(!digitalRead(IN[IN_LENGTH]))  groovy();
   while(digitalRead(IN[IN_LENGTH]))   groovy();
   while(!digitalRead(IN[IN_LENGTH]))  groovy();
