@@ -157,12 +157,12 @@ void loop() {
       shift_item(200, ITEM);
       break;
     case 199:  // 1100 0111
-      box_management(200, 100);
+      box_management(200, 999);
       shift_item(200, BALL);
       break;
     case 207:  // 1100 1111
       box_management(200, 999);
-      shift_item(200, BALL);
+      shift_item(200, ITEM);
       break;
   }
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
