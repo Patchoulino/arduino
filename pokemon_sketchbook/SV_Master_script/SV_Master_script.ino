@@ -82,7 +82,7 @@ void loop() {
       wait();
       break;
     case 7:    // 0000 0111
-      box_management(200, 100);
+      box_management(200, 500);
       wait();
       break;
     case 15:    // 0000 1111
@@ -120,7 +120,7 @@ void loop() {
       break;
     case 71:   // 0100 0111
       for(int i = 0; i <= 5; i++) {
-        box_management(200, 100);
+        box_management(200, 500);
         if (i < 5)  shift_item(200, BERRY);
       }
       wait();
@@ -141,7 +141,7 @@ void loop() {
       shift_item(200, TM);
       break;
     case 135:  // 1000 0111
-      box_management(200, 100);
+      box_management(200, 500);
       shift_item(200, TM);
       break;
     case 143:  // 1000 1111
@@ -218,7 +218,7 @@ void led_progress(int cycle, int range){
   float leds = ((cycle * 8.0) / range);
   for (int i = 0; i <= OUT_LENGTH; i++) {
     if (leds >= (i + 1))  digitalWrite(OUT[i], HIGH);
-    else  digitalWrite(OUT[i], LOW);
+    else                  digitalWrite(OUT[i], LOW);
   }
 }
 
@@ -294,11 +294,11 @@ void egg_pickup(int T) { // Look at the picnic and wait
 
 void run_circles(int T) {
   button(L, T);
-  Joystick.setYAxis(0);   // Left joystick UP
-  Joystick.setZAxis(255); // Right joystick RIGHT (camera left)
   int range = ((3 * 60UL * 930)/T/4);
   for (int i = 0; i <= range; i++){ // spam A and LSTICK for 3~ min
     led_progress(i, range);
+    Joystick.setYAxis(0);   // Left joystick UP
+    Joystick.setZAxis(255); // Right joystick RIGHT (camera left)
     button(LSTICK, T);
     button(A, T);
   }
