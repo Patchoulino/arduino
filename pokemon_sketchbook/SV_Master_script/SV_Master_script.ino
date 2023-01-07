@@ -89,17 +89,35 @@ void loop() {
       box_management(200, 999);
       wait();
       break;
-    case 9:    // 0000 1001
-      shift_item(200, TM);
-      break;
     case 2:    // 0000 0010
       egg_pickup(50);
       break;
     case 4:    // 0000 0100
-      egg_hatcher(100);
+      egg_hatcher(100,5120);
       break;
     case 6:    // 0000 0110
-      egg_hatcher_box(100);
+      egg_hatcher_box(100,5120);  // Starters
+      break;
+    case 134:    // 1000 0110
+      egg_hatcher_box(100,1280);  // Magikarp
+      break;
+    case 70:    // 0100 0110
+      egg_hatcher_box(100,2560);
+      break;
+    case 198:    // 1100 0110
+      egg_hatcher_box(100,3840);
+      break;
+    case 38:    // 0010 0110
+      egg_hatcher_box(100,6400);
+      break;
+    case 166:    // 1010 0110
+      egg_hatcher_box(100,7680);  // Spiritomb
+      break;
+    case 102:    // 0110 0110
+      egg_hatcher_box(100,8960);
+      break;
+    case 230:    // 1110 0110
+      egg_hatcher_box(100,10240);
       break;
     case 14:   // 0000 1110
       box_release(150);
@@ -292,9 +310,11 @@ void egg_pickup(int T) { // Look at the picnic and wait
   wait();
 }
 
-void run_circles(int T) {
-  button(L, T);
-  int range = ((3 * 60UL * 930)/T/4);
+void run_circles(int T, int egg_steps) {
+  button(L, T); //20s hatching time, 120s hatching total
+  float range = ((egg_steps * 9.2578125) + 120000); // 9.2578125
+  range = (range/T/4);
+  //int range = ((3 * 60UL * 930)/T/4); // 930 (5120) starters | 1062 spiritomb (7680)
   for (int i = 0; i <= range; i++){ // spam A and LSTICK for 3~ min
     led_progress(i, range);
     Joystick.setYAxis(0);   // Left joystick UP
@@ -305,15 +325,15 @@ void run_circles(int T) {
   reset_joysticks();
 }
 
-void egg_hatcher(int T) {
-  run_circles(T);
+void egg_hatcher(int T, int egg_steps) {
+  run_circles(T, egg_steps);
   wait();
 }
 
-void egg_hatcher_box(int T) {
+void egg_hatcher_box(int T, int egg_steps) {
   int t = 200;
   for (int x = 0; x <= 5; x++){
-    run_circles(T);
+    run_circles(T, egg_steps);
     led_progress(x, 5);
     button(X, t);
     delay(1500);
