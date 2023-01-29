@@ -5,7 +5,7 @@
 
 // Bootleg variables
 const boolean bootleg = 1;  // 0 being the original
-const int bootleg_loop = 9; // 8 FR | 9 LG
+const int bootleg_loop = 8; // 8 FR | 9 LG
 // Arduino variables
 String inString1 = "";  // string to hold input
 String inString2 = "";  // string to hold input
@@ -110,7 +110,10 @@ void loop() {
           frlg_sweet_scent();
           break;
         case '$':
-          frlg_static_legendary();
+          frlg_legendary();
+          break;
+        case '%':
+          frlg_magikarp();
           break;
         case ',':
           frlg_new_save();
@@ -123,7 +126,20 @@ void loop() {
           frlg_pid_sid();
           break;
         case '.':
-          frlg_pid_sid();
+          rse_new_save();
+          name_patch();
+          //rse_pid_sid();
+          break;
+        case '>':
+          rse_new_save();
+          name_pau();
+          //rse_pid_sid();
+          break;
+        case '?':
+          serial_monitor = 1;
+          rse_new_save();
+          name_mim();
+          rse_pid_sid();
           break;
       }
     }
@@ -151,6 +167,7 @@ void poweron_sequence() {
   delay(100);
   digitalWrite(POWER, HIGH);
   offset = -469;
+  //offset = -1423;
   if (bootleg) {
     switch (bootleg_loop) {
       case 8: // FR
@@ -187,18 +204,7 @@ void frlg_rng_starter() {
   button(RIGHT, T, T);
 }
 
-void frlg_gamecorner(int select) {  // 1 Abra | 2 Clef | 3 Dratini | 4 Scy | 5 Pory
-  int timer_offset = 111; //FR_Og
-  timer_frame_ms = ((timer_frame + timer_offset) * 1000) / 60;
-  Serial << "FRLG gamecorner: " << timer_frame_ms << "/" << timer_seed << " | Selected: " << pkmn_select << endl;
-  poweron_sequence();
-  for (int i = 1; i <= 7; i++)  button(A, T, T); 
-  for (int i = 1; i <= select; i++)  button(DOWN, T, T);
-  for (int i = 1; i <= 2; i++)  button(A, T, T);
-  //if (bootleg)  offset = 34;
-  //else          offset = 66;
-  delay(timer_frame_ms - offset_btn);
-  button(A, T, T);
+void check_pkmn() {
   for (int i = 1; i <= 20; i++)  button(B, T, T); // 4 Sec
   button(START, T, T);
   delay(100);
@@ -211,7 +217,22 @@ void frlg_gamecorner(int select) {  // 1 Abra | 2 Clef | 3 Dratini | 4 Scy | 5 P
   delay(2000);
 }
 
-void frlg_static_legendary() {
+void frlg_gamecorner(int select) {  // 1 Abra | 2 Clef | 3 Dratini | 4 Scy | 5 Pory
+  int timer_offset = 111; //FR_Og
+  timer_frame_ms = ((timer_frame + timer_offset) * 1000) / 60;
+  Serial << "FRLG gamecorner: " << timer_frame_ms << "/" << timer_seed << " | Selected: " << pkmn_select << endl;
+  poweron_sequence();
+  for (int i = 1; i <= 7; i++)  button(A, T, T); 
+  for (int i = 1; i <= select; i++)  button(DOWN, T, T);
+  for (int i = 1; i <= 2; i++)  button(A, T, T);
+  //if (bootleg)  offset = 34;
+  //else          offset = 66;
+  delay(timer_frame_ms - offset_btn);
+  button(A, T, T);
+  check_pkmn();
+}
+
+void frlg_legendary() {
   int timer_offset = -10; // FR_Og
   timer_frame_ms = ((timer_frame + timer_offset) * 1000) / 60;
   Serial << "FRLG static_legendary: " << timer_frame_ms << "/" << timer_seed << endl;
@@ -221,8 +242,21 @@ void frlg_static_legendary() {
   for (int i = 1; i <= 20; i++)  button(B, T, T); // 4 Sec
 }
 
+void frlg_magikarp() {
+  int timer_offset = 123; //FR
+  timer_frame_ms = ((timer_frame + timer_offset) * 1000) / 60;
+  Serial << "FRLG magikarp: " << timer_frame_ms << "/" << timer_seed << endl;
+  poweron_sequence();
+  for (int i = 1; i <= 15; i++)  button(A, T, T); 
+  //if (bootleg)  offset = 34;
+  //else          offset = 66;
+  delay(timer_frame_ms - offset_btn);
+  button(A, T, T);
+  check_pkmn();
+}
+
 void frlg_sweet_scent() {
-  int timer_offset = -240;  // FR_Og WIP
+  int timer_offset = -231;  // FR_Og WIP
   timer_frame_ms = ((timer_frame + timer_offset) * 1000) / 60;
   Serial << "FRLG sweetscent: " << timer_frame_ms << "/" << timer_seed << endl;
   poweron_sequence();
@@ -257,6 +291,16 @@ void frlg_new_save() {
   delay(200);
   button(DOWN, T, T); // GIRL
   for (int i = 1; i <= 15; i++)  button(A, T, T); // 3 Sec
+}
+
+void rse_new_save() {
+  button(POWER, T, T);
+  for (int i = 1; i <= 63; i++)  button(A, T, T); // Sec
+  button(DOWN, T, T);
+  for (int i = 1; i <= 129; i++) button(A, T, T); // Sec
+  //button(DOWN, T, T); // GIRL
+  //delay(200); // GIRL
+  for (int i = 1; i <= 9; i++)  button(A, T, T); // 1 Sec
 }
 
 void name_patch() {
@@ -294,6 +338,20 @@ void name_pau() {
   button(START, T, T);
 }
 
+void name_mim() {
+  for (int i = 1; i <= 2; i++)  button(DOWN, T, T);
+  button(A, T, T);  // M
+  button(SELECT, T, T); // lowercase
+  delay(500);
+  for (int i = 1; i <= 2; i++)  button(RIGHT, T, T);
+  button(UP, T, T);
+  button(A, T, T);  // i
+  button(DOWN, T, T);
+  for (int i = 1; i <= 2; i++)  button(LEFT, T, T);
+  button(A, T, T);  // m
+  button(START, T, T);
+}
+
 void frlg_pid_sid() {
    /*
     * Tools > Researcher
@@ -303,12 +361,37 @@ void frlg_pid_sid() {
     * Max Advances 5
     * Generate
     */
-   int flatms = 15101;  //1149!! or 13.14273281 ms per frame
+   int timer_offset = -243;
+   timer_frame_ms = ((1149 + timer_offset) * 1000) / 60;
+   //timer_frame_ms = 15101;  //1149!! or 13.14273281 ms per frame
    offset_btn = 0;
    for (int i = 1; i <= 33; i++) button(A, T, T); // 6.6 Sec
    button(DOWN, T, T);
    for (int i = 1; i <= 24; i++) button(A, T, T); // 4.8 Sec
-   delay(flatms - offset_btn);
+   delay(timer_frame_ms - offset_btn);
+   button(A, T, T);
+   for (int i = 1; i <= 35; i++) button(B, T, T);
+   button(START, T, T);
+   button(DOWN, T, T);
+   button(A, T, T);
+}
+
+void rse_pid_sid() {
+   /*
+    * Tools > Researcher
+    * TID DEC to HEX, use as seed
+    * Custom1 16Bit High / 1
+    * Initial Advances 1147, or just 1149
+    * Max Advances 5
+    * Generate
+    */
+   int timer_offset = 243;
+   //timer_frame_ms = ((1149 - timer_offset) * 1000) / 60;
+   timer_frame_ms = 15101;  //1149!! or 13.14273281 ms per frame
+   offset_btn = 0;
+   for (int i = 1; i <= 54; i++) button(A, T, T); // 6.6 Sec
+   if (serial_monitor) Serial << "timer1: " << timer_frame_ms << " | btn_offset: " << offset_btn << endl;
+   delay(timer_frame_ms - offset_btn);
    button(A, T, T);
    for (int i = 1; i <= 35; i++) button(B, T, T);
    button(START, T, T);
