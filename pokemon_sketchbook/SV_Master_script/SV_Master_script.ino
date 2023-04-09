@@ -14,11 +14,11 @@
 
 const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
 const int IN_LENGTH = 8;
-//const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
-//const int OUT_LENGTH = 7;
+const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
+const int OUT_LENGTH = 7;
 // 4 leds shield
-const int OUT[] = {3, 5, 6, 12};
-const int OUT_LENGTH = 3;
+//const int OUT[] = {3, 5, 6, 12};
+//const int OUT_LENGTH = 3;
 
 const int BALL = 0;
 const int BERRY = 2;
