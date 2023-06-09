@@ -10,7 +10,10 @@
  * shift_item
  * speedrun
  * regi_shiny_hunting (actually SWSH)
+<<<<<<< HEAD
  * zacianzamazenta_beastball
+=======
+>>>>>>> d835b75160e2ba679526ae935088db5a574da6ae
 */
 
 const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
@@ -127,8 +130,12 @@ void loop() {
       box_release(150);
       break;
     case 8:    // 0000 1000
+<<<<<<< HEAD
       //regi_shiny_hunting(300);
       zacianzamazenta_beastball(300);
+=======
+      regi_shiny_hunting(300);
+>>>>>>> d835b75160e2ba679526ae935088db5a574da6ae
       break;
     case 16:   // 0001 0000
       speedrun(100);
@@ -456,6 +463,7 @@ void regi_shiny_hunting(int T) {
   for (int i = 1; i < (40000/T/2); i++)  button(A, T);
 }
 
+<<<<<<< HEAD
 void zacianzamazenta_beastball(int T) {
   button(HOME, T);
   delay(500);
@@ -470,6 +478,8 @@ void zacianzamazenta_beastball(int T) {
   for (int i = 1; i < (10000/T/2); i++)  button(B, T);
 }
 
+=======
+>>>>>>> d835b75160e2ba679526ae935088db5a574da6ae
 void button(int btn, int timing) {
   if(!digitalRead(IN[IN_LENGTH]))  paused();
   Joystick.pressButton(btn);
