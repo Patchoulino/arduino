@@ -1,10 +1,8 @@
 /*
- * BDSP Arceus shiny hunting (2 weeks)
- * buttons needed
- * HOME X A UP
+ * 
 */
 
-const int T = 300;
+const int T = 250;
 
 const int Y = 0;
 const int B = 1;
@@ -55,11 +53,13 @@ void loop() {
   delay(500);
   button(X, T);
   for (int i = 1; i < (40000/T/2); i++)  button(A, T);
-  for (int i = 1; i < (11000/T/2); i++)  button(B, T);
+  for (int i = 1; i < (13000/T/2); i++)  button(X, T);
   button(X, T);
+  delay(500);
   button(A, T);
   for (int i = 1; i < (18000/T/2); i++)  button(B, T);
   button(X, T);
+  delay(500);
   button(A, T);
   for (int i = 1; i < (10000/T/2); i++)  button(B, T);
 }
