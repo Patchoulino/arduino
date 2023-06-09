@@ -10,6 +10,7 @@
  * shift_item
  * speedrun
  * regi_shiny_hunting (actually SWSH)
+ * zacianzamazenta_beastball
 */
 
 const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
@@ -126,7 +127,8 @@ void loop() {
       box_release(150);
       break;
     case 8:    // 0000 1000
-      regi_shiny_hunting(300);
+      //regi_shiny_hunting(300);
+      zacianzamazenta_beastball(300);
       break;
     case 16:   // 0001 0000
       speedrun(100);
@@ -452,6 +454,20 @@ void regi_shiny_hunting(int T) {
   delay(500);
   button(X, T);
   for (int i = 1; i < (40000/T/2); i++)  button(A, T);
+}
+
+void zacianzamazenta_beastball(int T) {
+  button(HOME, T);
+  delay(500);
+  button(X, T);
+  for (int i = 1; i < (40000/T/2); i++)  button(A, T);
+  for (int i = 1; i < (11000/T/2); i++)  button(B, T);
+  button(X, T);
+  button(A, T);
+  for (int i = 1; i < (18000/T/2); i++)  button(B, T);
+  button(X, T);
+  button(A, T);
+  for (int i = 1; i < (10000/T/2); i++)  button(B, T);
 }
 
 void button(int btn, int timing) {
