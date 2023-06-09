@@ -2,7 +2,7 @@
  * 
 */
 
-const int T = 250;
+const int T = 300;
 
 const int Y = 0;
 const int B = 1;
