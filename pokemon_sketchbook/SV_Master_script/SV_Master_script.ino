@@ -10,7 +10,7 @@
  * shift_item
  * speedrun
  * regi_shiny_hunting (actually SWSH)
- * zacianzamazenta_beastball
+ * zacianzamazenta_beastball (actually SWSH)
 */
 
 const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};

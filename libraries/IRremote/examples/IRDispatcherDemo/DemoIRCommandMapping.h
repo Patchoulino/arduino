@@ -1,15 +1,15 @@
 /*
- * IRCommandMapping.h
+ * DemoIRCommandMapping.h
  *
  * IR remote button codes, strings, and functions to call
  *
- *  Copyright (C) 2019-2021  Armin Joachimsmeyer
+ *  Copyright (C) 2019-2022  Armin Joachimsmeyer
  *  armin.joachimsmeyer@gmail.com
  *
  */
 
-#ifndef IR_COMMAND_MAPPING_H_
-#define IR_COMMAND_MAPPING_H_
+#ifndef _IR_COMMAND_MAPPING_H
+#define _IR_COMMAND_MAPPING_H
 
 #include <Arduino.h>
 //#include "Commands.h" // includes all the commands used in the mapping arrays below
@@ -27,9 +27,9 @@
 #error "Please choose only one remote for compile"
 #endif
 
-#ifdef USE_KEYES_REMOTE_CLONE
+#if defined(USE_KEYES_REMOTE_CLONE)
 #define IR_REMOTE_NAME "KEYES_CLONE"
-// Codes for the KEYES CLONE remote control with 17 Keys with number pad above direction control
+// Codes for the KEYES CLONE remote control with 17 keys with number pad above direction control
 #if defined(USE_IRMP_LIBRARY)
 #define IR_ADDRESS 0xFF00 // IRMP interprets NEC addresses always as 16 bit
 #else
@@ -81,7 +81,7 @@
 
 #endif
 
-#ifdef USE_KEYES_REMOTE
+#if defined(USE_KEYES_REMOTE)
 #define IR_REMOTE_NAME "KEYES"
 /*
  * FIRST:
@@ -169,28 +169,25 @@ static const char unknown[] PROGMEM ="unknown";
 /*
  * Main mapping array of commands to C functions and command strings
  */
-const struct IRToCommandMappingStruct IRMapping[] =
-{
-{ COMMAND_BLINK, IR_COMMAND_FLAG_BLOCKING, &doLedBlink20times, blink20times },
+const struct IRToCommandMappingStruct IRMapping[] = { /**/
+{ COMMAND_BLINK, IR_COMMAND_FLAG_BLOCKING, &doLedBlink20times, blink20times }, /**/
+{ COMMAND_STOP, IR_COMMAND_FLAG_BLOCKING, &doStop, stop },
 
 /*
  * Short commands, which can be executed always
  */
-{ COMMAND_TONE1, IR_COMMAND_FLAG_BLOCKING, &doTone1800, tone1800 },
-{ COMMAND_TONE3, IR_COMMAND_FLAG_BLOCKING, &doPrintMenu, printMenu },
-{ COMMAND_ON, IR_COMMAND_FLAG_NON_BLOCKING, &doLedOn, LEDon },
-{ COMMAND_OFF, IR_COMMAND_FLAG_NON_BLOCKING, &doLedOff, LEDoff },
-{ COMMAND_START, IR_COMMAND_FLAG_NON_BLOCKING, &doLedBlinkStart, blinkStart },
+{ COMMAND_TONE1, IR_COMMAND_FLAG_BLOCKING, &doTone1800, tone1800 }, /**/
+{ COMMAND_TONE3, IR_COMMAND_FLAG_BLOCKING, &doPrintMenu, printMenu }, /**/
+{ COMMAND_ON, IR_COMMAND_FLAG_NON_BLOCKING, &doLedOn, LEDon }, /**/
+{ COMMAND_OFF, IR_COMMAND_FLAG_NON_BLOCKING, &doLedOff, LEDoff }, /**/
+{ COMMAND_START, IR_COMMAND_FLAG_NON_BLOCKING, &doLedBlinkStart, blinkStart }, /**/
 { COMMAND_RESET, IR_COMMAND_FLAG_NON_BLOCKING, &doResetBlinkFrequency, reset },
-{ COMMAND_STOP, IR_COMMAND_FLAG_IS_STOP_COMMAND, &doStop, stop },
 
 /*
  * Repeatable short commands
  */
-{ COMMAND_TONE2, IR_COMMAND_FLAG_REPEATABLE_NON_BLOCKING, &doTone2200, tone2200 },
-{ COMMAND_INCREASE_BLINK, IR_COMMAND_FLAG_REPEATABLE_NON_BLOCKING, &doIncreaseBlinkFrequency, increaseBlink },
+{ COMMAND_TONE2, IR_COMMAND_FLAG_REPEATABLE_NON_BLOCKING, &doTone2200, tone2200 }, /**/
+{ COMMAND_INCREASE_BLINK, IR_COMMAND_FLAG_REPEATABLE_NON_BLOCKING, &doIncreaseBlinkFrequency, increaseBlink }, /**/
 { COMMAND_DECREASE_BLINK, IR_COMMAND_FLAG_REPEATABLE_NON_BLOCKING, &doDecreaseBlinkFrequency, decreaseBlink } };
 
-#endif /* IR_COMMAND_MAPPING_H_ */
-
-#pragma once
+#endif // _IR_COMMAND_MAPPING_H
