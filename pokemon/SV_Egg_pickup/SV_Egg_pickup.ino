@@ -62,8 +62,8 @@ void wait(){
 
 void egg_pickup(int T) { // Look at the picnic and wait 
   for (int c = 1; c <= 15; c++){  // 30min 15*2m
-    delay(2 * 60UL * 910);
-    for (int i = 0; i <= (9800/T/2); i++)  button(A, T);
+    delay(2 * 60UL * 908);
+    for (int i = 0; i <= (10000/T/2); i++)  button(A, T);
     for (int i = 0; i <= (1000/T/2); i++)  button(B, T);
   }
   wait();

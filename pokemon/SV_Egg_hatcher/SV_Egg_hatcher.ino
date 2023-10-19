@@ -48,11 +48,13 @@ void setup() {
   Joystick.sendState();
 
   // Pairing controller
-  for (int i = 0; i <= 2; i++)  button(L, 250);  // L to re-focus camera
+  for (int i = 0; i <= 2; i++)  button(LSTICK, 250);  // L stick usually doesn't do anything
 
 }
 
 void loop() {
+  
+
   button(L, T);
   Joystick.setYAxis(0);   // Left joystick UP
   Joystick.setZAxis(255); // Right joystick RIGHT (camera left)
