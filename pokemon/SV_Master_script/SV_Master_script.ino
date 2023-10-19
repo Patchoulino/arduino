@@ -310,7 +310,7 @@ void egg_pickup(int T) { // Look at the picnic and wait
     led_progress(c, 15);
     delay(2 * 60UL * 908);
     for (int i = 0; i <= (10000/T/2); i++)  button(A, T);
-    for (int i = 0; i <= (100/T/2); i++)  button(B, T);
+    for (int i = 0; i <= (1000/T/2); i++)  button(B, T);
   }
   wait();
 }
