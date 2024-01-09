@@ -9,17 +9,16 @@
  * box_release
  * shift_item
  * speedrun
- * regi_shiny_hunting (actually SWSH)
- * zacianzamazenta_beastball (actually SWSH)
 */
 
 const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
 const int IN_LENGTH = 8;
-const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
-const int OUT_LENGTH = 7;
+
+//const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
+//const int OUT_LENGTH = 7;
 // 4 leds shield
-//const int OUT[] = {3, 5, 6, 12};
-//const int OUT_LENGTH = 3;
+const int OUT[] = {3, 5, 6, 12};
+const int OUT_LENGTH = 3;
 
 const int BALL = 0;
 const int BERRY = 2;
@@ -125,10 +124,6 @@ void loop() {
       break;
     case 14:   // 0000 1110
       box_release(150);
-      break;
-    case 8:    // 0000 1000
-      //regi_shiny_hunting(300);
-      zacianzamazenta_beastball(300);
       break;
     case 16:   // 0001 0000
       speedrun(100);
@@ -447,29 +442,6 @@ void speedrun(int T) {
     button(A, T);
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   }
-}
-
-void regi_shiny_hunting(int T) {
-  button(HOME, T);
-  delay(500);
-  button(X, T);
-  for (int i = 1; i < (40000/T/2); i++)  button(A, T);
-}
-
-void zacianzamazenta_beastball(int T) {
-  button(HOME, T);
-  delay(500);
-  button(X, T);
-  for (int i = 1; i < (40000/T/2); i++)  button(A, T);
-  for (int i = 1; i < (13000/T/2); i++)  button(X, T);
-  button(X, T);
-  delay(500);
-  button(A, T);
-  for (int i = 1; i < (18000/T/2); i++)  button(B, T);
-  button(X, T);
-  delay(500);
-  button(A, T);
-  for (int i = 1; i < (10000/T/2); i++)  button(B, T);
 }
 
 void button(int btn, int timing) {
