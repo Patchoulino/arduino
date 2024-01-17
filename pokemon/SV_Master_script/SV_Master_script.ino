@@ -9,17 +9,18 @@
  * egg_hatcher_box
  * box_release
  * speedrun
- * trickortreat 3.0.0 duplication glitch
+ * trickortreat 3.x duplication glitch
 */
 
 const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
 const int IN_LENGTH = 8;
 
-//const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
-//const int OUT_LENGTH = 7;
 // 4 leds shield
-const int OUT[] = {3, 5, 6, 12};
-const int OUT_LENGTH = 3;
+//const int OUT[] = {3, 5, 6, 12};
+//const int OUT_LENGTH = 3;
+// 8 leds shield
+const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
+const int OUT_LENGTH = 7;
 
 const int BALL = 0;
 const int BERRY = 2;
@@ -70,8 +71,8 @@ void setup() {
   reset_joysticks();
   Joystick.sendState();
 
-  // Pairing controller
-  for (int i = 0; i <= 1; i++)  button(LSTICK, 250);
+  // Pairing controller 4 leds shield?
+  for (int i = 0; i <= 2; i++)  button(L, 250);
 }
 
 void loop() {
@@ -219,7 +220,7 @@ void reset_joysticks(){
 }
 
 void led_progress(int cycle, int range){
-  float leds = ((cycle * 8.0) / range);
+  float leds = ((cycle * (OUT_LENGTH + 1)) / range);  // previously 8.0
   for (int i = 0; i <= OUT_LENGTH; i++) {
     if (leds >= (i + 1))  digitalWrite(OUT[i], HIGH);
     else                  digitalWrite(OUT[i], LOW);
@@ -432,6 +433,7 @@ void speedrun(int T) {
 
 void trickortreat(int T) {  // start by having trick ghost pkmn on the first slot and looking at your target
   // relearn trick
+  led_progress(1, 4);
   button(X, T);
   delay(1500);
   button(A, T);
@@ -449,22 +451,24 @@ void trickortreat(int T) {  // start by having trick ghost pkmn on the first slo
 
   // engage
   for (int i = 1; i <= 10; i++) {
+    led_progress(2, 4);
+    button(L, T); // re-focus camera
     Joystick.pressButton(ZL);
     delay(500);
-    Joystick.pressButton(ZR);
-    delay(T);
+    button(ZR, T);
     Joystick.releaseButton(ZL);
-    Joystick.releaseButton(ZR);
-    delay(T);
     delay(7000);
-    button(A, T);
+    led_progress(3, 4);
+    button(RSTICK, T);
+    button(A, T); // trick
     button(A, T);
     delay(16000);
-    dpad(UP, T);
+    led_progress(4, 4);
+    dpad(UP, T);  // flee
     button(A, T);
     delay(6000);
   }
-  button(LSTICK, T);
+  button(LSTICK, T);  // trying to get him to stay
 }
 
 void button(int btn, int timing) {
