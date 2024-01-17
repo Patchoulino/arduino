@@ -1,14 +1,15 @@
 /*
  * SV Master Script
  * List of functions:
- * box_management
+ * box_management 1.x duplication glitch
+ * shift_item 1.x duplication glitch (to farm shards/tms/balls)
  * egg_pickup
  * run_circles
  * egg_hatcher
  * egg_hatcher_box
  * box_release
- * shift_item
  * speedrun
+ * trickortreat 3.0.0 duplication glitch
 */
 
 const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
@@ -78,18 +79,6 @@ void loop() {
   switch (x) {
     case 1:    // 0000 0001
       box_management(200, 20);
-      wait();
-      break;
-    case 3:    // 0000 0011
-      box_management(200, 50);
-      wait();
-      break;
-    case 7:    // 0000 0111
-      box_management(200, 500);
-      wait();
-      break;
-    case 15:    // 0000 1111
-      box_management(200, 999);
       wait();
       break;
     case 2:    // 0000 0010
@@ -208,8 +197,6 @@ void groovy() {
   }
 }
 
-//void(* resetFunc) (void) = 0; //declare reset function @ address 0
-
 void paused(){
   reset_joysticks();
   while(!digitalRead(IN[IN_LENGTH]))  groovy();
@@ -305,7 +292,7 @@ void egg_pickup(int T) { // Look at the picnic and wait
     led_progress(c, 15);
     delay(2 * 60UL * 908);
     for (int i = 0; i <= (10000/T/2); i++)  button(A, T);
-    for (int i = 0; i <= (1000/T/2); i++)  button(B, T);
+    for (int i = 0; i <= (1200/T/2); i++)  button(B, T);
   }
   wait();
 }
@@ -442,6 +429,24 @@ void speedrun(int T) {
     button(A, T);
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   }
+}
+
+void trickortreat(int T) {  // start by having trick ghost pkmn on the first slot and looking at your target
+  // relearn trick
+  button(X, T);
+  delay(1500);
+  button(A, T);
+  button(A, T);
+  dpad(RIGHT, T);
+  button(A, T);
+  button(A, T);
+  delay(1500);
+  for (int i = 1; i <= 8; i++) button(A, T);
+  button(A, T);
+  delay(1500);
+  button(A, T);
+
+  wait();
 }
 
 void button(int btn, int timing) {
