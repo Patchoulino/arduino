@@ -442,6 +442,7 @@ void trickortreat(int T) {  // start by having trick ghost pkmn on the first slo
   button(A, T);
   delay(1500);
   for (int i = 0; i <= 7000/T; i++) button(A, T);
+  delay(200);
   button(B, T);
   delay(1500);
   button(B, T);
@@ -455,7 +456,7 @@ void trickortreat(int T) {  // start by having trick ghost pkmn on the first slo
     Joystick.releaseButton(ZL);
     Joystick.releaseButton(ZR);
     delay(T);
-    delay(6500);
+    delay(7000);
     button(A, T);
     button(A, T);
     delay(16000);
@@ -463,6 +464,7 @@ void trickortreat(int T) {  // start by having trick ghost pkmn on the first slo
     button(A, T);
     delay(6000);
   }
+  button(LSTICK, T);
 }
 
 void button(int btn, int timing) {
