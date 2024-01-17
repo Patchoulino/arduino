@@ -71,15 +71,14 @@ void setup() {
   Joystick.sendState();
 
   // Pairing controller
-  for (int i = 0; i <= 2; i++)  button(LSTICK, 250);
+  for (int i = 0; i <= 1; i++)  button(LSTICK, 250);
 }
 
 void loop() {
   int x = bin2byte();
   switch (x) {
     case 1:    // 0000 0001
-      box_management(200, 20);
-      wait();
+      trickortreat(200);
       break;
     case 2:    // 0000 0010
       egg_pickup(50);
@@ -437,16 +436,33 @@ void trickortreat(int T) {  // start by having trick ghost pkmn on the first slo
   delay(1500);
   button(A, T);
   button(A, T);
+  delay(1500);
   dpad(RIGHT, T);
   button(A, T);
   button(A, T);
   delay(1500);
-  for (int i = 1; i <= 8; i++) button(A, T);
-  button(A, T);
+  for (int i = 0; i <= 7000/T; i++) button(A, T);
+  button(B, T);
   delay(1500);
-  button(A, T);
+  button(B, T);
 
-  wait();
+  // engage
+  for (int i = 1; i <= 10; i++) {
+    Joystick.pressButton(ZL);
+    delay(500);
+    Joystick.pressButton(ZR);
+    delay(T);
+    Joystick.releaseButton(ZL);
+    Joystick.releaseButton(ZR);
+    delay(T);
+    delay(6500);
+    button(A, T);
+    button(A, T);
+    delay(16000);
+    dpad(UP, T);
+    button(A, T);
+    delay(6000);
+  }
 }
 
 void button(int btn, int timing) {
