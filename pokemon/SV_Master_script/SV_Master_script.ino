@@ -468,8 +468,6 @@ void trickortreat(int T) {  // start by having trick ghost pkmn on the first slo
     button(A, T);
     delay(6000);
   }
-  button(LSTICK, T);  // trying to get him to stay
-  delay(500);
 }
 
 void button(int btn, int timing) {
