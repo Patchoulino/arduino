@@ -468,6 +468,7 @@ void trickortreat(int T) {  // start by having trick ghost pkmn on the first slo
     button(A, T);
     delay(6000);
   }
+  delay(1500);
 }
 
 void button(int btn, int timing) {
