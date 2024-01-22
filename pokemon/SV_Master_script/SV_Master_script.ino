@@ -12,11 +12,11 @@
  * trickortreat 3.x duplication glitch
 */
 // 8 leds shield
-//const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
-//const int OUT_LENGTH = 7;
+const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
+const int OUT_LENGTH = 7;
 // 4 leds shield
-const int OUT[] = {3, 5, 6, 12};
-const int OUT_LENGTH = 3;
+//const int OUT[] = {3, 5, 6, 12};
+//const int OUT_LENGTH = 3;
     
 const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
 const int IN_LENGTH = 8;
@@ -445,6 +445,7 @@ void trickortreat(int T) {  // start by having trick ghost pkmn on the first slo
   button(B, T);
   delay(1500);
   button(B, T);
+  delay(1000);
   
   for (int i = 1; i <= 10; i++) { // engage
     led_progress(2, 4);
@@ -462,7 +463,7 @@ void trickortreat(int T) {  // start by having trick ghost pkmn on the first slo
     led_progress(4, 4);
     dpad(UP, T);  // flee
     button(A, T);
-    delay(6000);
+    delay(5500);
   }
   delay(1500);
 }
