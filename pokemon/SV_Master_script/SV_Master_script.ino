@@ -445,7 +445,7 @@ void trickortreat(int T) {  // start by having trick ghost pkmn on the first slo
   button(B, T);
   delay(1500);
   button(B, T);
-  delay(1000);
+  delay(1500);
   
   for (int i = 1; i <= 10; i++) { // engage
     led_progress(2, 4);
