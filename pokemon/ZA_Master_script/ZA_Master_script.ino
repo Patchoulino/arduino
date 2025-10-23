@@ -1,8 +1,7 @@
 /*
  * PKMN Master Script ZA edition
  * List of functions:
- * speedrun
- * down_speedrun (ZA buildings and benches)
+ * speedrun (A spam)
  * fasttravel_ZA
 */
 
@@ -17,11 +16,6 @@ const int OUT_LENGTH = 7;
     
 const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
 const int IN_LENGTH = 8;
-
-const int BALL = 0;
-const int BERRY = 2;
-const int ITEM = 3;
-const int TM = 4;
 
 const int Y = 0;
 const int B = 1;
@@ -72,9 +66,14 @@ void setup() {
 }
 
 void loop() {
-  int T = 100;
   int x = bin2byte();
+  int T = 100;
+  int direction = 0;
+  int speed = 0;
   switch (x) {  // Lower vaue is the one closest to USB
+    case 0:    // 0000 0000
+      speedrun(T, 2); // A spam
+      break;
     case 1:    // 0000 0001
     case 2:    // 0000 0010
     case 3:    // 0000 0011
@@ -86,23 +85,46 @@ void loop() {
     case 9:    // 0000 1001
       fasttravel_ZA(T, switcho, x);
       break;
-    case 128:   // 1000 0000
+    case 17:    // 0001 0001
+    case 18:    // 0001 0010
+    case 19:    // 0001 0011
+    case 20:    // 0001 0100
+    case 21:    // 0001 0101
+    case 22:    // 0001 0110
+    case 23:    // 0001 0111
+    case 24:    // 0001 1000
+    case 25:    // 0001 1001
+      direction = (x - 16);
+      speed = switcho + 1;
+      fasttravel_ZA(T, speed, direction); // small window or cafeterias
+      break;
+    case 128:    // 1000 0000
       speedrun(T, 5); // A spam
       break;
-    case 129:   // 1000 0001
-      speedrun(T, 2); // DOWN A spam
+    case 129:    // 1000 0001 (1)
+    case 130:    // 1000 0010 (2)
+    case 131:    // 1000 0011 (3)
+    case 132:    // 1000 0100 (4)
+    case 133:    // 1000 0101 (5)
+    case 134:    // 1000 0110 (6)
+    case 135:    // 1000 0111 (7)
+    case 136:    // 1000 1000 (8)
+    case 137:    // 1000 1001 (9)
+      direction = (x - 128);
+      speedrun(T, direction); // A spam + direction
       break;
   }
 }
 
-byte bin2byte(){
+int bin2byte(){
   int c = 0;
-  for(int i = 0; i <= IN_LENGTH-1; i++)
+  for(int i = 0; i < IN_LENGTH; i++)
   {
     if(!digitalRead(IN[i]))  
     {
-      if(i <= 1)  c = c + pow(2,i);
-      else        c = c + pow(2,i) + 1;
+      double result = pow(2, i);
+      int result_int = (int)(result + 0.5);
+      c = c + result_int;
     }
   }
   return c;
@@ -182,17 +204,18 @@ void lstick(int direction, int timing) {
 }
 
 void speedrun(int T, int direction) {
-  while (true){
-    lstick_fixed(direction);
-    button(A, T);
-    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-  }
+  lstick_fixed(direction);
+  button(A, T);
+  digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 }
 
-void fasttravel_ZA(int T, int switcho, int direction) {
+void fasttravel_ZA(int T, int timing, int direction) {
+  int time = 0;
   button(START, T);
-  lstick(direction, 150);
+  time = 220 + (-50 * timing);      // variable time left stick
+  lstick(direction, time);
   for (int i = 0; i <= (2000/T/2); i++)  button(A, T);  // 2 sec
-  delay(4500/switcho);
+  time = 9750 + (-3750 * switcho);  // loading screen time for each switcho
+  delay(time);
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 }
