@@ -1,8 +1,9 @@
 /*
- * PKMN Master Script ZA edition
- * List of functions:
- * speedrun (A spam)
- * fasttravel_ZA
+PKMN Master Script ZA edition
+List of functions:
+speedrun (A spam)
+fasttravel_ZA
+autobattle_ZA
 */
 
 const int switcho = 2;
@@ -99,7 +100,7 @@ void loop() {
       fasttravel_ZA(T, speed, direction); // small window or cafeterias
       break;
     case 128:    // 1000 0000
-      speedrun(T, 5); // A spam
+      autobattle_ZA(50);
       break;
     case 129:    // 1000 0001 (1)
     case 130:    // 1000 0010 (2)
@@ -145,11 +146,19 @@ void paused(){
   while(!digitalRead(IN[IN_LENGTH]))  groovy();
 }
 
-void wait(){
+void wait_forever(){
   reset_joysticks();
   while(true){
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
     delay(500);
+  }
+}
+
+void wait(int total_time){
+  unsigned int interval = 10;
+  for (unsigned int i = 0; i < total_time; i += interval) {
+    if(!digitalRead(IN[IN_LENGTH]))  paused();
+    delay(interval);
   }
 }
 
@@ -176,20 +185,24 @@ void button(int btn, int timing) {
   delay(timing);
 }
 
+void button_hold(int btn, int timing) {
+  if(!digitalRead(IN[IN_LENGTH]))  paused();
+  Joystick.pressButton(btn);
+  delay(timing);
+}
+
+void button_release(int btn, int timing) {
+  if(!digitalRead(IN[IN_LENGTH]))  paused();
+  Joystick.releaseButton(btn);
+  delay(timing);
+}
+
 void dpad(int btn, int timing) {
   if(!digitalRead(IN[IN_LENGTH]))  paused();
   Joystick.setHatSwitch(btn);
   delay(timing);
   Joystick.setHatSwitch(RELEASE);
   delay(timing);
-}
-
-void lstick_fixed(int direction) {
-  if(!digitalRead(IN[IN_LENGTH]))  paused();
-  int X = (((direction - 1) % 3) * 127.5);
-  int Y = ( 255 - (((direction - 1) / 3) * 127.5));
-  Joystick.setXAxis(X);
-  Joystick.setYAxis(Y);
 }
 
 void lstick(int direction, int timing) {
@@ -203,6 +216,13 @@ void lstick(int direction, int timing) {
   Joystick.setYAxis(128);
 }
 
+void lstick_fixed(int direction) {
+  if(!digitalRead(IN[IN_LENGTH]))  paused();
+  int X = (((direction - 1) % 3) * 127.5);
+  int Y = ( 255 - (((direction - 1) / 3) * 127.5));
+  Joystick.setXAxis(X);
+  Joystick.setYAxis(Y);
+}
 void speedrun(int T, int direction) {
   lstick_fixed(direction);
   button(A, T);
@@ -215,7 +235,15 @@ void fasttravel_ZA(int T, int timing, int direction) {
   time = 220 + (-50 * timing);      // variable time left stick
   lstick(direction, time);
   for (int i = 0; i <= (2000/T/2); i++)  button(A, T);  // 2 sec
-  time = 9750 + (-3750 * switcho);  // loading screen time for each switcho
-  delay(time);
+  time = 10750 + (-4250 * switcho);  // loading screen time for each switcho
+  wait(time);
+  digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+}
+
+void autobattle_ZA(int T) {
+  button_hold(ZL, T);
+  for (int i = 0; i < 3; i++)  button(A, T);
+  button(B, T);
+  button_release(ZL, T);
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 }
