@@ -86,6 +86,10 @@ void loop() {
     case 9:    // 0000 1001
       fasttravel_ZA(T, switcho, x);
       break;
+    case 16:    // 0001 0000
+      direction = 2;
+      fasttravel_ZA(T, 4, direction); // small window or cafeterias
+      break;
     case 17:    // 0001 0001
     case 18:    // 0001 0010
     case 19:    // 0001 0011
@@ -97,6 +101,19 @@ void loop() {
     case 25:    // 0001 1001
       direction = (x - 16);
       speed = switcho + 1;
+      fasttravel_ZA(T, speed, direction); // small window or cafeterias
+      break;
+    case 49:    // 0011 0001
+    case 50:    // 0011 0010
+    case 51:    // 0011 0011
+    case 52:    // 0011 0100
+    case 53:    // 0011 0101
+    case 54:    // 0011 0110
+    case 55:    // 0011 0111
+    case 56:    // 0011 1000
+    case 57:    // 0011 1001
+      direction = (x - 48);
+      speed = switcho + 2;
       fasttravel_ZA(T, speed, direction); // small window or cafeterias
       break;
     case 128:    // 1000 0000
@@ -235,7 +252,7 @@ void fasttravel_ZA(int T, int timing, int direction) {
   time = 220 + (-50 * timing);      // variable time left stick
   lstick(direction, time);
   for (int i = 0; i <= (2000/T/2); i++)  button(A, T);  // 2 sec
-  time = 10750 + (-4250 * switcho);  // loading screen time for each switcho
+  time = 10800 + (-4200 * switcho);  // loading screen time for each switcho
   wait(time);
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 }
