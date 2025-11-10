@@ -354,41 +354,41 @@ void enter_zone(int T){ // walk forward and press A
 void zone(int T, int zone){
   int time = 0;
     switch (zone) {
-    case 1:   // 0000 0001
+    case 1:   // 1100 0001
       break;
-    case 2:   // 0000 0010
+    case 2:   // 1100 0010
       break;
-    case 3:   // 0000 0011
+    case 3:   // 1100 0011
       break;
-    case 4:   // 0000 0100
+    case 4:   // 1100 0100
       break;
-    case 5:   // 0000 0101
+    case 5:   // 1100 0101
       break;
-    case 6:   // 0000 0110  bunearys
+    case 6:   // 1100 0110  bunearys
       run_line(T, 500, 4);
       button(START, T);
       lstick(8, 100);
       fasttravel_confirmation(T);
       break;
-    case 7:   // 0000 0111
+    case 7:   // 1100 0111
       break;
-    case 8:   // 0000 1000
+    case 8:   // 1100 1000
       break;
-    case 9:   // 0000 1001
+    case 9:   // 1100 1001
       break;
-    case 10:  // 0000 1010
+    case 10:  // 1100 1010
       break;
-    case 11:  // 0000 1011
+    case 11:  // 1100 1011
       break;
-    case 12:  // 0000 1100
+    case 12:  // 1100 1100
       break;
-    case 13:  // 0000 1101  scyther
+    case 13:  // 1100 1101  scyther
       enter_zone(T);
       run_line(T, 1500, 7);
       button(START, T);
       fasttravel_confirmation(T);
       break;
-    case 14:  // 0000 1110  heliolisk
+    case 14:  // 1100 1110  heliolisk
       enter_zone(T);
       run_backnforth(T, 1500, 8);
       button(A, T);
@@ -397,35 +397,35 @@ void zone(int T, int zone){
       lstick(2, 50);
       fasttravel_confirmation(T);
       break;
-    case 15:  // 0000 1111
+    case 15:  // 1100 1111
       break;
-    case 16:  // 0001 0000
+    case 16:  // 1101 0000
       break;
-    case 17:  // 0001 0001
+    case 17:  // 1101 0001
       break;
-    case 18:  // 0001 0010
+    case 18:  // 1101 0010
       break;
-    case 19:  // 0001 0011  drampa, clefairy
+    case 19:  // 1101 0011  drampa, clefairy
       run_line(T, 1500, 4);
       run_line(T, 1000, 7);
       button(START, T);
       lstick(4, 50);
       fasttravel_confirmation(T);
       break;
-    case 20:  // 0001 0100  tower 6 alphas
+    case 20:  // 1101 0100  tower 6 alphas
       run_backnforth(T, 2500, 8);
       lstick_fixed(2);
       for (int i = 0; i <= (3000/T/2); i++)  button(A, T);  // 3 sec # bench
       reset_joysticks();
       wait(14800);
       break;
-    case 21:  // 0001 0101  sewers 1 litwick
+    case 21:  // 1101 0101  sewers 1 litwick
         run_line(T, 4000, 8);
         wait(100);
         run_line(T, 4100, 2);
         wait(100);
       break;
-    case 22:  // 0001 0110  sewers 2
+    case 22:  // 1101 0110  sewers 2
       break;
   }
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
