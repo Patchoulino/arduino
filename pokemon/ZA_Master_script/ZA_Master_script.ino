@@ -10,6 +10,7 @@ zoneX
 
 const int switcho = 2;
 const int gate_time = 2000;
+const int backnforth_time = 3500;
 
 // 8 leds shield
 const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
@@ -76,7 +77,6 @@ void loop() {
   int T = 100;
   int direction = 0;
   int speed = 0;
-  int duration = 0;
   switch (x) {  // Lower vaue is the one closest to USB
     case 0:    // 0000 0000
       speedrun(T, 2); // benches
@@ -124,8 +124,7 @@ void loop() {
       break;
     case 64:
       direction = 8;
-      duration = 3000;
-      run_backnforth(T, duration, direction);
+      run_backnforth(T, backnforth_time, direction);
       break;
     case 65:    // 0100 0001 (1)
     case 66:    // 0100 0010 (2)
@@ -137,8 +136,7 @@ void loop() {
     case 72:    // 0100 1000 (8)
     case 73:    // 0100 1001 (9)
       direction = (x - 64);
-      duration = 3000;
-      run_backnforth(T, duration, direction);
+      run_backnforth(T, backnforth_time, direction);
       break;
     case 129:    // 1000 0001 (1)
     case 130:    // 1000 0010 (2)
@@ -167,14 +165,16 @@ void loop() {
     case 202: // 1100 1010  Zone 10
     case 203: // 1100 1011  Zone 11
     case 204: // 1100 1100  Zone 12
-    case 205: // 1100 1101  Zone 13 scyther
-    case 206: // 1100 1110  Zone 14 heliolisk
+    case 205: // 1100 1101  Zone 13
+    case 206: // 1100 1110  Zone 14
     case 207: // 1100 1111  Zone 15
     case 208: // 1101 0000  Zone 16
     case 209: // 1101 0001  Zone 17
     case 210: // 1101 0010  Zone 18
-    case 211: // 1101 0011  Zone 19 drampa, clefairy
-    case 212: // 1101 0100  Zone 20 tower 6 alphas
+    case 211: // 1101 0011  Zone 19
+    case 212: // 1101 0100  Zone 20
+    case 213: // 1101 0101  Zone 21* sewers 1
+    case 214: // 1101 0110  Zone 22* sewers 2
       direction = (x - 192);
       zone(T, direction);
       break;
@@ -271,8 +271,10 @@ void dpad(int btn, int timing) {
 
 void lstick(int direction, int timing) {
   if(!digitalRead(IN[IN_LENGTH]))  paused();
-  int X = (((direction - 1) % 3) * 127.5);
-  int Y = ( 255 - (((direction - 1) / 3) * 127.5));
+  //int X = (((direction - 1) % 3) * 127.5);
+  //int Y = ( 255 - (((direction - 1) / 3) * 127.5));
+  int X = (int)((((direction - 1) % 3) * 127.5) + 0.5);
+  int Y = (int)(255 - (((direction - 1) / 3) * 127.5 + 0.5));
   Joystick.setXAxis(X);
   Joystick.setYAxis(Y);
   wait(timing);
@@ -286,7 +288,6 @@ void lstick_fixed(int direction) {
   //int Y = ( 255 - (((direction - 1) / 3) * 127.5));
   int X = (int)((((direction - 1) % 3) * 127.5) + 0.5);
   int Y = (int)(255 - (((direction - 1) / 3) * 127.5 + 0.5));
-
   Joystick.setXAxis(X);
   Joystick.setYAxis(Y);
 }
@@ -329,10 +330,18 @@ void run_line(int T, int duration, int direction) {
     lstick(5, T);
 }
 
+void walk_line(int T, int duration, int direction) {
+    lstick_fixed(direction);
+    wait(duration);
+    lstick(5, T);
+}
+
 void run_backnforth(int T, int duration, int direction) {
   for (int i = 1; i <= 2; i++) {
     run_line(T, duration, direction);
+    wait(100);
     direction = 10 - direction;
+    duration = duration + 7; // 10 too down, 5 too front
   }
 }
 
@@ -346,24 +355,40 @@ void zone(int T, int zone){
   int time = 0;
     switch (zone) {
     case 1:   // 0000 0001
+      break;
     case 2:   // 0000 0010
+      break;
     case 3:   // 0000 0011
+      break;
     case 4:   // 0000 0100
+      break;
     case 5:   // 0000 0101
-    case 6:   // 0000 0110
+      break;
+    case 6:   // 0000 0110  bunearys
+      run_line(T, 500, 4);
+      button(START, T);
+      lstick(8, 100);
+      fasttravel_confirmation(T);
+      break;
     case 7:   // 0000 0111
+      break;
     case 8:   // 0000 1000
+      break;
     case 9:   // 0000 1001
+      break;
     case 10:  // 0000 1010
+      break;
     case 11:  // 0000 1011
+      break;
     case 12:  // 0000 1100
-    case 13:  // 0000 1101
+      break;
+    case 13:  // 0000 1101  scyther
       enter_zone(T);
-      run_line(T, 8, 700);
+      run_line(T, 1500, 7);
       button(START, T);
       fasttravel_confirmation(T);
       break;
-    case 14:  // 0000 1110
+    case 14:  // 0000 1110  heliolisk
       enter_zone(T);
       run_backnforth(T, 1500, 8);
       button(A, T);
@@ -373,22 +398,34 @@ void zone(int T, int zone){
       fasttravel_confirmation(T);
       break;
     case 15:  // 0000 1111
+      break;
     case 16:  // 0001 0000
+      break;
     case 17:  // 0001 0001
+      break;
     case 18:  // 0001 0010
-    case 19:  // 0001 0011
-      run_line(T, 4, 1500);
-      run_line(T, 7, 1000);
+      break;
+    case 19:  // 0001 0011  drampa, clefairy
+      run_line(T, 1500, 4);
+      run_line(T, 1000, 7);
       button(START, T);
       lstick(4, 50);
       fasttravel_confirmation(T);
       break;
-    case 20:  // 0001 0100
+    case 20:  // 0001 0100  tower 6 alphas
       run_backnforth(T, 2500, 8);
       lstick_fixed(2);
       for (int i = 0; i <= (3000/T/2); i++)  button(A, T);  // 3 sec # bench
       reset_joysticks();
       wait(14800);
+      break;
+    case 21:  // 0001 0101  sewers 1 litwick
+        run_line(T, 4000, 8);
+        wait(100);
+        run_line(T, 4100, 2);
+        wait(100);
+      break;
+    case 22:  // 0001 0110  sewers 2
       break;
   }
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
