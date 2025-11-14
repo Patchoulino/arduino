@@ -8,6 +8,7 @@ autobattle
 zoneX
 */
 
+const bool groov = true;
 const int switcho = 2;
 const int gate_time = 2000;
 const int backnforth_time = 3500;
@@ -69,7 +70,7 @@ void setup() {
 
   reset_joysticks();
   Joystick.sendState();
-  for (int i = 0; i <= 2; i++)  button(B, 250);
+  for (int i = 0; i <= 2; i++)  button(RSTICK, 250);
 }
 
 void loop() {
@@ -172,9 +173,12 @@ void loop() {
     case 209: // 1101 0001  Zone 17
     case 210: // 1101 0010  Zone 18
     case 211: // 1101 0011  Zone 19
-    case 212: // 1101 0100  Zone 20
-    case 213: // 1101 0101  Zone 21* sewers 1
-    case 214: // 1101 0110  Zone 22* sewers 2
+    case 212: // 1101 0100  Zone 20 water bench
+    case 213: // 1101 0101  Zone 20 grass bench
+    case 214: // 1101 0110  Zone 20 fire starters
+    case 215: // 1101 0111  Sewers 1
+    case 216: // 1101 1000  Sewers 2
+    case 217: // 1101 1001  Lab
       direction = (x - 192);
       zone(T, direction);
       break;
@@ -196,10 +200,18 @@ int bin2byte(){
 }
 
 void groovy() {
-  for(int i = 0; i <= OUT_LENGTH; i++) {
-    digitalWrite(OUT[i], HIGH);
-    delay(pause_time);
-    digitalWrite(OUT[i], LOW);
+  if (groov)
+  {
+    for(int i = 0; i <= OUT_LENGTH; i++) {
+      digitalWrite(OUT[i], HIGH);
+      delay(pause_time);
+      digitalWrite(OUT[i], LOW);
+    }
+  }
+  else
+  {
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+    delay(250);
   }
 }
 
@@ -406,26 +418,55 @@ void zone(int T, int zone){
     case 18:  // 1101 0010
       break;
     case 19:  // 1101 0011  drampa, clefairy
-      run_line(T, 1500, 4);
+      run_line(T, 500, 7);
+      run_line(T, 2000, 4);
       run_line(T, 1000, 7);
       button(START, T);
       lstick(4, 50);
       fasttravel_confirmation(T);
       break;
-    case 20:  // 1101 0100  tower 6 alphas
-      run_backnforth(T, 2500, 8);
+    case 20:  // 1101 0100  Zone 20 tower - 6 alphas bench next to water
+      run_backnforth(T, 1500, 8);
       lstick_fixed(2);
       for (int i = 0; i <= (3000/T/2); i++)  button(A, T);  // 3 sec # bench
       reset_joysticks();
       wait(14800);
       break;
-    case 21:  // 1101 0101  sewers 1 litwick
+    case 21:  // 1101 0101  Zone 20 tower - 6 alphas bench next to grass
+      run_line(T, 500, 6);
+      button(L, T);
+      run_line(T, 400, 2);
+      run_line(T, 10, 6);
+      for (int i = 0; i <= (3000/T/2); i++)  button(A, T);  // 3 sec # bench
+      reset_joysticks();
+      wait(14800);
+      break;
+    case 22:  // 1101 0110  Zone 20 - fire starters
+      break;
+    case 23:  // 1101 0111  sewers 1 litwick
         run_line(T, 4000, 8);
         wait(100);
         run_line(T, 4100, 2);
         wait(100);
       break;
-    case 22:  // 1101 0110  sewers 2
+    case 24:  // 1101 1000  sewers 2
+      break;
+    case 25:  // 1101 1001  Lab
+      button(HOME, T);
+      wait(800);
+      button(X, T);
+      wait(400);
+      for (int i = 0; i <= (12000/T/2); i++)  button(A, T);  // Exit and Start game
+      for (int i = 1; i <= 30; i++){  // 30 fossils
+        digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+        for (int i = 0; i <= (15500/T/2); i++)  button(A, T);
+      }
+      for (int i = 0; i <= (6000/T/2); i++)  button(B, T);
+      button(X, T);
+      wait(400);
+      button(A, T);
+      wait(400);
+      paused();
       break;
   }
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
