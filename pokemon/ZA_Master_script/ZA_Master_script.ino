@@ -8,7 +8,7 @@ autobattle
 zoneX
 */
 
-const bool groov = true;
+const bool groov = false;
 const int switcho = 2;
 const int gate_time = 2000;
 const int backnforth_time = 3500;
@@ -413,8 +413,8 @@ void zone(int T, int zone){
       break;
     case 17:  // 1101 0001
       break;
-    case 18:  // 1101 0010  drampa, clefairy
-      for (int i = 1; i <= 25; i++){ 
+    case 18:  // 1101 0010  25 for drampa, 60-70 clefairy
+      for (int i = 1; i <= 60; i++){ 
         digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
         run_line(T, 500, 7);
         run_line(T, 2000, 4);
