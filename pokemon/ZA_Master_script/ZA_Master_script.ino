@@ -200,16 +200,14 @@ int bin2byte(){
 }
 
 void groovy() {
-  if (groov)
-  {
+  if (groov) {
     for(int i = 0; i <= OUT_LENGTH; i++) {
       digitalWrite(OUT[i], HIGH);
       delay(pause_time);
       digitalWrite(OUT[i], LOW);
     }
   }
-  else
-  {
+  else {
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
     delay(250);
   }
@@ -415,7 +413,18 @@ void zone(int T, int zone){
       break;
     case 17:  // 1101 0001
       break;
-    case 18:  // 1101 0010
+    case 18:  // 1101 0010  drampa, clefairy
+      for (int i = 1; i <= 25; i++){ 
+        digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+        run_line(T, 500, 7);
+        run_line(T, 2000, 4);
+        run_line(T, 1000, 7);
+        button(START, T);
+        lstick(4, 50);
+        fasttravel_confirmation(T);
+      }
+      button(HOME, T);
+      paused();
       break;
     case 19:  // 1101 0011  drampa, clefairy
       run_line(T, 500, 7);
@@ -442,12 +451,19 @@ void zone(int T, int zone){
       wait(14800);
       break;
     case 22:  // 1101 0110  Zone 20 - fire starters
+      run_line(T, 3000, 7);
+      run_line(T, 1000, 4);
+      run_line(T, 2000, 7);
+      button(START, T);
+      wait(200);
+      button(Y, T);
+      fasttravel_confirmation(T);
       break;
     case 23:  // 1101 0111  sewers 1 litwick
-        run_line(T, 4000, 8);
-        wait(100);
-        run_line(T, 4100, 2);
-        wait(100);
+      run_line(T, 4000, 8);
+      wait(100);
+      run_line(T, 4100, 2);
+      wait(100);
       break;
     case 24:  // 1101 1000  sewers 2
       break;
@@ -459,9 +475,9 @@ void zone(int T, int zone){
       for (int i = 0; i <= (12000/T/2); i++)  button(A, T);  // Exit and Start game
       for (int i = 1; i <= 30; i++){  // 30 fossils
         digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-        for (int i = 0; i <= (15500/T/2); i++)  button(A, T);
+        for (int i = 0; i <= (15600/T/2); i++)  button(A, T);
       }
-      for (int i = 0; i <= (6000/T/2); i++)  button(B, T);
+      for (int i = 0; i <= (7000/T/2); i++)  button(B, T);
       button(X, T);
       wait(400);
       button(A, T);
