@@ -6,21 +6,22 @@ run_backnforth
 fasttravel
 autobattle
 zoneX
+fossils
 */
 
-const bool groov = false;
+const bool groov = true;
 const int switcho = 2;
 const int gate_time = 2000;
 const int backnforth_time = 3500;
 
 // 8 leds shield
-const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
-const int OUT_LENGTH = 7;
-const int pause_time = 35;
+//const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
+//const int OUT_LENGTH = 7;
+//const int pause_time = 35;
 // 4 leds shield
-//const int OUT[] = {3, 5, 6, 12};
-//const int OUT_LENGTH = 3;
-//const int pause_time = 70;
+const int OUT[] = {3, 5, 6, 12};
+const int OUT_LENGTH = 3;
+const int pause_time = 70;
   
 const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
 const int IN_LENGTH = 8;
@@ -123,7 +124,7 @@ void loop() {
       speed = switcho + 2;
       fasttravel(T, speed, direction); // smaller window or cafeterias
       break;
-    case 64:
+    case 64:    // 0100 0000
       direction = 8;
       run_backnforth(T, backnforth_time, direction);
       break;
@@ -138,6 +139,9 @@ void loop() {
     case 73:    // 0100 1001 (9)
       direction = (x - 64);
       run_backnforth(T, backnforth_time, direction);
+      break;
+    case 128:    // 1000 0000 (0)
+      speedrun(T, 5); // A spam + direction
       break;
     case 129:    // 1000 0001 (1)
     case 130:    // 1000 0010 (2)
@@ -176,9 +180,12 @@ void loop() {
     case 212: // 1101 0100  Zone 20 water bench
     case 213: // 1101 0101  Zone 20 grass bench
     case 214: // 1101 0110  Zone 20 fire starters
-    case 215: // 1101 0111  Sewers 1
-    case 216: // 1101 1000  Sewers 2
-    case 217: // 1101 1001  Lab
+    case 215: // 1101 0111  Sewers litw
+    case 216: // 1101 1000  Lab 30f
+    case 217: // 1101 1001  Lab 60f
+    case 218: // 1101 1010  Lab Switch 1 30f
+    case 219: // 1101 1011  Lab Switch 1 60f
+    case 220: // 1101 1100  Lab Switch 1 120f
       direction = (x - 192);
       zone(T, direction);
       break;
@@ -281,8 +288,6 @@ void dpad(int btn, int timing) {
 
 void lstick(int direction, int timing) {
   if(!digitalRead(IN[IN_LENGTH]))  paused();
-  //int X = (((direction - 1) % 3) * 127.5);
-  //int Y = ( 255 - (((direction - 1) / 3) * 127.5));
   int X = (int)((((direction - 1) % 3) * 127.5) + 0.5);
   int Y = (int)(255 - (((direction - 1) / 3) * 127.5 + 0.5));
   Joystick.setXAxis(X);
@@ -294,8 +299,6 @@ void lstick(int direction, int timing) {
 
 void lstick_fixed(int direction) {
   if(!digitalRead(IN[IN_LENGTH]))  paused();
-  //int X = (((direction - 1) % 3) * 127.5);
-  //int Y = ( 255 - (((direction - 1) / 3) * 127.5));
   int X = (int)((((direction - 1) % 3) * 127.5) + 0.5);
   int Y = (int)(255 - (((direction - 1) / 3) * 127.5 + 0.5));
   Joystick.setXAxis(X);
@@ -361,6 +364,31 @@ void enter_zone(int T){ // walk forward and press A
   wait(gate_time);
 }
 
+void soft_reset(int T) {
+  button(HOME, T);
+  wait(800);
+  button(X, T);
+  wait(400);
+  for (int i = 0; i <= (12000/T/2); i++)  button(A, T);  // Exit and Start game
+}
+
+void fossils(int T, int cycles) {
+  soft_reset(T);
+  for (int i = 1; i < cycles; i++){  // 30 fossils
+    if (groov) led_progress(i, cycles);
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+    for (int i = 0; i <= (15350/50/2); i++)  button(A, 50); // 15600
+  }
+  for (int i = 0; i <= (6000/T/2); i++)  button(B, T);
+  button(X, T);
+  wait(400);
+  button(A, T);
+  wait(2000);
+  dpad(UP, T);
+  paused();
+  for (int i = 0; i <= 2; i++)  button(RSTICK, 250);  // in case the switch fell asleep
+}
+
 void zone(int T, int zone){
   int time = 0;
     switch (zone) {
@@ -409,11 +437,27 @@ void zone(int T, int zone){
       break;
     case 15:  // 1100 1111
       break;
-    case 16:  // 1101 0000
+    case 16:  // 1101 0000  drampa soft resets
+      soft_reset(T);
+      wait(3000); // drampa spawn
+      for (int i = 1; i <= 18; i++){ // 280ms every groove = 8 * 35ms || 18 = 5040ms
+        groovy();
+      }
       break;
-    case 17:  // 1101 0001
+    case 17:  // 1101 0001  drampa walks
+      for (int i = 1; i <= 25; i++){ 
+        digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+        run_line(T, 500, 7);
+        run_line(T, 2000, 4);
+        run_line(T, 1000, 7);
+        button(START, T);
+        lstick(4, 50);
+        fasttravel_confirmation(T);
+      }
+      button(HOME, T);
+      paused();
       break;
-    case 18:  // 1101 0010  25 for drampa, 60-70 clefairy
+    case 18:  // 1101 0010  clefairy walks
       for (int i = 1; i <= 60; i++){ 
         digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
         run_line(T, 500, 7);
@@ -426,7 +470,7 @@ void zone(int T, int zone){
       button(HOME, T);
       paused();
       break;
-    case 19:  // 1101 0011  drampa, clefairy
+    case 19:  // 1101 0011  Zone 19 - does not work with clefa/drampa
       run_line(T, 500, 7);
       run_line(T, 2000, 4);
       run_line(T, 1000, 7);
@@ -465,24 +509,20 @@ void zone(int T, int zone){
       run_line(T, 4100, 2);
       wait(100);
       break;
-    case 24:  // 1101 1000  sewers 2
+    case 24:  // 1101 1000  Lab 30f
+      fossils(T, 30);
       break;
-    case 25:  // 1101 1001  Lab
-      button(HOME, T);
-      wait(800);
-      button(X, T);
-      wait(400);
-      for (int i = 0; i <= (12000/T/2); i++)  button(A, T);  // Exit and Start game
-      for (int i = 1; i <= 30; i++){  // 30 fossils
-        digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-        for (int i = 0; i <= (15600/T/2); i++)  button(A, T);
-      }
-      for (int i = 0; i <= (7000/T/2); i++)  button(B, T);
-      button(X, T);
-      wait(400);
-      button(A, T);
-      wait(400);
-      paused();
+    case 25:  // 1101 1001  Lab 60f
+      fossils(T, 60);
+      break;
+    case 26:  // 1101 1010  Lab Switch1 30f
+      fossils(T, 35);
+      break;
+    case 27:  // 1101 1011  Lab Switch2 60f
+      fossils(T, 70);
+      break;
+    case 28:  // 1101 1011  Lab Switch2 120f
+      fossils(T, 140);
       break;
   }
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
