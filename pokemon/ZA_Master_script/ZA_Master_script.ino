@@ -331,7 +331,7 @@ void fasttravel(int T, int timing, int direction) {
 void autobattle(int T) {
   button_hold(ZL, T);
   for (int i = 0; i < 3; i++)  button(A, T);
-  button(B, T);
+  button(X, T);
   button_release(ZL, T);
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 }
