@@ -4,6 +4,15 @@
  * HOME X A UP
  * 10/27/24 Added pause function
 */
+// 8 leds shield
+const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
+const int OUT_LENGTH = 7;
+// 4 leds shield
+//const int OUT[] = {3, 5, 6, 12};
+//const int OUT_LENGTH = 3;
+    
+const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
+const int IN_LENGTH = 8;
 
 const int T = 300;
 
@@ -40,22 +49,40 @@ const bool testAutoSendMode = true;
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
-  
+
+  for(int i = 0; i <= IN_LENGTH; i++)   pinMode(IN[i], INPUT);
+  for(int i = 0; i <= OUT_LENGTH; i++)  pinMode(OUT[i], OUTPUT);
+  groovy();
+
   if (testAutoSendMode) Joystick.begin();
   else  Joystick.begin(false);
 
   reset_joysticks();
   Joystick.sendState();
-
-  // Pairing controller
-  for (int i = 0; i <= 2; i++)  button(LSTICK, 250);
+  for (int i = 0; i <= 2; i++)  button(ZL, 250);
 }
+
 
 void loop() {
   button(HOME, T);
   delay(500);
   button(X, T);
-  for (int i = 1; i < (40000/T/2); i++)  button(A, T);
+  for (int i = 1; i < (45000/T/2); i++)  button(A, T);
+}
+
+void paused(){
+  reset_joysticks();
+  while(!digitalRead(IN[IN_LENGTH]))  groovy();
+  while(digitalRead(IN[IN_LENGTH]))   groovy();
+  while(!digitalRead(IN[IN_LENGTH]))  groovy();
+}
+
+void groovy() {
+  for(int i = 0; i <= OUT_LENGTH; i++) {
+    digitalWrite(OUT[i], HIGH);
+    delay(30);
+    digitalWrite(OUT[i], LOW);
+  }
 }
 
 void reset_joysticks() {
@@ -66,6 +93,7 @@ void reset_joysticks() {
 }
 
 void button(int btn, int timing) {
+  if(!digitalRead(IN[IN_LENGTH]))  paused();
   Joystick.pressButton(btn);
   delay(timing);
   Joystick.releaseButton(btn);
@@ -73,6 +101,7 @@ void button(int btn, int timing) {
 }
 
 void dpad(int btn, int timing) {
+  if(!digitalRead(IN[IN_LENGTH]))  paused();
   Joystick.setHatSwitch(btn);
   delay(timing);
   Joystick.setHatSwitch(RELEASE);

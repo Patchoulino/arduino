@@ -1,18 +1,8 @@
 /*
- * BDSP Arceus shiny hunting (2 weeks)
+ * BDSP Arceus shiny hunting
  * buttons needed
  * HOME X A UP
- * 10/27/24 Added pause function
 */
-// 8 leds shield
-const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
-const int OUT_LENGTH = 7;
-// 4 leds shield
-//const int OUT[] = {3, 5, 6, 12};
-//const int OUT_LENGTH = 3;
-    
-const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
-const int IN_LENGTH = 8;
 
 const int T = 300;
 int blinke = 0;
@@ -51,10 +41,6 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
-  for(int i = 0; i <= IN_LENGTH; i++)   pinMode(IN[i], INPUT);
-  for(int i = 0; i <= OUT_LENGTH; i++)  pinMode(OUT[i], OUTPUT);
-  groovy();
-
   if (testAutoSendMode) Joystick.begin();
   else  Joystick.begin(false);
 
@@ -88,40 +74,19 @@ void loop() { // Start at battle with arceus so reset of the arduino will open h
 }
 
 void button(int btn, int timing) {
-  if(!digitalRead(IN[IN_LENGTH]))  paused();
   Joystick.pressButton(btn);
-  //Joystick.sendState();
   if (blinke) digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   delay(timing);
   Joystick.releaseButton(btn);
-  //Joystick.sendState();
   if (blinke) digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   delay(timing);
 }
 
 void dpad(int btn, int timing) {
-  if(!digitalRead(IN[IN_LENGTH]))  paused();
   Joystick.setHatSwitch(btn);
-  //Joystick.sendState();
   delay(timing);
   Joystick.setHatSwitch(RELEASE);
-  //Joystick.sendState();
   delay(timing);
-}
-
-void paused(){
-  reset_joysticks();
-  while(!digitalRead(IN[IN_LENGTH]))  groovy();
-  while(digitalRead(IN[IN_LENGTH]))   groovy();
-  while(!digitalRead(IN[IN_LENGTH]))  groovy();
-}
-
-void groovy() {
-  for(int i = 0; i <= OUT_LENGTH; i++) {
-    digitalWrite(OUT[i], HIGH);
-    delay(30);
-    digitalWrite(OUT[i], LOW);
-  }
 }
 
 void reset_joysticks(){
