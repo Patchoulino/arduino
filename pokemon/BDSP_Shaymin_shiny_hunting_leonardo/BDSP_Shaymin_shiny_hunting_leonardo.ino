@@ -1,9 +1,3 @@
-/*
- * SWSH Regi shiny hunting
- * buttons needed
- * HOME X A UP
- * 10/27/24 Added pause function
-*/
 // 8 leds shield
 const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
 const int OUT_LENGTH = 7;
@@ -59,15 +53,22 @@ void setup() {
 
   reset_joysticks();
   Joystick.sendState();
-  for (int i = 0; i <= 2; i++)  button(ZL, 250);
+  for (int i = 0; i <= 2; i++)  button(LSTICK, 250);
 }
 
 
-void loop() {
-  button(HOME, T);
-  delay(500);
-  button(X, T);
-  for (int i = 1; i < (40000/T/2); i++)  button(A, T);
+void loop() { // Begin in front of Shaymin
+  for (int i = 1; i < (10000/T/2); i++)  button(A, T);
+  delay(13000);
+
+  // Run away
+  dpad(UP, T);
+  button(A, T);
+  delay(4000);
+  button(B, T);
+
+  run(DOWN, 3000);
+  run(UP, 3200);
 }
 
 void paused(){
@@ -98,6 +99,17 @@ void button(int btn, int timing) {
   delay(timing);
   Joystick.releaseButton(btn);
   delay(timing);
+}
+
+
+void run(int btn, int timing) {
+  if(!digitalRead(IN[IN_LENGTH]))  paused();
+  Joystick.setHatSwitch(btn);
+  Joystick.pressButton(B);
+  delay(timing);
+  Joystick.setHatSwitch(RELEASE);
+  Joystick.releaseButton(B);
+  delay(10);
 }
 
 void dpad(int btn, int timing) {

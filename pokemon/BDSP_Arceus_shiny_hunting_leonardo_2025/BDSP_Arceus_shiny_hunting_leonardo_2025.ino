@@ -1,5 +1,5 @@
 /*
- * BDSP Arceus shiny hunting
+ * BDSP Arceus shiny hunting 12-30-2025 - 1-3-2026 4-5 days
  * buttons needed
  * HOME X A UP
 */
