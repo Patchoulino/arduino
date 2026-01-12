@@ -4,7 +4,6 @@
  * HOME X A UP
  * 10/27/24 Added pause function
 */
-
 const int T = 300;
 
 const int Y = 0;
@@ -54,6 +53,7 @@ void loop() {
   button(HOME, T);
   delay(500);
   button(X, T);
+  
   for (int i = 1; i < (40000/T/2); i++)  button(A, T);
 }
 

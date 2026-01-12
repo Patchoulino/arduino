@@ -1,4 +1,8 @@
-// BDSP Shaymin shiny hunting 1-3-2026 - 1-7-2026 4-5 days
+/*
+ * BDSP Darkrai shiny hunting (4 days)
+ * buttons needed
+ * HOME X A UP
+ */
 
 // 8 leds shield
 const int OUT[] = {3, 4, 5, 6, 9, 10, 11, 12};
@@ -11,6 +15,7 @@ const int IN[] = {A0, A1, A2, A3, A4, A5, 8, 7, 2};
 const int IN_LENGTH = 8;
 
 const int T = 300;
+int blinke = 0;
 
 const int Y = 0;
 const int B = 1;
@@ -41,6 +46,7 @@ SwitchJoystick_ Joystick;
 
 // Set to true to test "Auto Send" mode or false to test "Manual Send" mode.
 const bool testAutoSendMode = true;
+//const bool testAutoSendMode = false;
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
@@ -58,19 +64,19 @@ void setup() {
   for (int i = 0; i <= 2; i++)  button(LSTICK, 250);
 }
 
+void loop() { // Start at battle with darkrai so reset of the arduino will open home and restart game
+  // Restart game
+  button(HOME, T);
+  delay(500);
+  button(X, T);
 
-void loop() { // Begin in front of Shaymin
-  for (int i = 1; i < (10000/T/2); i++)  button(A, T);
-  delay(13000);
-
-  // Run away
-  dpad(UP, T);
-  button(A, T);
-  delay(4000);
-  button(B, T);
-
-  run(DOWN, 3000);
-  run(UP, 3200);
+  for (int i = 0; i <= (35000/T/2); i++)  button(A, T);
+  digitalWrite(LED_BUILTIN, HIGH);
+  for (int i = 0; i <= (15000/T/2); i++)  button(A, T);
+  blinke = 1;
+  for (int i = 0; i <= (10000/T/2); i++)  button(A, T);
+  blinke = 0;
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void paused(){
@@ -88,30 +94,14 @@ void groovy() {
   }
 }
 
-void reset_joysticks() {
-  Joystick.setXAxis(128);
-  Joystick.setYAxis(128);
-  Joystick.setZAxis(128);
-  Joystick.setRzAxis(128);
-}
-
 void button(int btn, int timing) {
   if(!digitalRead(IN[IN_LENGTH]))  paused();
   Joystick.pressButton(btn);
+  if (blinke) digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   delay(timing);
   Joystick.releaseButton(btn);
+  if (blinke) digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   delay(timing);
-}
-
-
-void run(int btn, int timing) {
-  if(!digitalRead(IN[IN_LENGTH]))  paused();
-  Joystick.setHatSwitch(btn);
-  Joystick.pressButton(B);
-  delay(timing);
-  Joystick.setHatSwitch(RELEASE);
-  Joystick.releaseButton(B);
-  delay(10);
 }
 
 void dpad(int btn, int timing) {
@@ -120,4 +110,11 @@ void dpad(int btn, int timing) {
   delay(timing);
   Joystick.setHatSwitch(RELEASE);
   delay(timing);
+}
+
+void reset_joysticks(){
+  Joystick.setXAxis(128);
+  Joystick.setYAxis(128);
+  Joystick.setZAxis(128);
+  Joystick.setRzAxis(128);
 }
