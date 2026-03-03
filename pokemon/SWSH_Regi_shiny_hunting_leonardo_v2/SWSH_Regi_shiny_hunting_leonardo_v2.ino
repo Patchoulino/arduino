@@ -1,5 +1,5 @@
 /*
- * SWSH Regi shiny hunting
+ * SWSH Regi shiny hunting v2 for the leonardo with no shield or pause option
  * buttons needed
  * HOME X A UP
  * 10/27/24 Added pause function
