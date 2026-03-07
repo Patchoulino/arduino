@@ -196,7 +196,13 @@ void restart_game() {
   button(HOME, T, T);
   delay(500);
   button(X, T, T);
-  for (int i = 1; i <= 15; i++)  button(A, T, T); // 3 Sec
+  //for (int i = 1; i <= 15; i++)  button(A, T, T); // 3 Sec
+  delay(500);
+  button(A, T, T);
+  delay(700);
+  button(A, T, T);
+  delay(1000);
+  button(A, T, 0);
 }
 
 void poweron_sequence() {
@@ -269,16 +275,31 @@ void check_pkmn() {
   button(RIGHT, T, T);
 }
 
+void catch_pokemon() {
+  for (int i = 1; i <= 55; i++)  button(B, T, T); // 11 Sec
+  button(RIGHT, T, T);
+  button(A, T, 2000);
+  button(RIGHT, T, 1000);
+  button(RIGHT, T, 1000);
+  button(DOWN, T, 200);
+  button(DOWN, T, 200);
+  button(DOWN, T, 200);
+  button(A, T, 200);
+  button(A, T, 200);
+  for (int i = 1; i <= 75; i++)  button(B, T, T); // 15 Sec
+}
+
 void frlg_legendary() { // $
   timer_frame_ms_math = ((timer_frame - 497) * 1000.0) / 120.0;
-  timer_frame_ms = timer_frame_ms_math + 4; 
+  timer_frame_ms = timer_frame_ms_math + 24; 
   Serial << "FRLG static_legendary: " << timer_frame_ms << "/" << timer_seed << endl;
   poweron_sequence();
   digitalWrite(LED_BUILTIN, HIGH);
   delay(timer_frame_ms);
   digitalWrite(LED_BUILTIN, LOW);
   button(A, T, T);
-  check_pkmn();
+  catch_pokemon(); // Birds
+  check_pkmn(); // Magikarp
 }
 
 void frlg_magikarp() {  // %
