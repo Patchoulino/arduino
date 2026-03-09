@@ -2,6 +2,7 @@
  * FRLG Arduino assisted FlowTimer Switch edition
  */
 #include <Streaming.h>
+#include <EEPROM.h>
 
 // Arduino variables
 String inString1 = "";  // string to hold input
@@ -34,6 +35,10 @@ const byte SELECT = 10;
 const byte Y = 10;
 const byte R = 11;
 const byte L = 12;
+
+// Analog
+int sensorValue = 0;
+const int analogInPin = A3;
 
 void setup() {
   Serial.begin(9600);
@@ -111,6 +116,10 @@ void loop() {
           //serial_monitor = 1;
           if (isDigit(last_char)) timer_update();
           break;
+        case 'A': // To read the Analog pin and EEPROM
+          sensorValue = analogRead(analogInPin);
+          Serial << "Counter: " << eeread(0) << " byte(0): " << EEPROM.read(0) << " byte(1): " << EEPROM.read(1) << " | Analog Read: " << sensorValue << endl;
+          break;
         case 'S': // Started via soft reset
           starter_sh();
           break;
@@ -151,8 +160,8 @@ void loop() {
 }
 
 void starter_sh() {
+  int previous_value = 0;
   while (true){
-    restart_game_fast();
     for (int i = 1; i <= 35; i++)  button(A, T, T); // 7 Sec  // Start game
     for (int i = 1; i <= 15; i++)  button(B, T, T); // 3 Sec  // Skip Recap
     for (int i = 1; i <= 16; i++)  button(A, T, T); // 3 Sec  // Select Starter
@@ -160,9 +169,21 @@ void starter_sh() {
     button(START, T, T);  // check pokemon
     delay(300);
     for (int i = 1; i <= 10; i++)  button(A, T, T); // 2 Sec
-    delay(2000);
-    button(RIGHT, T, T);
-    delay(5000);
+    delay(1000);
+    //delay(1000);
+    //button(RIGHT, T, T);
+    //delay(5000);
+    sensorValue = analogRead(analogInPin);
+    Serial << "Counter: " << eeread(0) << " byte(0): " << EEPROM.read(0) << " byte(1): " << EEPROM.read(1) << " | Analog Read: " << sensorValue << " | Previous Value: " << previous_value << endl;
+    if (sensorValue < (previous_value - 6)) {  // Shiny found! ( diff is very small, 10 out of the 1024/5V scale)
+      while (true) {
+        digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+        delay(100);
+      }
+    }
+    previous_value = sensorValue;
+    eewrite(eeread(0) + 1, 0);
+    restart_game_fast();
   }
 }
 
@@ -214,8 +235,9 @@ void poweron_sequence() {
   delay(timer_seed_fix);
   digitalWrite(LED_BUILTIN, LOW);
   button(A, 3500, 200);
+  offset_btn = 0;
   button(A, T, T);
-  for (int i = 1; i <= 17; i++)  button(B, T, T); // 4 Sec
+  for (int i = 1; i <= 17; i++)  button(B, T, T); // 4 Sec  Skip recap FRLG
 }
 
 void frlg_gamecorner(int select) {  // 1 Abra | 2 Clef | 3 Dratini | 4 Scy | 5 Pory
@@ -290,27 +312,27 @@ void catch_pokemon() {
 }
 
 void frlg_legendary() { // $
-  timer_frame_ms_math = ((timer_frame - 497) * 1000.0) / 120.0;
-  timer_frame_ms = timer_frame_ms_math + 24; 
+  int timer_offset = 68; // 497 + 3 from (+24 ms delay) but reduced to 18 buttons from poweron_sequence
+  timer_frame_ms_math = ((timer_frame - timer_offset) * 1000.0) / 120.0;
   Serial << "FRLG static_legendary: " << timer_frame_ms << "/" << timer_seed << endl;
   poweron_sequence();
   digitalWrite(LED_BUILTIN, HIGH);
+  timer_frame_ms = timer_frame_ms_math - offset_btn; 
   delay(timer_frame_ms);
   digitalWrite(LED_BUILTIN, LOW);
   button(A, T, T);
   catch_pokemon(); // Birds
-  check_pkmn(); // Magikarp
+  check_pkmn();
 }
 
 void frlg_magikarp() {  // %
   int timer_offset = 0;
-  offset_btn = 3000; // Extra buttons delay in ms
   timer_frame_ms_math = ((timer_frame + timer_offset) * 1000.0) / 120.0;
-  timer_frame_ms = timer_frame_ms_math - offset_btn; 
   Serial << "FRLG magikarp: " << timer_frame_ms << "/" << timer_seed << endl;
   poweron_sequence();
   for (int i = 1; i <= 15; i++)  button(A, T, T); 
   digitalWrite(LED_BUILTIN, HIGH);
+  timer_frame_ms = timer_frame_ms_math - offset_btn; 
   delay(timer_frame_ms);
   digitalWrite(LED_BUILTIN, LOW);
   button(A, T, T);
@@ -318,13 +340,12 @@ void frlg_magikarp() {  // %
 }
 
 void frlg_rng_starter() {
-  //int timer_offset = 102; //LG
-  //timer_frame_ms_math = ((timer_frame + timer_offset) * 1000.0) / 60.0;
-  timer_frame_ms_math = (timer_frame * 1000.0) / 120.0;
-  timer_frame_ms = timer_frame_ms_math; 
+  int timer_offset = 0;
+  timer_frame_ms_math = ((timer_frame + timer_offset) * 1000.0) / 120.0;
   Serial << "FRLG starter: " << timer_frame_ms << "/" << timer_seed << endl;
   poweron_sequence();
   for (int i = 1; i <= 15; i++)  button(A, T, T); // 3 Sec
+  timer_frame_ms = timer_frame_ms_math - offset_btn; 
   delay(timer_frame_ms);
   button(A, T, T);
   for (int i = 1; i <= 65; i++)  button(B, T, T); // 13 Sec
@@ -398,10 +419,8 @@ void frlg_pid_sid() {
   * Generate
   */
   int timer_offset = -243;  // don't remember
-  offset_btn = 6200; // Extra buttons delay in ms from rival name + delay before
+  //offset_btn = 6200; // Extra buttons delay in ms from rival name + delay before
   timer_frame_ms_math = ((1149.0 + timer_offset) * 1000.0) / 60.0;
-  timer_frame_ms = timer_frame_ms_math - offset_btn; 
-  Serial << "timer_frame_ms: " << timer_frame_ms << " | offset_btn: " << offset_btn << endl;
   //timer_frame_ms = 15100;
   //timer_frame_ms = 15101;  //1149!! or 13.14273281 ms per frame
 
@@ -414,6 +433,8 @@ void frlg_pid_sid() {
   delay(300);
 
   for (int i = 1; i <= 24; i++) button(A, T, T); // 4.8 Sec
+  timer_frame_ms = timer_frame_ms_math - offset_btn; 
+  Serial << "timer_frame_ms: " << timer_frame_ms << " | offset_btn: " << offset_btn << endl;
   delay(timer_frame_ms);
   button(A, T, T);
   digitalWrite(LED_BUILTIN, HIGH);
@@ -444,4 +465,13 @@ void button(int btn, int timing_on, int timing_off) {
   digitalWrite(btn, HIGH);
   delay(timing_off);
   offset_btn = offset_btn + timing_on + timing_off;
+}
+
+void eewrite(unsigned int value, int address) {
+  EEPROM.write(address, value & 0xFF);
+  EEPROM.write(address + 1, value >> 8);
+}
+
+unsigned int eeread(int address) {
+  return  (EEPROM.read(address + 1) << 8) + EEPROM.read(address);
 }

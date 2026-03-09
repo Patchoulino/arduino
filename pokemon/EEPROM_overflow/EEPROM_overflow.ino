@@ -13,7 +13,7 @@ void setup() {
 void loop() {
   eewrite(eeread(0) + 1, 0);
   Serial << "Int: " << eeread(0) << " byte(0): " << EEPROM.read(0) << " byte(1): " << EEPROM.read(1) << endl;
-  delay(500);
+  delay(1);
 }
 
 void eewrite(unsigned int value, int address) {
