@@ -170,7 +170,7 @@ void loop() {
           name_patch();
           frlg_pid_sid();
           break;
-        case '<':
+        case '.':
           frlg_new_save();
           name_pau();
           frlg_pid_sid();
@@ -218,16 +218,6 @@ void frlg_sweet_scent() {
   button(DOWN, T, T);
   delay(timer_frame_ms - offset_btn);
   button(A, T, T);
-}
-
-void frlg_rng_starter() { // ! This POKeMON is really quite energetic!
-  frlg_rng(A, 46, A, 15, "FRLG starter"); 
-  for (int i = 1; i <= 65; i++)  button(B, T, T); // 13 Sec
-  button(START, T, T);  // No Pokedex so can't use check_pkmn()
-  delay(300);
-  for (int i = 1; i <= 10; i++)  button(A, T, T); // 2 Sec
-  delay(2000);
-  button(RIGHT, T, T);
 }
 
 void frlg_fossils() { // F  Your fossil is back to life! It was ___ like I think!
@@ -307,6 +297,16 @@ void frlg_legendary() { // $
   check_pkmn();
 }
 
+void frlg_rng_starter() { // ! This POKeMON is really quite energetic!
+  frlg_rng(A, 46, A, 15, "FRLG starter"); 
+  for (int i = 1; i <= 65; i++)  button(B, T, T); // 13 Sec
+  button(START, T, T);  // No Pokedex so can't use check_pkmn()
+  delay(300);
+  for (int i = 1; i <= 10; i++)  button(A, T, T); // 2 Sec
+  delay(2000);
+  button(RIGHT, T, T);
+}
+
 void frlg_gamecorner(int select) {  // @0 Abra | @1 Clef | @2 Dratini | @3 Scy | @4 Pory
   int timer_offset = 41;
   timer_frame_ms_math = ((timer_frame - timer_offset) * 1000.0) / 120.0;
@@ -344,14 +344,14 @@ void frlg_rng(byte BTN, int timer_offset, byte BTN2, int loop, String message){
 void poweron_sequence() {
   restart_game();
   //offset = 4110;  // No GBA boot logo
-  offset = 336; // old 417 | 428 FR || LG 352 336
+  offset = 361; // 361 FR || LG 352
   unsigned long timer_seed_fix = timer_seed - offset_btn + offset;
   //Serial << "timer_seed: " << timer_seed << " timer_seed_fix:" << timer_seed_fix << endl;
   delay(timer_seed_fix);
   digitalWrite(LED_BUILTIN, LOW);
-  button(A, 3200, 200);   // 3500 OG
+  button(A, 3200, 192);   // 3500 OG
   offset_btn = 0;
-  delay(16); // TO SKIP FRAMES AT TITLE SCREEN BEFORE SELECT/START
+  delay(0); // TO SKIP FRAMES AT TITLE SCREEN BEFORE SELECT/START
   button(A, T, T);
   for (int i = 1; i <= 17; i++)  button(B, T, T); // 4 Sec  Skip recap FRLG
 }
