@@ -109,10 +109,10 @@ void loop() {
             }
           }
           break;
-        case 'b':
+        case 'B':
           restart_game_fast();
           break;
-        case 'B':
+        case 'V':
           restart_game();
           break;
         case '!':
@@ -162,8 +162,14 @@ void loop() {
         case 'F':
           frlg_fossils();
           break;
+        case 'Y':
+          frlg_hypno();
+          break;
         case '*':
-          for (int i = 1; i <= 2100; i++)  button(A, T, T); // 7 min of A spam
+          for (int i = 1; i <= 300; i++)  button(A, T, T); // 1 min of A spam
+          break;
+        case '(':
+          for (int i = 1; i <= 300; i++)  button(B, T, T); // 1 min of B spam
           break;
         case ',':
           frlg_new_save();
@@ -220,6 +226,13 @@ void frlg_sweet_scent() {
   button(A, T, T);
 }
 
+void frlg_hypno() { // F  Waaaaaaaaah! I want my daddy! | 1400~ or more adv at least
+  frlg_rng(A, 217, A, 30, "FRLG Hypno");
+  catch_pokemon();
+  for (int i = 1; i <= 55; i++)  button(B, T, T);
+  check_pkmn();
+}
+
 void frlg_fossils() { // F  Your fossil is back to life! It was ___ like I think!
   frlg_rng(A, 47, A, 4, "FRLG Fossils");
   check_pkmn();
@@ -231,7 +244,7 @@ void frlg_mewtwo() { // M
   check_pkmn();
 }
 
-void frlg_roaming() { // F Thanks to you, my dream came true... so can't hit below 1560~
+void frlg_roaming() { // O Thanks to you, my dream came true... | so can't hit below 2600~
   frlg_rng(A, 59, A, 90, "FRLG Roaming legendary");
   digitalWrite(LEFT, LOW);  // Leave the building
   delay(1400);
@@ -243,27 +256,24 @@ void frlg_roaming() { // F Thanks to you, my dream came true... so can't hit bel
 
 void frlg_hooh() { // H
   frlg_rng(UP, 813, A, 0, "FRLG Ho-oH");
-  //for (int i = 1; i <= 20; i++)  button(B, T, T); 
   catch_pokemon();
   check_pkmn();
 }
 
 void frlg_lugia() { // U
   frlg_rng(A, 610, A, 0, "FRLG Lugia");
-  //for (int i = 1; i <= 15; i++)  button(B, T, T); 
   catch_pokemon();
   check_pkmn();
 }
 
 void frlg_deoxys() { // D
   frlg_rng(A, 1058, A, 0, "FRLG Deoxys");
-  //for (int i = 1; i <= 25; i++)  button(B, T, T); 
   catch_pokemon();
   check_pkmn();
 }
 
 void frlg_snorlax() {  // S
-  frlg_rng(A, 64, A, 25, "FRLG Snorlax");
+  frlg_rng(A, -10, A, 25, "FRLG Snorlax");
   catch_pokemon();
   check_pkmn();
 }
@@ -275,19 +285,16 @@ void frlg_magikarp() {  // M
 
 void frlg_lapras() { // L
   frlg_rng(A, 64, A, 10, "FRLG Lapras");
-  //for (int i = 1; i <= 15; i++)  button(B, T, T); 
   check_pkmn();
 }
 
 void frlg_hitmon() { // H
   frlg_rng(A, 71, A, 1, "FRLG Hitmon");
-  //for (int i = 1; i <= 5; i++)  button(B, T, T); 
   check_pkmn();
 }
 
 void frlg_eevee() { // E
-  frlg_rng(A, 68, A, 0, "FRLG Eevee");
-  //for (int i = 1; i <= 5; i++)  button(B, T, T); 
+  frlg_rng(A, 46, A, 0, "FRLG Eevee");
   check_pkmn();
 }
 
@@ -318,10 +325,10 @@ void frlg_gamecorner(int select) {  // @0 Abra | @1 Clef | @2 Dratini | @3 Scy |
   for (int i = 1; i <= 2; i++)  button(A, T, T);
   digitalWrite(LED_BUILTIN, HIGH);
   timer_frame_ms = timer_frame_ms_math - offset_btn; // -5600 from button presses
+  Serial << "FRLG Debug: " << timer_frame_ms << "ms | " << timer_frame_ms_math << "/" << timer_seed << endl;
   delay(timer_frame_ms);
   digitalWrite(LED_BUILTIN, LOW);
   button(A, T, T);
-  Serial << "FRLG Debug: " << timer_frame_ms << "ms | " << timer_frame_ms_math << "/" << timer_seed << endl;
 
   check_pkmn();
 }
@@ -335,23 +342,23 @@ void frlg_rng(byte BTN, int timer_offset, byte BTN2, int loop, String message){
 
   digitalWrite(LED_BUILTIN, HIGH);
   timer_frame_ms = timer_frame_ms_math - offset_btn;
+  Serial << "FRLG Debug: " << timer_frame_ms_math << " - " << offset_btn << " = " << timer_frame_ms << "/" << timer_seed << endl;
   delay(timer_frame_ms);
   digitalWrite(LED_BUILTIN, LOW);
   button(BTN, T, T);
-  Serial << "FRLG Debug: " << timer_frame_ms << "ms | " << timer_frame_ms_math << "/" << timer_seed << endl;
 }
 
 void poweron_sequence() {
   restart_game();
   //offset = 4110;  // No GBA boot logo
-  offset = 361; // 361 FR || LG 352
+  offset = 344; // 361 FR || LG 352   # SEED offset
   unsigned long timer_seed_fix = timer_seed - offset_btn + offset;
   //Serial << "timer_seed: " << timer_seed << " timer_seed_fix:" << timer_seed_fix << endl;
   delay(timer_seed_fix);
   digitalWrite(LED_BUILTIN, LOW);
-  button(A, 3200, 192);   // 3500 OG
+  button(A, 3200, 200);   // 3500 OG
   offset_btn = 0;
-  delay(0); // TO SKIP FRAMES AT TITLE SCREEN BEFORE SELECT/START
+  delay(24); // TO SKIP FRAMES AT TITLE SCREEN BEFORE SELECT/START
   button(A, T, T);
   for (int i = 1; i <= 17; i++)  button(B, T, T); // 4 Sec  Skip recap FRLG
 }
@@ -369,7 +376,7 @@ void restart_game() {
 
   delay(1000);
   button(HOME, T, T);
-  delay(1500);
+  delay(1800);
   offset_btn = 40;  // To match seeds, removed 1s delay and adding button as well, 1240ms total
   digitalWrite(LED_BUILTIN, HIGH);
   button(HOME, T, T);
@@ -497,8 +504,8 @@ void frlg_pid_sid() {
   * Tools > Researcher https://www.youtube.com/watch?v=xXz2GCSy6HA
   * TID DEC to HEX, use as seed
   * Custom1 16Bit High / 1
-  * Initial Advances 1147, or just 1149
-  * Max Advances 5
+  * Initial Advances 2780 // Patch were all 2785 | Pau 2783
+  * Max Advances 10
   * Generate
   */
   //int timer_offset = -243;  // don't remember
