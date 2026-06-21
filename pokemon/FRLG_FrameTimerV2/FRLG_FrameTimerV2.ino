@@ -273,7 +273,7 @@ void frlg_deoxys() { // D
 }
 
 void frlg_snorlax() {  // S
-  frlg_rng(A, -10, A, 25, "FRLG Snorlax");
+  frlg_rng(A, 128, A, 25, "FRLG Snorlax");
   catch_pokemon();
   check_pkmn();
 }
@@ -358,7 +358,7 @@ void poweron_sequence() {
   digitalWrite(LED_BUILTIN, LOW);
   button(A, 3200, 200);   // 3500 OG
   offset_btn = 0;
-  delay(24); // TO SKIP FRAMES AT TITLE SCREEN BEFORE SELECT/START
+  delay(16); // TO SKIP FRAMES AT TITLE SCREEN BEFORE SELECT/START
   button(A, T, T);
   for (int i = 1; i <= 17; i++)  button(B, T, T); // 4 Sec  Skip recap FRLG
 }
@@ -398,14 +398,14 @@ void check_pkmn() {
 }
 
 void catch_pokemon() {
-  for (int i = 1; i <= 65; i++)  button(B, T, T);
+  for (int i = 1; i <= 70; i++)  button(B, T, T); // 65 before shiny venasaur
   button(RIGHT, T, T);
   button(A, T, 2000);
   button(RIGHT, T, 1000);
   button(RIGHT, T, 1000);
   button(DOWN, T, 200);
   button(DOWN, T, 200);
-  button(DOWN, T, 200);
+  //button(DOWN, T, 200); // No ultra on leaf green yet
   button(A, T, 200);
   button(A, T, 200);
   for (int i = 1; i <= 75; i++)  button(B, T, T); // 15 Sec
