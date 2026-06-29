@@ -405,7 +405,7 @@ void catch_pokemon() {
   button(RIGHT, T, 1000);
   button(DOWN, T, 200);
   button(DOWN, T, 200);
-  //button(DOWN, T, 200); // No ultra on leaf green yet
+  button(DOWN, T, 200);
   button(A, T, 200);
   button(A, T, 200);
   for (int i = 1; i <= 75; i++)  button(B, T, T); // 15 Sec
