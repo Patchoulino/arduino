@@ -208,24 +208,6 @@ int serial_input() {
   return input_char2;
 }
 
-void frlg_sweet_scent() {
-  int timer_offset = -231;  // FR_Og WIP
-  timer_frame_ms_math = ((timer_frame + timer_offset) * 1000) / 60;
-  timer_frame_ms = lround(timer_frame_ms_math); 
-  Serial << "FRLG sweetscent: " << timer_frame_ms << "/" << timer_seed << endl;
-  poweron_sequence();
-  delay(100);
-  button(START, T, T);
-  button(DOWN, T, T);
-  button(A, T, T);
-  delay(1000);
-  button(DOWN, T, T);
-  button(A, T, T);
-  button(DOWN, T, T);
-  delay(timer_frame_ms - offset_btn);
-  button(A, T, T);
-}
-
 void frlg_hypno() { // F  Waaaaaaaaah! I want my daddy! | 1400~ or more adv at least
   frlg_rng(A, 217, A, 30, "FRLG Hypno");
   catch_pokemon();
@@ -246,8 +228,11 @@ void frlg_mewtwo() { // M
 
 void frlg_roaming() { // O Thanks to you, my dream came true... | so can't hit below 2600~
   frlg_rng(A, 59, A, 90, "FRLG Roaming legendary");
+  digitalWrite(DOWN, LOW);
+  delay(200);
+  digitalWrite(DOWN, HIGH);
   digitalWrite(LEFT, LOW);  // Leave the building
-  delay(1400);
+  delay(1900);  // 1400
   digitalWrite(LEFT, HIGH);
   digitalWrite(DOWN, LOW);
   delay(2500);
@@ -304,14 +289,24 @@ void frlg_legendary() { // $
   check_pkmn();
 }
 
-void frlg_rng_starter() { // ! This POKeMON is really quite energetic!
-  frlg_rng(A, 46, A, 15, "FRLG starter"); 
-  for (int i = 1; i <= 65; i++)  button(B, T, T); // 13 Sec
-  button(START, T, T);  // No Pokedex so can't use check_pkmn()
-  delay(300);
-  for (int i = 1; i <= 10; i++)  button(A, T, T); // 2 Sec
-  delay(2000);
-  button(RIGHT, T, T);
+void frlg_sweet_scent() {
+  int timer_offset = 615;  // FR_Og WIP
+  timer_frame_ms_math = ((timer_frame - timer_offset) * 1000) / 120.0;
+  timer_frame_ms = lround(timer_frame_ms_math); 
+  Serial << "FRLG sweetscent: " << timer_frame_ms << "/" << timer_seed << endl;
+  poweron_sequence();
+  button(X, T, T); // Sleep 200
+  button(START, T, T);
+  button(DOWN, T, T);
+  button(A, T, T);
+  button(X, T, 900); // Sleep 1000
+  button(DOWN, T, T);
+  button(A, T, T);
+  button(DOWN, T, T);
+  delay(timer_frame_ms - offset_btn);
+  button(A, T, T);
+  catch_pokemon();
+  check_pkmn_sweetscent();
 }
 
 void frlg_gamecorner(int select) {  // @0 Abra | @1 Clef | @2 Dratini | @3 Scy | @4 Pory
@@ -331,6 +326,16 @@ void frlg_gamecorner(int select) {  // @0 Abra | @1 Clef | @2 Dratini | @3 Scy |
   button(A, T, T);
 
   check_pkmn();
+}
+
+void frlg_rng_starter() { // ! This POKeMON is really quite energetic!
+  frlg_rng(A, 46, A, 15, "FRLG starter"); 
+  for (int i = 1; i <= 65; i++)  button(B, T, T); // 13 Sec
+  button(START, T, T);  // No Pokedex so can't use check_pkmn()
+  delay(300);
+  for (int i = 1; i <= 10; i++)  button(A, T, T); // 2 Sec
+  delay(2000);
+  button(RIGHT, T, T);
 }
 
 void frlg_rng(byte BTN, int timer_offset, byte BTN2, int loop, String message){
@@ -358,7 +363,7 @@ void poweron_sequence() {
   digitalWrite(LED_BUILTIN, LOW);
   button(A, 3200, 200);   // 3500 OG
   offset_btn = 0;
-  delay(16); // TO SKIP FRAMES AT TITLE SCREEN BEFORE SELECT/START
+  delay(32); // TO SKIP FRAMES AT TITLE SCREEN BEFORE SELECT/START
   button(A, T, T);
   for (int i = 1; i <= 17; i++)  button(B, T, T); // 4 Sec  Skip recap FRLG
 }
@@ -380,6 +385,19 @@ void restart_game() {
   offset_btn = 40;  // To match seeds, removed 1s delay and adding button as well, 1240ms total
   digitalWrite(LED_BUILTIN, HIGH);
   button(HOME, T, T);
+}
+
+void check_pkmn_sweetscent() {
+  for (int i = 1; i <= 20; i++)  button(B, T, T); // 4 Sec
+  button(START, T, T);
+  delay(200);
+  button(A, T, T);
+  delay(1500);
+  button(UP, T, T);
+  button(UP, T, T);
+  for (int i = 1; i <= 3; i++)  button(A, T, T); // 1 Sec
+  delay(5000);
+  button(RIGHT, T, T);
 }
 
 void check_pkmn() {
